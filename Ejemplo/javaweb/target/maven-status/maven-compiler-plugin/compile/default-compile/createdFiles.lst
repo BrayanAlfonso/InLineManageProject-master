@@ -1,0 +1,7 @@
+JavaWeb.class
+model\UsuarioVo.class
+model\UsuarioDao.class
+model\ProductoVo.class
+controller\Usuario.class
+model\Conexion.class
+model\ProductoDao.class

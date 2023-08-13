@@ -1,0 +1,9 @@
+model\UsuarioVo.class
+model\UsuarioDao.class
+model\ProductoVo.class
+ControllerInline.class
+model\ExistenciaDao.class
+model\ExistenciaVo.class
+controller\Usuario.class
+model\Conexion.class
+model\ProductoDao.class

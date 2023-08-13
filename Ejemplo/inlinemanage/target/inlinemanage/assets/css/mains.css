@@ -1,0 +1,69 @@
+/* !ESTILOS PARA LAS TABLAS */
+.title-table{
+    border: 1px solid black;
+    background-color: #808080;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+.container-table{
+    width: 60%;
+}
+table{
+    margin-top: 35px;
+    width: 100%;
+    border: 1px solid black;
+    background-color: white;
+    max-height: 400px;
+    min-height: 300px;
+    margin-left: 20px;
+    border-radius: 10px;
+}
+
+th,td{
+    border-right: 1px solid black;
+    height: 10px;
+    min-height: 23px;
+    max-height: 25px;
+}
+
+td{
+    height: 40px;
+}
+
+th{
+    border-bottom: 1px solid black;
+}
+
+.few-rows {
+    height: 300px; /* Establece una altura mínima para la tabla cuando hay pocos registros */
+}
+
+
+.buttons{
+    
+    width: 50%;
+    height: 570px;
+    margin-right: 20px;
+}
+
+.Button{
+    padding: 15px;
+    width: 40%;
+    height: 40%;
+    border: 3px solid black;
+    border-radius: 10px;
+    margin: 50px;
+    
+    text-align: center;
+    font-size: 10px;
+}
+
+.row-buttons{
+    display: flex;
+    justify-content: center;
+}
+
+a{
+    text-decoration: none;
+}
