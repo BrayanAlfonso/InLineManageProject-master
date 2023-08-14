@@ -7,7 +7,11 @@
 <%@ page import="model.UsuarioVo" %>
 <%@ page import="model.UsuarioDao" %>
 
-<main class="main">  
+<div class="backlog">
+    <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
+</div>
+
+<main class="main" id="mainUpdate">  
     
     <%-- Obtener el id del usuario seleccionado de la URL --%>
     <% String userId = request.getParameter("idUsuario"); %>
@@ -22,7 +26,7 @@
 
     <%-- Verificar si se encontró el usuario y mostrar el formulario de actualización --%>
     <% if (user != null) { %>
-    <form action="ControllerInline" method="post">
+    <form action="ControllerInline" method="post" class="formUpdate">
         <h1 class="title-table">Actualizacion de usuarios</h1>
 
         <input type="hidden" name="idUsuario" id="idUsuario" value="<%= user.getIdUsuario() %>">
@@ -38,27 +42,27 @@
     
             <div class="divNoDocument">
                 <label for="UpdateNoDocument">Numero de documento:</label>
-                <input type="text" id="UpdateNoDocument" name="UpdateNoDocument" value="<%= user.getNumeroDoc() %>">
+                <input type="text" id="UpdateNoDocument" name="UpdateNoDocument" value="<%= user.getNumeroDoc() %>" class="inputForm">
             </div>
     
             <div class="divName">
                 <label for="name">Nombre:</label>
-                <input type="text" id="UpdateName" name="UpdateName"value="<%= user.getNombre() %>">
+                <input type="text" id="UpdateName" name="UpdateName"value="<%= user.getNombre() %>" class="inputForm">
             </div>
     
             <div class="divLastName">
                 <label for="UpdateLastName">Apellido:</label>
-                <input type="text" id="UpdateLastName" name="UpdateLastName" value="<%= user.getApellido() %>">
+                <input type="text" id="UpdateLastName" name="UpdateLastName" value="<%= user.getApellido() %>" class="inputForm">
             </div>
     
             <div class="divEmail">
                 <label for="UpdateEmail">Correo:</label>
-                <input type="email" id="UpdateEmail" name="UpdateEmail" value="<%= user.getCorreo() %>">
+                <input type="email" id="UpdateEmail" name="UpdateEmail" value="<%= user.getCorreo() %>" class="inputForm">
             </div>
     
             <div class="divPassword">
                 <label for="UpdatePassword">Contraseña:</label>
-                <input type="password" id="UpdatePassword" name="UpdatePassword" value="<%= user.getContraseña() %>">
+                <input type="password" id="UpdatePassword" name="UpdatePassword" value="<%= user.getContraseña() %>" class="inputForm">
             </div>
     
             <div class="divRol">

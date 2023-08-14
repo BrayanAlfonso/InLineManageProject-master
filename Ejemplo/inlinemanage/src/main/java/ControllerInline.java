@@ -1,19 +1,22 @@
 import java.io.IOException;
-import java.sql.Date;
+
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
+import model.CategoriaDao;
+import model.CategoriaVo;
 import model.ExistenciaDao;
 import model.ExistenciaVo;
 import model.ProductoDao;
 import model.ProductoVo;
 import model.UsuarioDao;
 import model.UsuarioVo;
+
+
 
 
 
@@ -26,6 +29,8 @@ public class ControllerInline extends HttpServlet{
     ProductoDao ProdDao=new ProductoDao();
     ExistenciaDao ExistDao=new ExistenciaDao();
     ExistenciaVo ExistVo=new ExistenciaVo();
+    CategoriaDao CateDao=new CategoriaDao();
+    CategoriaVo CateVo=new CategoriaVo();
 
 @Override
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -66,6 +71,14 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 
         case "main":
             req.getRequestDispatcher("main.jsp").forward(req, resp);
+        break;
+
+        case "categoria":
+        req.getRequestDispatcher("FormsCategory/indexCategoria.jsp").forward(req, resp);
+        break;
+
+        case "registerCategory":
+        req.getRequestDispatcher("FormsCategory/registerCategory.jsp").forward(req, resp);
         break;
 
         case "updateUser":
@@ -157,6 +170,50 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
             }
         break;
 
+                //Actualizar categoria
+        case "updateCategory":
+         // Obtener el user_id del usuario seleccionado desde la URL
+        String CategoryId = req.getParameter("idCategoria");
+        int categoryId = Integer.parseInt(CategoryId);
+ 
+        try {
+             // Obtener el usuario por su id y enviarlo al formulario de actualización
+            CategoriaVo categoria = new CategoriaDao().obtenerCategorytPorId(categoryId);
+ 
+            if (categoria != null) {
+                req.setAttribute("Categoria", categoria);
+                req.getRequestDispatcher("FormsCategory/updateCategory.jsp").forward(req, resp);
+            } else {
+                 // Si no se encuentra el usuario, redirigir a la página de listado con un mensaje de error
+                List<CategoriaVo> categorias = new CategoriaDao().listar();
+                req.setAttribute("Categoria", categorias);
+                req.setAttribute("mensaje", "El producto seleccionado no existe.");
+                req.getRequestDispatcher("FormsCategory/indexCategoria.jsp").forward(req, resp);
+            }
+        } catch (SQLException e) {
+             // Manejar la excepción SQLException aquí o propagarla hacia arriba según corresponda
+            e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al obtener el usuario");
+        }
+        break;
+
+         //Eliminar el producto
+        case "deleteCategory":
+        String CateIdStrDelete = req.getParameter("idCategoria");
+            int CateIdDelete = Integer.parseInt(CateIdStrDelete);
+
+            try {
+                new CategoriaDao().eliminar(CateIdDelete);
+                System.out.println("Categoria eliminado correctamente");
+                listCateDelete(req, resp);
+            
+            } catch (Exception e) {
+                 // Manejar la excepción SQLException aquí o propagarla hacia arriba según corresponda
+                e.printStackTrace();
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al obtener el producto");
+            }
+        break;
+
     }
 }
 
@@ -190,6 +247,32 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
         updateProdController(req, resp);
         break;
 
+        
+        case"registerCategory":
+        System.out.println("Acabas de entrar al caso 'registerCate, en el metodo registerCate()'");
+        registerCategoryController(req, resp);
+        break;
+
+        case"updateCategory":
+        System.out.println("Se entro al caso de updateCategory");
+        updateCategoryController(req, resp);
+        break;
+
+            //Existencias
+        case"registerExistence":
+            System.out.println("Se entro al caso 'registerExistence, en el metodo registerExistence()'");
+            registerExistenceController(req, resp);
+        break;
+
+        case"updateExistence":
+            System.out.println("Se entro al caso 'updateExistence, en el metodo updateExistence()'");
+            updateExistenceController(req, resp);
+        break;
+
+        case"deleteExistence":
+            System.out.println("Se entro al caso 'deleteExistence, en el metodo deleteExistence()'");
+            deleteExistenceController(req, resp);
+        break;
 
 }
 
@@ -208,8 +291,8 @@ private void loginUserController(HttpServletRequest req, HttpServletResponse res
                 System.out.println("La validación ha sido exitosa!");
                 req.getRequestDispatcher("main.jsp").forward(req, resp);
             } else {
-                req.setAttribute("mensaje", "Usuario o contraseña incorrectos.");
-                System.out.println("Usuario y contraseña no encontrados!");
+                System.out.println("Usuario y/o contraseña no encontrados");
+                req.setAttribute("mensaje", "Usuario y/o contraseña no encontrados:(");
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
             }
 
@@ -218,8 +301,7 @@ private void loginUserController(HttpServletRequest req, HttpServletResponse res
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al intentar iniciar sesión");
         }
     }else {
-        req.setAttribute("mensaje", "Por favor, ingrese un nombre de usuario y contraseña válidos.");
-        System.out.println("No has ingresado ningun dato");
+        req.setAttribute("mensaje", "Usuario y/o contraseña no encontrados:(");
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 }
@@ -326,37 +408,38 @@ private void registerUserController(HttpServletRequest req, HttpServletResponse 
     }
 
 
-    //PRODUCTOS CRUD
+ //PRODUCTOS CRUD
 
 //REGISTRAR PRODUCTOS
 private void registerProductController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 
-    if(req.getParameter("numSerial")!=null){
-        String numSerial=req.getParameter("numSerial");
-        int numSeSerialParsed=Integer.parseInt(numSerial);
-        ProdVo.setNumSerial(numSeSerialParsed);
+    
+    if(req.getParameter("unidadesDisponibles")!=null){
+        ProdVo.setUnidadesDisponibles(Integer.parseInt(req.getParameter("unidadesDisponibles")));
     }
     if(req.getParameter("nameProduct")!=null){
         ProdVo.setNombreProducto(req.getParameter("nameProduct"));
     }
-    if(req.getParameter("precioProd")!=null){
-        String PrecioProd=req.getParameter("precioProd");
-        int Precio=Integer.parseInt(PrecioProd);
-        ProdVo.setPrecioProducto(Precio);
+    if(req.getParameter("precio")!=null){
+        ProdVo.setPrecioVenta(Float.parseFloat(req.getParameter("precio")));
     }
     if(req.getParameter("descripcion")!=null){
         ProdVo.setDescripcion(req.getParameter("descripcion"));
     }
+    if(req.getParameter("serial")!=null){
+        ProdVo.setSerial(Integer.parseInt(req.getParameter("serial")));
+    }
+    if(req.getParameter("garantiaEntrada")!=null){
+        ProdVo.setGarantiaEntradaMeses(Integer.parseInt(req.getParameter("garantiaEntrada")));
+    }
+    if(req.getParameter("garantiaVentas")!=null){
+        ProdVo.setGarantiaVentaMeses(Integer.parseInt(req.getParameter("garantiaVentas")));
+    }
     if(req.getParameter("categoria")!=null){
-        String categoria=req.getParameter("categoria");
-        int Categoria=Integer.parseInt(categoria);
-        ProdVo.setIdCategoria(Categoria);
+        ProdVo.setIdCategoria(Integer.parseInt(req.getParameter("categoria")));
     }
-    if(req.getParameter("existencia")!=null){
-        String existencia=req.getParameter("existencia");
-        int Existencia=Integer.parseInt(existencia);
-        ProdVo.setIdExistencia(Existencia);;
-    }
+    
+
     else{
         System.out.println("Ha habido un error al tratar de registrar los datos del producto en el metodo registerProductController");
     }
@@ -370,52 +453,49 @@ private void registerProductController(HttpServletRequest req, HttpServletRespon
     }
 }
 
+
     //Actualizar Producto
-private void updateProdController(HttpServletRequest req, HttpServletResponse resp) {
+    private void updateProdController(HttpServletRequest req, HttpServletResponse resp) {
 
-    if(req.getParameter("idProducto")!=null){
-            String idProdStr=req.getParameter("idProducto");
-            int idProd=Integer.parseInt(idProdStr);
-            ProdVo.setIdProducto(idProd);
-    }
-    if(req.getParameter("UpdateNumSerial")!=null){
-        String UpdateNumSerial=req.getParameter("UpdateNumSerial");
-        int UpdateNumSerialParsed=Integer.parseInt(UpdateNumSerial);
-        ProdVo.setPrecioProducto(UpdateNumSerialParsed);
-    }
-    if(req.getParameter("UpdateNameProduct")!=null){
-        ProdVo.setNombreProducto(req.getParameter("UpdateNameProduct"));
-    }
-    if(req.getParameter("UpdatePrecioProd")!=null){
-        String PrecioProd=req.getParameter("UpdatePrecioProd");
-        int Precio=Integer.parseInt(PrecioProd);
-        ProdVo.setPrecioProducto(Precio);
-    }
-    if(req.getParameter("UpdateDescripcion")!=null){
-        ProdVo.setDescripcion(req.getParameter("UpdateDescripcion"));
-    }
-    if(req.getParameter("UpdateCategoria")!=null){
-        String categoria=req.getParameter("UpdateCategoria");
-        int Categoria=Integer.parseInt(categoria);
-        ProdVo.setIdCategoria(Categoria);
-    }
-    if(req.getParameter("UpdateExistencia")!=null){
-        String existencia=req.getParameter("UpdateExistencia");
-        int Existencia=Integer.parseInt(existencia);
-        ProdVo.setIdExistencia(Existencia);;
-    }
-        
-        try {
-            ProdDao.actualizar(ProdVo);
-            System.out.println("Producto actualizado correctamente");
-
-            //NOTA: Redireccionamiento preventivo.       
-            req.getRequestDispatcher("FormsProduct/indexProduct.jsp").forward(req, resp);
-
-        } catch (Exception e) {
-            System.out.println("Error en la actualizacion del producto "+e.getMessage().toString());
+        if(req.getParameter("idProducto")!=null){
+            ProdVo.setIdProducto(Integer.parseInt(req.getParameter("idProducto")));
         }
-    }
+        if(req.getParameter("UpdateUnidadesDisponibles")!=null){
+            ProdVo.setUnidadesDisponibles(Integer.parseInt(req.getParameter("UpdateUnidadesDisponibles")));
+        }
+        if(req.getParameter("UpdateNameProducto")!=null){
+            ProdVo.setNombreProducto(req.getParameter("UpdateNameProducto"));
+        }
+        if(req.getParameter("UpdatePrecio")!=null){
+            ProdVo.setPrecioVenta(Float.parseFloat(req.getParameter("UpdatePrecio")));
+        }
+        if(req.getParameter("UpdateDescripcion")!=null){
+            ProdVo.setDescripcion(req.getParameter("UpdateDescripcion"));
+        }
+        if(req.getParameter("UpdateSerial")!=null){
+            ProdVo.setSerial(Integer.parseInt(req.getParameter("UpdateSerial")));
+        }
+        if(req.getParameter("UpdateGarantiaEntrada")!=null){
+            ProdVo.setGarantiaEntradaMeses(Integer.parseInt(req.getParameter("UpdateGarantiaEntrada")));
+        }
+        if(req.getParameter("UpdateGarantiaVentas")!=null){
+            ProdVo.setGarantiaVentaMeses(Integer.parseInt(req.getParameter("UpdateGarantiaVentas")));
+        }
+        if(req.getParameter("UpdateCategoria")!=null){
+            ProdVo.setIdCategoria(Integer.parseInt(req.getParameter("UpdateCategoria")));
+        }
+            
+            try {
+                ProdDao.actualizar(ProdVo);
+                System.out.println("Producto actualizado correctamente");
+    
+                //NOTA: Redireccionamiento preventivo.       
+                req.getRequestDispatcher("FormsProduct/indexProduct.jsp").forward(req, resp);
+    
+            } catch (Exception e) {
+                System.out.println("Error en la actualizacion del producto "+e.getMessage().toString());
+            }
+        }
     
     
 private void listProdDelete(HttpServletRequest req, HttpServletResponse resp) {
@@ -429,43 +509,154 @@ private void listProdDelete(HttpServletRequest req, HttpServletResponse resp) {
         }
     }
 
-    
-    //EXISTENCIAS CRUD
+//CRUD CATEGORIA
+//REGISTRAR categoria
 
-//REGISTRAR EXISTENCIA
-private void registerExistenceController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-
-    if(req.getParameter("numSerial")!=null){
-        String numSerial=req.getParameter("numSerial");
-        int numSeSerialParsed=Integer.parseInt(numSerial);
-        ExistVo.setNumSerial(numSeSerialParsed);
-    }
-    if(req.getParameter("idCategoria")!=null){
-        String idCategoria=req.getParameter("idCategoria");
-        int idCategParsed=Integer.parseInt(idCategoria);
-        ExistVo.setIdCategoria(idCategParsed);
-    }
-
-    if(req.getParameter("categoria")!=null){
-        String categoria=req.getParameter("categoria");
-        int Categoria=Integer.parseInt(categoria);
-        ProdVo.setIdCategoria(Categoria);
-    }
-    if(req.getParameter("existencia")!=null){
-        String existencia=req.getParameter("existencia");
-        int Existencia=Integer.parseInt(existencia);
-        ProdVo.setIdExistencia(Existencia);;
+private void registerCategoryController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    if(req.getParameter("nameCategory")!=null){
+        CateVo.setNombreCategoria(req.getParameter("nameCategory"));
     }
     else{
-        System.out.println("Ha habido un error al tratar de registrar los datos del producto en el metodo registerProductController");
+        System.out.println("Ha habido un error al tratar de registrar los datos de la categoria en el metodo registerUserController");
     }
     try {
-        ProdDao.registerProduct(ProdVo);
+        CateDao.registerCategory(CateVo);
         System.out.println("Registro insertado correctamente en controllerInLine");
         //Redireccionamiento
-        req.getRequestDispatcher("FormsProduct/registerProduct.jsp").forward(req, resp);
+        req.getRequestDispatcher("FormsCategory/registerCategory.jsp").forward(req, resp);
     } catch (Exception e) {
         System.out.println("Error al registrar los datos del usaurio en ControllerInline en el metodo registerUserController");
     }
 }
+
+    //Actualizar Categoria
+private void updateCategoryController(HttpServletRequest req, HttpServletResponse resp) {
+
+    if(req.getParameter("idCategoria")!=null){
+            String idCateStr=req.getParameter("idCategoria");
+            int idCategoria=Integer.parseInt(idCateStr);
+            CateVo.setIdCategoria(idCategoria);
+    }
+    if(req.getParameter("UpdateNameCategory")!=null){
+    CateVo.setNombreCategoria(req.getParameter("UpdateNameCategory"));
+    }
+        
+        try {
+            CateDao.actualizar(CateVo);
+            System.out.println("Categoria actualizado correctamente");
+
+            //NOTA: Redireccionamiento preventivo.       
+            req.getRequestDispatcher("FormsCategory/indexCategoria.jsp").forward(req, resp);
+
+        } catch (Exception e) {
+            System.out.println("Error en la actualizacion del producto "+e.getMessage().toString());
+        }
+    }
+    
+    
+private void listCateDelete(HttpServletRequest req, HttpServletResponse resp) {
+        try {
+            List<CategoriaVo> categoria = CateDao.listar();
+            req.setAttribute("Categoria", categoria);
+            req.getRequestDispatcher("FormsCategory/indexCategoria.jsp").forward(req, resp);
+            System.out.println("Datos listados correctamente despues del categoria eliminado");
+        } catch (Exception e) {
+            System.out.println("Hay problemas al listar los datos en el metodo " + e.getMessage().toString());
+        }
+    }
+
+    
+
+
+    
+    //CRUD EXISTENCIAS
+
+//REGISTRAR EXISTENCIA
+private void registerExistenceController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+
+    if(req.getParameter("cantidadUnidad")!=null){
+        String cantidadUnidad=req.getParameter("cantidadUnidad");
+        int cantUnidParsed=Integer.parseInt(cantidadUnidad);
+        ExistVo.setCantidadUnidad(cantUnidParsed);
+    }
+    if(req.getParameter("precioEntrada")!=null){
+        String precioEntrada=req.getParameter("precioEntrada");
+        Float precioEntParsed=Float.parseFloat(precioEntrada);
+        ExistVo.setPrecioEntrada(precioEntParsed);
+    }
+    if(req.getParameter("idProducto")!=null){
+        String idProducto=req.getParameter("idProducto");
+        int idProdParsed=Integer.parseInt(idProducto);
+        ExistVo.setIdProducto(idProdParsed);
+    }
+    if(req.getParameter("idEntradaProd")!=null){
+        String idEntradaProd=req.getParameter("idEntradaProd");
+        int idEntProdParsed=Integer.parseInt(idEntradaProd);
+        ExistVo.setIdEntradaProd(idEntProdParsed);
+    }
+    else{
+        System.out.println("Ha habido un error al tratar de registrar los datos de la existencia en el metodo registerExistenceController");
+    }
+    try {
+        ExistDao.registerExistence(ExistVo);
+        System.out.println("Registro insertado correctamente en controllerInLine");
+        //Redireccionamiento
+        req.getRequestDispatcher("FormsExistence/registerExistence.jsp").forward(req, resp);
+    } catch (Exception e) {
+        System.out.println("Error al registrar los datos del usaurio en ControllerInline en el metodo registerExistenceController");
+    }
+}
+
+//ACTUALIZAR EXISTENCIA
+private void updateExistenceController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+
+    if(req.getParameter("idExistencia")!=null){
+        String idExistencia=req.getParameter("idExistencia");
+        int idProdParse=Integer.parseInt(idExistencia);
+        ExistVo.setIdExistencia(idProdParse);
+    }
+    if(req.getParameter("UpdateCantidadUnidad")!=null){
+        String UpdateCantidadUnidad=req.getParameter("UpdateCantidadUnidad");
+        int UpdateCantidadUnidadParsed=Integer.parseInt(UpdateCantidadUnidad);
+        ExistVo.setCantidadUnidad(UpdateCantidadUnidadParsed);
+    }
+    if(req.getParameter("UpdatePrecioEntrada")!=null){
+        String UpdatePrecioEntrada=req.getParameter("UpdatePrecioEntrada");
+        Float UpdatePrecioEntradaParsed=Float.parseFloat(UpdatePrecioEntrada);
+        ExistVo.setPrecioEntrada(UpdatePrecioEntradaParsed);
+    }
+    if(req.getParameter("UpdateIdProducto")!=null){
+        String UpdateIdProducto=req.getParameter("UpdateIdProducto");
+        int UpdateIdProductoParsed=Integer.parseInt(UpdateIdProducto);
+        ExistVo.setIdProducto(UpdateIdProductoParsed);
+    }
+    if(req.getParameter("UpdateIdEntradaProd")!=null){
+        String UpdateIdEntradaProd=req.getParameter("UpdateIdEntradaProd");
+        int UpdateIdEntradaProdParsed=Integer.parseInt(UpdateIdEntradaProd);
+        ExistVo.setIdEntradaProd(UpdateIdEntradaProdParsed);
+    }
+        
+        try {
+            ExistDao.actualizarExistence(ExistVo);
+            System.out.println("Existencia actualizada correctamente");
+
+            //NOTA: Redireccionamiento preventivo.       
+            req.getRequestDispatcher("FormsExistence/indexExistence.jsp").forward(req, resp);
+
+        } catch (Exception e) {
+            System.out.println("Error en la actualizacion de la existencia "+e.getMessage().toString());
+        }
+    }
+
+//ELIMINAR EXISTENCIA
+private void deleteExistenceController(HttpServletRequest req, HttpServletResponse resp) {
+        try {
+            List<ExistenciaVo> existencia = ExistDao.listarExist();
+            req.setAttribute("Producto", existencia);
+            req.getRequestDispatcher("FormsExistence/indexExistence.jsp").forward(req, resp);
+            System.out.println("Datos listados correctamente despues de la existencia eliminada");
+        } catch (Exception e) {
+            System.out.println("Hay problemas al listar los datos en el metodo " + e.getMessage().toString());
+        }
+    }
 }

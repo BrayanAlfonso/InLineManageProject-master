@@ -9,36 +9,47 @@
         <h1 class="title-table">Registro de Productos</h1>
         <div class="contentForm">
 
-            <div class="numSerial">
-                <label for="numSerial">Numero serial:</label>
-                <input type="text" id="numSerial" name="numSerial">
+            <div class="unidadesDisponibles">
+                <label for="unidadesDisponibles">Unidades Disponibles:</label>
+                <input type="text" id="unidadesDisponibles" name="unidadesDisponibles" class="inputForm">
             </div>
 
             <div class="nameProduct">
                 <label for="nameProduct">Nombre de producto:</label>
-                <input type="text" id="nameProduct" name="nameProduct">
+                <input type="text" id="nameProduct" name="nameProduct" class="inputForm">
             </div>
     
-            <div class="precioProd">
-                <label for="precioProd">Precio:</label>
-                <input type="text" id="precioProd" name="precioProd">
+            <div class="precio">
+                <label for="precio">Precio:</label>
+                <input type="text" id="precio" name="precio" class="inputForm">
             </div>
     
             <div class="descripcion">
                 <label for="descripcion">Descripcion:</label>
-                <input type="text" id="descripcion" name="descripcion">
+                <input type="text" id="descripcion" name="descripcion" class="inputForm">
+            </div>
+
+            <div class="serial">
+                <label for="serial">Numero serial:</label>
+                <input type="text" id="serial" name="serial" class="inputForm">
+            </div>
+
+            <div class="garantiaEntrada">
+                <label for="garantiaEntrada">Garantia de entrada:</label>
+                <input type="text" id="garantiaEntrada" name="garantiaEntrada" class="inputForm">
+            </div>
+
+            <div class="garantiaVentas">
+                <label for="garantiaVentas">Garantia de venta:</label>
+                <input type="text" id="garantiaVentas" name="garantiaVentas" class="inputForm">
             </div>
     
             <div class="categoria">
                 <label for="categoria">Categoria:</label>
-                <input type="text" id="categoria" name="categoria">
+                <input type="text" id="categoria" name="categoria" class="inputForm">
             </div>
     
-            <div class="existencia">
-                <label for="existencia">Existencia:</label>
-                <input type="text" id="existencia" name="existencia">
-            </div>
-       
+
             <div class="divBtnForm">
                 <button class="btnForm" name="enviar" value="registerProduct">Registrar</button>
             </div>

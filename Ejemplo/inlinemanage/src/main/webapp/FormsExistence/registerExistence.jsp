@@ -9,34 +9,24 @@
         <h1 class="title-table">Registro de Existencias</h1>
         <div class="contentForm">
 
-            <div class="numSerial">
-                <label for="numSerial">Numero serial:</label>
-                <input type="text" id="numSerial" name="numSerial">
-            </div>
-
-            <div class="idCategoria">
-                <label for="idCategoria">Num. de categoria:</label>
-                <input type="text" id="idCategoria" name="idCategoria">
+            <div class="cantidadUnidad">
+                <label for="cantidadUnidad">Cantidad:</label>
+                <input type="text" id="cantidadUnidad" name="cantidadUnidad" class="inputForm">
             </div>
     
-            <div class="fechaGarantia">
-                <label for="fechaGarantia">Fecha de garantia:</label>
-                <input type="text" id="fechaGarantia" name="fechaGarantia">
+            <div class="precioEntrada">
+                <label for="precioEntrada">Precio:</label>
+                <input type="text" id="precioEntrada" name="precioEntrada" class="inputForm">
             </div>
     
-            <div class="observaciones">
-                <label for="observaciones">Observación:</label>
-                <input type="text" id="observaciones" name="observaciones">
+            <div class="idProducto">
+                <label for="idProducto">Id de Producto:</label>
+                <input type="text" id="idProducto" name="idProducto" class="inputForm">
             </div>
     
             <div class="idEntradaProd">
                 <label for="idEntradaProd">Num. de Entrada del producto:</label>
-                <input type="text" id="idEntradaProd" name="idEntradaProd">
-            </div>
-    
-            <div class="idExistencia">
-                <label for="idExistencia">Existencia:</label>
-                <input type="text" id="idExistencia" name="idExistencia">
+                <input type="text" id="idEntradaProd" name="idEntradaProd" class="inputForm">
             </div>
        
             <div class="divBtnForm">

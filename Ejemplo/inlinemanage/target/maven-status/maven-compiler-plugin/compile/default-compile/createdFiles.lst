@@ -1,9 +1,13 @@
-model\UsuarioVo.class
 model\UsuarioDao.class
-model\ProductoVo.class
 ControllerInline.class
-model\ExistenciaDao.class
+model\CategoriaVo.class
 model\ExistenciaVo.class
 controller\Usuario.class
+model\CategoriaDao.class
+model\UsuarioVo.class
+model\ProductoVo.class
+model\ProveedorVo.class
+model\ExistenciaDao.class
 model\Conexion.class
+model\ProveedorDao.class
 model\ProductoDao.class

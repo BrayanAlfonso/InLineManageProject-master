@@ -16,19 +16,22 @@ public class ProductoDao {
     int r; //cantidad de filas que devuelve una sentencia
 
     public int registerProduct(ProductoVo producto) throws SQLException {
-        sql = "INSERT INTO producto (numSerial, nombreProducto, precioProducto, descripcion, idCategoria, idExistencia) values (?, ?, ?, ?, ?, ?)";
+        sql = "INSERT INTO producto(unidadesDisponibles,nombreProducto,precioVenta,descripcion,serial,garantiaEntradaMeses,garantiaVentaMeses,idCategoria) values (?, ?, ?, ?, ?, ?,?,?)";
         System.out.println(sql);
     
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
-            ps.setInt(1, producto.getNumSerial());
+
+            ps.setInt(1, producto.getUnidadesDisponibles());
             ps.setString(2, producto.getNombreProducto());
-            ps.setInt(3, producto.getPrecioProducto());
+            ps.setFloat(3, producto.getPrecioVenta());
             ps.setString(4, producto.getDescripcion());
-            ps.setInt(5, producto.getIdCategoria());
-            ps.setInt(6, producto.getIdExistencia());
-    
+            ps.setInt(5, producto.getSerial());
+            ps.setInt(6, producto.getGarantiaEntradaMeses());
+            ps.setInt(7, producto.getGarantiaVentaMeses());
+            ps.setInt(8, producto.getIdCategoria());
+        
             System.out.println(ps);
     
             ps.executeUpdate();
@@ -54,13 +57,18 @@ public class ProductoDao {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery(sql);
             while (rs.next()) {
+
                 ProductoVo r = new ProductoVo();
+
                 r.setIdProducto(rs.getInt("idProducto"));
+                r.setUnidadesDisponibles(rs.getInt("unidadesDisponibles"));
                 r.setNombreProducto(rs.getString("nombreProducto"));
-                r.setPrecioProducto(rs.getInt("precioProducto"));
+                r.setPrecioVenta(rs.getFloat("precioVenta"));
                 r.setDescripcion(rs.getString("descripcion"));
+                r.setSerial(rs.getInt("serial"));
+                r.setGarantiaEntradaMeses(rs.getInt("garantiaEntradaMeses"));
+                r.setGarantiaVentaMeses(rs.getInt("garantiaVentaMeses"));
                 r.setIdCategoria(rs.getInt("idCategoria"));
-                r.setIdExistencia(rs.getInt("idExistencia"));
 
                 producto.add(r);
             }
@@ -80,20 +88,22 @@ public class ProductoDao {
         //SECCION: Actualizar usuario.
         public int actualizar(ProductoVo producto) throws SQLException{
 
-            sql="update producto set nombreProducto = ?, precioProducto = ?, descripcion = ?, idCategoria = ?, idExistencia = ?, numSerial = ?  where idProducto = ?"; 
+            sql="update producto set unidadesDisponibles = ?,nombreProducto = ?, precioVenta = ?, descripcion = ?, serial = ?, garantiaEntradaMeses = ?, garantiaVentaMeses = ?, idCategoria = ?   where idProducto = ?"; 
             System.out.println(sql);
     
             try{
                 con=Conexion.conectar(); //abrir conexión.
                 ps=con.prepareStatement(sql); //preparar sentencia.
-                    
-                ps.setString(1,producto.getNombreProducto());
-                ps.setInt(2, producto.getPrecioProducto());
-                ps.setString(3, producto.getDescripcion());
-                ps.setInt(4,producto.getIdCategoria());
-                ps.setInt(5,producto.getIdExistencia());
-                ps.setInt(6, producto.getNumSerial());
-                ps.setInt(7, producto.getIdProducto());
+                
+                ps.setInt(1, producto.getUnidadesDisponibles());
+                ps.setString(2, producto.getNombreProducto());
+                ps.setFloat(3, producto.getPrecioVenta());
+                ps.setString(4, producto.getDescripcion());
+                ps.setInt(5, producto.getSerial());
+                ps.setInt(6, producto.getGarantiaEntradaMeses());
+                ps.setInt(7, producto.getGarantiaVentaMeses());
+                ps.setInt(8, producto.getIdCategoria());
+                ps.setInt(9, producto.getIdProducto());
                 
 
                 System.out.println(ps);
@@ -124,13 +134,14 @@ public class ProductoDao {
                     if (rs.next()) {
                         producto = new ProductoVo();
                         producto.setIdProducto(rs.getInt("idProducto"));
+                        producto.setUnidadesDisponibles(rs.getInt("unidadesDisponibles"));
                         producto.setNombreProducto(rs.getString("nombreProducto"));
-                        producto.setPrecioProducto(rs.getInt("precioProducto"));
+                        producto.setPrecioVenta(rs.getFloat("precioVenta"));
                         producto.setDescripcion(rs.getString("descripcion"));
+                        producto.setSerial(rs.getInt("serial"));
+                        producto.setGarantiaEntradaMeses(rs.getInt("garantiaEntradaMeses"));
+                        producto.setGarantiaVentaMeses(rs.getInt("garantiaVentaMeses"));
                         producto.setIdCategoria(rs.getInt("idCategoria"));
-                        producto.setIdExistencia(rs.getInt("idExistencia"));
-                        producto.setNumSerial(rs.getInt("numSerial"));
-                        
                     }
                 } catch (SQLException e) {
                     System.out.println("Error al obtener el producto: " + e.getMessage());

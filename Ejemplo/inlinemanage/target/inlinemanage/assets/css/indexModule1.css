@@ -17,16 +17,17 @@
     align-items: center;
     height: auto;
     gap: 100px;
+    width: 100%;
 }
 
-.options > .btn{
-    flex: none;
-    margin-top: 0;
-    width: 30%;
+.inputSearch, .btnMenu{
+    width: 20%;
+
 }
 
 .inputSearch{
-    width: 30%;
+    height: 30px;
+    border-radius: 30px;
 }
 .content2{
     display: flex;

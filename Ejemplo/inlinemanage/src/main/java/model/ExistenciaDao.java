@@ -17,18 +17,17 @@ public class ExistenciaDao {
 
     //SECCION: Crear existencia.
     public int registerExistence(ExistenciaVo existencia) throws SQLException {
-        sql = "INSERT INTO existencia (numSerial, idCategoria, fechaGaramtia, observaciones, idEntradaProd, idExistencia) values (?, ?, ?, ?, ?, ?)";
+        sql = "INSERT INTO existencia (cantidadUnidad, precioEntrada, idProducto, idEntradaProd) values (?, ?, ?, ?)";
         System.out.println(sql);
     
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
-            ps.setInt(1, existencia.getNumSerial());
-            ps.setInt(2, existencia.getIdCategoria());
-            ps.setDate(3, existencia.getFechaGarantia());
-            ps.setString(4, existencia.getObservaciones());
-            ps.setInt(5, existencia.getIdEntradaProd());
-            ps.setInt(6, existencia.getIdExistencia());
+            ps.setInt(1, existencia.getCantidadUnidad());
+            ps.setFloat(2, existencia.getPrecioEntrada());
+            ps.setInt(3, existencia.getIdProducto());
+            ps.setInt(4, existencia.getIdEntradaProd());
+            
     
             System.out.println(ps);
     
@@ -48,19 +47,18 @@ public class ExistenciaDao {
      //SECCION: Consultar existencia.
      public List<ExistenciaVo> listarExist() throws SQLException {
         List<ExistenciaVo> existencia = new ArrayList<>();
-        sql = "select * from existencia";
+        sql = "select * from existencia limit 5";
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery(sql);
             while (rs.next()) {
                 ExistenciaVo r = new ExistenciaVo();
-                r.setNumSerial(rs.getInt("numSerial"));
-                r.setIdCategoria(rs.getInt("idCategoria"));
-                r.setFechaGarantia(rs.getDate("fechaGarantia"));
-                r.setObservaciones(rs.getString("observaciones"));
-                r.setIdEntradaProd(rs.getInt("idEntradaProd"));
                 r.setIdExistencia(rs.getInt("idExistencia"));
+                r.setCantidadUnidad(rs.getInt("cantidadUnidad"));
+                r.setPrecioEntrada(rs.getFloat("precioEntrada"));
+                r.setIdProducto(rs.getInt("idProducto"));
+                r.setIdEntradaProd(rs.getInt("idEntradaProd"));
 
                 existencia.add(r);
             }
@@ -79,20 +77,18 @@ public class ExistenciaDao {
     //SECCION: Actualizar existencia.
     public int actualizarExistence(ExistenciaVo existencia) throws SQLException{
 
-        sql="update existencia set numSerial = ?, idCategoria = ?, fechaGarantia = ?, observaciones = ?, idEntradaProd = ?, idexistencia = ?  where idExistencia = ?"; 
+        sql="update existencia set cantidadUnidad = ?, precioEntrada = ?, idProducto = ?, idEntradaProd = ?  where idExistencia = ?"; 
         System.out.println(sql);
 
         try{
             con=Conexion.conectar(); //abrir conexión.
             ps=con.prepareStatement(sql); //preparar sentencia.
                 
-            ps.setInt(1,existencia.getNumSerial());
-            ps.setInt(2, existencia.getIdCategoria());
-            ps.setDate(3, existencia.getFechaGarantia());
-            ps.setString(4,existencia.getObservaciones());
-            ps.setInt(5,existencia.getIdEntradaProd());
-            ps.setInt(6, existencia.getIdExistencia());
-            
+            ps.setInt(1, existencia.getCantidadUnidad());
+            ps.setFloat(2, existencia.getPrecioEntrada());
+            ps.setInt(3,existencia.getIdProducto());
+            ps.setInt(4,existencia.getIdEntradaProd());
+            ps.setInt(5, existencia.getIdExistencia());
 
             System.out.println(ps);
             ps.executeUpdate(); //Ejecutar sentencia.
@@ -112,7 +108,7 @@ public class ExistenciaDao {
 
     public ExistenciaVo obtenerExistencePorId(int idExistencia) throws SQLException {
         sql = "SELECT * FROM existencia WHERE idExistencia  = ?";
-        ExistenciaVo existencia = null;
+        ExistenciaVo exist = null;
         try(Connection con = Conexion.conectar();
             PreparedStatement ps = con.prepareStatement(sql)) {
     
@@ -120,28 +116,27 @@ public class ExistenciaDao {
     
             try(ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    existencia = new ExistenciaVo();
-                    existencia.setNumSerial(rs.getInt("numSerial"));
-                    existencia.setIdCategoria(rs.getInt("idCategoria"));
-                    existencia.setFechaGarantia(rs.getDate("fechagarantia"));
-                    existencia.setObservaciones(rs.getString("observaciones"));
-                    existencia.setIdEntradaProd(rs.getInt("idEntradaprod"));
-                    existencia.setIdExistencia(rs.getInt("idExistencia"));
-                    
+                    exist = new ExistenciaVo();
+                    exist.setIdExistencia(rs.getInt("idExistencia"));
+                    exist.setCantidadUnidad(rs.getInt("cantidadUnidad"));
+                    exist.setPrecioEntrada(rs.getFloat("precioEntrada"));
+                    exist.setIdProducto(rs.getInt("idProducto"));
+                    exist.setIdEntradaProd(rs.getInt("idEntradaprod"));
+
                 }
             } catch (SQLException e) {
                 System.out.println("Error al obtener la existencia: " + e.getMessage());
             }
-            return existencia;
+            return exist;
         }
     }
 
     //SECCION: Eliminar existencia.
-    public void eliminarExistence(int idExistencia) throws SQLException {
+    public void eliminarExistence(int existId) throws SQLException {
         sql = "DELETE FROM existencia WHERE idExistencia = ?";
         try (Connection con = Conexion.conectar();
                 PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idExistencia);
+            ps.setInt(1, existId);
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al eliminar la existencia: " + e.getMessage());

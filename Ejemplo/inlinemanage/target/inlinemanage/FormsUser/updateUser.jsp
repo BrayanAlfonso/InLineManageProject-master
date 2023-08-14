@@ -42,27 +42,27 @@
     
             <div class="divNoDocument">
                 <label for="UpdateNoDocument">Numero de documento:</label>
-                <input type="text" id="UpdateNoDocument" name="UpdateNoDocument" value="<%= user.getNumeroDoc() %>">
+                <input type="text" id="UpdateNoDocument" name="UpdateNoDocument" value="<%= user.getNumeroDoc() %>" class="inputForm">
             </div>
     
             <div class="divName">
                 <label for="name">Nombre:</label>
-                <input type="text" id="UpdateName" name="UpdateName"value="<%= user.getNombre() %>">
+                <input type="text" id="UpdateName" name="UpdateName"value="<%= user.getNombre() %>" class="inputForm">
             </div>
     
             <div class="divLastName">
                 <label for="UpdateLastName">Apellido:</label>
-                <input type="text" id="UpdateLastName" name="UpdateLastName" value="<%= user.getApellido() %>">
+                <input type="text" id="UpdateLastName" name="UpdateLastName" value="<%= user.getApellido() %>" class="inputForm">
             </div>
     
             <div class="divEmail">
                 <label for="UpdateEmail">Correo:</label>
-                <input type="email" id="UpdateEmail" name="UpdateEmail" value="<%= user.getCorreo() %>">
+                <input type="email" id="UpdateEmail" name="UpdateEmail" value="<%= user.getCorreo() %>" class="inputForm">
             </div>
     
             <div class="divPassword">
                 <label for="UpdatePassword">Contraseña:</label>
-                <input type="password" id="UpdatePassword" name="UpdatePassword" value="<%= user.getContraseña() %>">
+                <input type="password" id="UpdatePassword" name="UpdatePassword" value="<%= user.getContraseña() %>" class="inputForm">
             </div>
     
             <div class="divRol">

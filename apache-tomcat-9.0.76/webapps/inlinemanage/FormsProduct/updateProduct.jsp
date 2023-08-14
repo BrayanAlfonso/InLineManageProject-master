@@ -1,4 +1,4 @@
-
+ class="inputForm"
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ include file="../plantillas/header.jsp"%>
 
@@ -29,37 +29,47 @@
 
         <div class="contentForm">
     
-            <div class="divNumSerial">
-                <label for="UpdateNumSerial">Numero serial:</label>
-                <input type="text" id="UpdateNumSerial" name="UpdateNumSerial"value="<%= producto.getNumSerial() %>">
+            <div class="divUnidProd">
+                <label for="UpdateUnidadesDisponibles">Unidades de producto:</label>
+                <input type="text" id="UpdateUnidadesDisponibles" name="UpdateUnidadesDisponibles"value="<%= producto.getUnidadesDisponibles() %>" class="inputForm">
             </div>
             
-            
             <div class="divNameProd">
-                <label for="UpdateNameProduct">Nombre de producto:</label>
-                <input type="text" id="UpdateNameProduct" name="UpdateNameProduct"value="<%= producto.getNombreProducto() %>">
+                <label for="UpdateNameProducto">Nombre de producto:</label>
+                <input type="text" id="UpdateNameProducto" name="UpdateNameProducto"value="<%= producto.getNombreProducto() %>" class="inputForm">
             </div>
 
             <div class="divPrecio">
-                <label for="UpdatePrecioProd">Precio:</label>
-                <input type="number" id="UpdatePrecioProd" name="UpdatePrecioProd" value="<%= producto.getPrecioProducto() %>">
+                <label for="UpdatePrecio">Precio:</label>
+                <input type="number" id="UpdatePrecio" name="UpdatePrecio" value="<%= producto.getPrecioVenta() %>" class="inputForm">
             </div>
     
             <div class="divDescripcion">
                 <label for="UpdateDescripcion">Descripcion:</label>
-                <input type="text" id="UpdateDescripcion" name="UpdateDescripcion" value="<%= producto.getDescripcion() %>">
+                <input type="text" id="UpdateDescripcion" name="UpdateDescripcion" value="<%= producto.getDescripcion() %>" class="inputForm">
             </div>
-    
+
+            <div class="divNumSerial">
+                <label for="UpdateSerial">Numero serial:</label>
+                <input type="text" id="UpdateSerial" name="UpdateSerial" value="<%= producto.getSerial() %>" class="inputForm">
+            </div>
+
+            <div class="divEntrada">
+                <label for="UpdateGarantiaEntrada">Garantia de entrada:</label>
+                <input type="number" id="UpdateGarantiaEntrada" name="UpdateGarantiaEntrada" value="<%= producto.getGarantiaEntradaMeses() %>" class="inputForm">
+            </div>
+
+            <div class="divVenta">
+                <label for="UpdateGarantiaVentas">Garantia de venta:</label>
+                <input type="number" id="UpdateGarantiaVentas" name="UpdateGarantiaVentas" value="<%= producto.getGarantiaVentaMeses() %>" class="inputForm">
+            </div>
+
             <div class="divCategoria">
                 <label for="UpdateCategoria">Categoria:</label>
-                <input type="number" id="UpdateCategoria" name="UpdateCategoria" value="<%= producto.getIdCategoria() %>">
+                <input type="number" id="UpdateCategoria" name="UpdateCategoria" value="<%= producto.getIdCategoria() %>" class="inputForm">
             </div>
     
-            <div class="divExistencia">
-                <label for="UpdateExistencia">Existencia:</label>
-                <input type="number" id="UpdateExistencia" name="UpdateExistencia" value="<%= producto.getIdExistencia() %>">
-            </div>
-    
+
             <div class="divBtnForm">
                 <button class="btnForm" name="enviar" value="updateProduct">Actualizar</button>
             </div>

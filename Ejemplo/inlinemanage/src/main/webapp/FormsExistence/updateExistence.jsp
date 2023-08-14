@@ -25,33 +25,28 @@
     <form action="ControllerInline" method="post">
         <h1 class="title-table">Actualizacion de existencias</h1>
 
-        <input type="hidden" name="idExitencia" id="idExistencia" value="<%= existencia.getIdExistencia() %>">
+        <input type="hidden" name="idExistencia" id="idExistencia" value="<%= existencia.getIdExistencia() %>">
 
         <div class="contentForm">
-    
-            <div class="divNumSerial">
-                <label for="UpdateNumSerial">Numero serial:</label>
-                <input type="text" id="UpdateNumSerial" name="UpdateNumSerial"value="<%= existencia.getNumSerial() %>">
-            </div>
             
-            <div class="divIdCategoria">
-                <label for="UpdateIdCategoria">Num. de categoria:</label>
-                <input type="text" id="UpdateIdCategoria" name="UpdateIdCategoria"value="<%= existencia.getIdCategoria() %>">
+            <div class="divCantidadUnidad">
+                <label for="UpdateCantidadUnidad">Cantidad:</label>
+                <input type="text" id="UpdateCantidadUnidad" name="UpdateCantidadUnidad"value="<%= existencia.getCantidadUnidad() %>" class="inputForm">
             </div>
 
-            <div class="divFechGarantia">
-                <label for="UpdateFechaGarantia">Fecha de garantia:</label>
-                <input type="number" id="UpdateFechaGarantia" name="UpdateFechaGarantia" value="<%= existencia.getFechaGarantia() %>">
+            <div class="divPrecioEntrada">
+                <label for="UpdatePrecioEntrada">Precio:</label>
+                <input type="number" id="UpdatePrecioEntrada" name="UpdatePrecioEntrada" value="<%= existencia.getPrecioEntrada() %>" class="inputForm">
             </div>
     
-            <div class="divObservaciones">
-                <label for="UpdateObservaciones">Observaciones:</label>
-                <input type="text" id="UpdateObservaciones" name="UpdateObservaciones" value="<%= existencia.getObservaciones() %>">
+            <div class="divIdProducto">
+                <label for="UpdateIdProducto">Id de Producto:</label>
+                <input type="text" id="UpdateIdProducto" name="UpdateIdProducto" value="<%= existencia.getIdProducto() %>" class="inputForm">
             </div>
     
             <div class="divIdEntraProd">
                 <label for="UpdateIdEntradaProd">Num. de Entrada de producto:</label>
-                <input type="number" id="UpdateIdEntradaProd" name="UpdateIdEntradaProd" value="<%= existencia.getIdEntradaProd() %>">
+                <input type="number" id="UpdateIdEntradaProd" name="UpdateIdEntradaProd" value="<%= existencia.getIdEntradaProd() %>" class="inputForm">
             </div>
     
             <div class="divBtnForm">

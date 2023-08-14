@@ -8,7 +8,7 @@
             <div class="backlog">
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
-            <button class="btn">Agregar</button>
+            <button class="btnMenu">Agregar</button>
             <input type="text" placeholder="buscar" class="inputSearch">
         </div>
         <div class="content2">
