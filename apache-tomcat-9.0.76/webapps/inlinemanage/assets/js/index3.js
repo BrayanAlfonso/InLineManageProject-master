@@ -14,15 +14,18 @@
 //     })
 // })
 
+
 let mensajeLogin = document.getElementById("mensaje");
 if(mensajeJS==" "){
     console.log(mensajeJS+"es nulo")
 }else{
+    
     mensajeLogin.style.visibility="visible"
     mensajeLogin.style.opacity="1"
     mensajeLogin.style.transition="visibility 0s, opacity 0.5s"
     mensajeLogin.textContent=mensajeJS
 }
+
 
 //Validación de campos para el formulario de login
 
@@ -91,8 +94,7 @@ password.addEventListener("input", (e)=>{
 })
 
 
-form.addEventListener("submit",(e)=>{
-
+form.addEventListener("submit",()=>{
     if(nameInput.value==null || nameInput.value=="" || flag1==false){
         alert("Debes ingresar un campo valido")
     }else if(password.value==null || password.value=="" || flag2==false){
