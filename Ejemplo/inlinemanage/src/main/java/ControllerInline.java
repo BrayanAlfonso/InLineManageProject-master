@@ -290,6 +290,7 @@ private void loginUserController(HttpServletRequest req, HttpServletResponse res
             if (UsuDao.validarLogin(userName, password)) {
                 System.out.println("La validación ha sido exitosa!");
                 req.getRequestDispatcher("main.jsp").forward(req, resp);
+
             } else {
                 System.out.println("Usuario y/o contraseña no encontrados");
                 req.setAttribute("mensaje", "Usuario y/o contraseña no encontrados:(");

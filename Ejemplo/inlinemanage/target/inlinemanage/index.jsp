@@ -39,22 +39,13 @@
 <%@ include file="../plantillas/footer.jsp"%>
 
 
-<% String mensaje = (String) request.getAttribute("mensaje"); %>
+<% String mensaje = (String) request.getAttribute("mensaje"); %> <!-- Declaración de la variable mensaje -->
+
 
 <script>
-    let btnLogin=document.getElementById("btnLogin")
-    btnLogin.addEventListener("click", (e)=>{
-        e.preventDefault()
-        var mensajeLogin = document.getElementById("mensaje");
-        if (mensaje != null) { 
-            mensajeLogin.style.visibility="visible"
-            mensajeLogin.style.opacity="1"
-            mensajeLogin.style.transition="visibility 0s, opacity 0.5s"
-            mensajeLogin.textContent = "<%= mensaje %>";
-        }
-    });
+    let mensajeJS="<%= mensaje %>"
 </script>
-<script src="assets/js/index1.js"></script>
+<script src="assets/js/index3.js"></script>
 
 
 <%@ include file="../plantillas/footer2.jsp"%>

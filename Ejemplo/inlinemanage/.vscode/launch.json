@@ -5,6 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "Conexion",
+      "request": "launch",
+      "mainClass": "model.Conexion",
+      "projectName": "inlinemanage"
+    },
+    {
       "type": "chrome",
       "request": "launch",
       "name": "Iniciar Chrome para localhost",
