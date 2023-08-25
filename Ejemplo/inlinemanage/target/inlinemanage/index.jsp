@@ -45,7 +45,7 @@
 <script>
     let mensajeJS="<%= mensaje %>"
 </script>
-<script src="assets/js/index3.js"></script>
+<script src="assets/js/index.js"></script>
 
 
 <%@ include file="../plantillas/footer2.jsp"%>
