@@ -7,7 +7,10 @@
 <%@ page import="model.ExistenciaVo" %>
 <%@ page import="model.ExistenciaDao" %>
 
-<main class="main">  
+<main class="main" id="mainForm">  
+    <div>
+        <a href="ControllerInline?enviar=existence"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+    </div>
     
     <%-- Obtener el id de la existencia seleccionado de la URL --%>
     <% String existId = request.getParameter("idExistencia"); %>

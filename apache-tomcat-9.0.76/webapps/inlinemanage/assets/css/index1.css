@@ -14,7 +14,7 @@
   
   .container {
     position: relative;
-    min-height: 96.9%;
+    min-height: 92%;
     display: flex;
     flex-direction: column;
   }
@@ -24,6 +24,12 @@
     display: flex;
     padding: 70px 100px 0 100px; 
     background-image: linear-gradient(165deg, rgb(128, 128, 128,0.6), white);
+
+  }
+
+#mainForm{
+    justify-content: center;
+    align-items: center;
   }
   
 

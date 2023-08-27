@@ -57,6 +57,11 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
             req.getRequestDispatcher("FormsExistence/registerExistence.jsp").forward(req, resp);
         break;
 
+        case "updateExistence":
+            req.getRequestDispatcher("FormsExistence/updateExistence.jsp").forward(req, resp);
+        break;
+
+
         case "registerProduct":
             req.getRequestDispatcher("FormsProduct/registerProduct.jsp").forward(req, resp);
         break;
@@ -79,6 +84,10 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 
         case "registerCategory":
         req.getRequestDispatcher("FormsCategory/registerCategory.jsp").forward(req, resp);
+        break;
+
+        case "registerUser":
+            req.getRequestDispatcher("FormsUser/registerUser.jsp").forward(req, resp);
         break;
 
         case "updateUser":
@@ -342,7 +351,7 @@ private void registerUserController(HttpServletRequest req, HttpServletResponse 
 
 
         //Redireccionamiento
-        req.getRequestDispatcher("FormsUser/indexUser.jsp").forward(req, resp);
+        req.getRequestDispatcher("FormsUser/registerUser.jsp").forward(req, resp);
     } catch (Exception e) {
         System.out.println("Error al registrar los datos del usaurio en ControllerInline en el metodo registerUserController");
     }

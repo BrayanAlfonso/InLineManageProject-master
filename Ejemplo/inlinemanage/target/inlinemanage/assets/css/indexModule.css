@@ -10,8 +10,19 @@
     width: 50px;
     height: 50px;
     border: 1px solid black;
+
 }
 
+.backlogForm{
+    background-color: #54AC9C;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    position: absolute;
+    top: 25%;
+    left: 7.5%;
+}
 .options{
     display: flex;
     align-items: center;

@@ -1,4 +1,3 @@
- class="inputForm"
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ include file="../plantillas/header.jsp"%>
 
@@ -7,7 +6,10 @@
 <%@ page import="model.ProductoVo" %>
 <%@ page import="model.ProductoDao" %>
 
-<main class="main">  
+<main class="main" id="mainForm"> 
+    <div>
+        <a href="ControllerInline?enviar=product"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+    </div> 
     
     <%-- Obtener el id del producto seleccionado de la URL --%>
     <% String prodId = request.getParameter("idProducto"); %>

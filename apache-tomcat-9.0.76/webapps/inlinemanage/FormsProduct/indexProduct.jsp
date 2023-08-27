@@ -17,7 +17,7 @@
         </div>
         <div class="content2">
 
-            <h1>Listado de producto</h1>
+
         
             <%List <ProductoVo> productos = null;
             try {
@@ -31,7 +31,7 @@
             <%if (productos != null && !productos.isEmpty()) {%>
                 <table class="<%=(productos.size() > 8) ? "" : "few-rows"%>">
                     <tr class="title-table">
-                        <th colspan="10">PRODUCTOS</th>
+                        <th colspan="10" class="title-table">PRODUCTOS</th>
                     </tr>
                     <tr>
                         <th rowspan="2">Unidades Disponibles</th>

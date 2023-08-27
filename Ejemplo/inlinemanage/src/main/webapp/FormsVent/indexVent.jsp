@@ -14,7 +14,7 @@
         <div class="content2">
             <table>
                 <tr class="title-table">
-                    <th colspan="7">USUARIOS</th>
+                    <th colspan="7" class="title-table">VENTAS</th>
                 </tr>
                 <tr>
                     <th>Tipo Documento</th>

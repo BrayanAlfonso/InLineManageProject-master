@@ -15,8 +15,6 @@
             <input type="text" placeholder="buscar" class="inputSearch">
         </div>
         <div class="content2">
-
-            <h1>Listado de categoria</h1>
         
             <%List <CategoriaVo> categorias = null;
                try {
@@ -30,7 +28,7 @@
             <%if (categorias != null && !categorias.isEmpty()) {%>
                 <table class="<%=(categorias.size() > 8) ? "" : "few-rows"%>">
                     <tr class="title-table">
-                        <th colspan="7">CATEGORIA</th>
+                        <th colspan="7" class="title-table">CATEGORIA</th>
                     </tr>
                     <tr>
                         <th rowspan="2">N_Categoria</th>

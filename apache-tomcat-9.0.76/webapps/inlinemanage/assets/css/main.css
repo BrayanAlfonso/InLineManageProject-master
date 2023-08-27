@@ -5,6 +5,7 @@
     color: white;
     border-radius: 10px;
     text-align: center;
+    padding: 10px 0px;  
 }
 .container-table{
     width: 60%;
@@ -33,6 +34,7 @@ td{
 
 th{
     border-bottom: 1px solid black;
+
 }
 
 .few-rows {

@@ -11,8 +11,8 @@
             <div class="backlog">
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
-            <button class="btnMenu" id="btnInsertUser">Agregar</button>
-            <input type="text" placeholder="buscar" class="inputSearch">
+            <button class="btnMenu" id="btnInsertUser"><a href="ControllerInline?enviar=registerUser">Agregar</a></button>
+            <input type="text" placeholder="buscar" class="inputSearch" id="searchInput">
         </div>
         <div class="content2">
 
@@ -29,7 +29,7 @@
             <% if (users != null && !users.isEmpty()) { %>
             <table class="<%=(users.size() > 8) ? "" : "few-rows"%>">
                 <tr class="title-table">
-                    <th colspan="7">USUARIOS</th>
+                    <th colspan="7" class="title-table">USUARIOS</th>
                 </tr>
                 <tr>
                     <th rowspan="2">Tipo Documento</th>
@@ -69,12 +69,10 @@
 
 
 </div>
-<div class="form">
-    
-</div>
+
 </main>
     
     
 <%@ include file="../plantillas/footer.jsp"%>
-<script src="assets/js/insertUser1.js"></script>
+<script src="assets/js/searchUser.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>

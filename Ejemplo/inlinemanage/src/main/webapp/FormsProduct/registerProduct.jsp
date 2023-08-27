@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ include file="../plantillas/header.jsp"%>
-<main class="main">
-    <div class="backlog">
-        <a href="ControllerInline?enviar=product"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
-    </div><br><br>
+<main class="main" id="mainForm">
+    <div>
+        <a href="ControllerInline?enviar=product"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+    </div>
 
     <form action="ControllerInline" method="post">
         <h1 class="title-table">Registro de Productos</h1>

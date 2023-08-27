@@ -28,7 +28,15 @@
 
                     <button name="enviar" id="btnLogin"value="index">INICIAR SESIÓN</button>    
 
-                    <div id="mensaje"></div>
+                        <!-- Declaración de la variable mensaje que se trae desde el controlador "ControllerInline"-->
+                        <% String mensaje = (String) request.getAttribute("mensaje"); %> 
+    
+                        <!-- Campo para mostrar el mensaje traido desde Java -->
+                        <% if (mensaje == null) {%>
+                            <div></div>
+                        <%}else{%>
+                            <div id="mensaje"></div>
+                        <%}%>
                 </form>
                 
         </div>
@@ -37,9 +45,6 @@
 </div>
     
 <%@ include file="../plantillas/footer.jsp"%>
-
-
-<% String mensaje = (String) request.getAttribute("mensaje"); %> <!-- Declaración de la variable mensaje -->
 
 
 <script>

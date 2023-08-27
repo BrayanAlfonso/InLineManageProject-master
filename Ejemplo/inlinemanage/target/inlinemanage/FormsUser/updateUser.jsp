@@ -7,12 +7,12 @@
 <%@ page import="model.UsuarioVo" %>
 <%@ page import="model.UsuarioDao" %>
 
-<div class="backlog">
-    <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
-</div>
 
-<main class="main" id="mainUpdate">  
-    
+
+<main class="main" id="mainForm">  
+    <div>
+        <a href="ControllerInline?enviar=user"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+    </div>
     <%-- Obtener el id del usuario seleccionado de la URL --%>
     <% String userId = request.getParameter("idUsuario"); %>
     <% int id = Integer.parseInt(userId); %>
