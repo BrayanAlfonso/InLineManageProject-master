@@ -1,6 +1,6 @@
 package model;
 
-import java.math.BigInteger;
+
 
 public class UsuarioVo {
     //!NOTA En las clases Vo almacenamos los datos que nos llegan de las vistas y la base de datos. Como una pequeña ram intermediaria.

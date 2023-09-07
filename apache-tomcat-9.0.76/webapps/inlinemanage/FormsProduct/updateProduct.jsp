@@ -83,5 +83,5 @@
 </main><br>
     
 <%@ include file="../plantillas/footer.jsp"%>
-
+<script src="assets/js/JsProd/updateProd.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>

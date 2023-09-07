@@ -46,7 +46,7 @@ nameInput.addEventListener("input",(e)=>{
     if (text.test(e.target.value)) {
         // Cuando se valide hará esto
         nameInput.classList.add("success");
-        nameInput.classList.remove("error")
+        
         fb1.classList.add("hidden");
         fb1.classList.remove("visible");
         fb1.textContent = '';
