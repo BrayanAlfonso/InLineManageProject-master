@@ -24,16 +24,17 @@
 
     <%-- Verificar si se encontró el usuario y mostrar el formulario de actualización --%>
     <% if (categoria != null) { %>
-    <form action="ControllerInline" method="post">
+    <form action="ControllerInline" method="post" id="formValidacion">
         <h1 class="title-table">Actualizacion de categoria</h1>
 
         <input type="hidden" name="idCategoria" id="idCategoria" value="<%= categoria.getIdCategoria() %>">
 
         <div class="contentForm">
     
-            <div class="divNameProd">
+            <div class="divCategoria">
                 <label for="UpdateNameCategory">Nombre de producto:</label>
                 <input type="text" id="UpdateNameCategory" name="UpdateNameCategory"value="<%=  categoria.getNombreCategoria() %>" class="inputForm">
+                <span class="fbForm"></span>
             </div>
 
     
@@ -49,6 +50,6 @@
     
     
 <%@ include file="../plantillas/footer.jsp"%>
-
+<script src="assets/js/JsCate/updateCate.js"></script>
 
 updateCategory.jsp

@@ -10,13 +10,13 @@
             <div class="backlog">
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
-            <button class="btnMenu" ><a href="ControllerInline?enviar=registerExistence">Agregar</a></button>
-            <button class="btnMenu" ><a href="">Categoria</a></button>
+            <button class="btn" ><a href="ControllerInline?enviar=registerExistence">Agregar</a></button>
+            <button class="btn" ><a href="">Categoria</a></button>
             <input type="text" placeholder="buscar" class="inputSearch">
         </div>
         <div class="content2">
 
-
+            <h1>Listado de existencias</h1>
         
             <%List <ExistenciaVo> existencias = null;
             try {
@@ -30,7 +30,7 @@
             <%if (existencias != null && !existencias.isEmpty()) {%>
                 <table class="<%=(existencias.size() > 7) ? "" : "few-rows"%>">
                     <tr class="title-table">
-                        <th colspan="7" class="title-table">EXISTENCIAS</th>
+                        <th colspan="7">EXISTENCIAS</th>
                     </tr>
                     <tr>
                         <th rowspan="2">CantidadUnidad</th>

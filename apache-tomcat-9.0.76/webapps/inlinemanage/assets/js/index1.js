@@ -21,10 +21,10 @@ if(mensajeJS==" " || mensajeJS==null){
 let form=document.getElementById("formLogin")
 
 //Acceder a los feedback
-const fb1=document.querySelector("#divName .feedback")
-const fb2=document.querySelector("#divPassword .feedback")
+const fb1=document.querySelector("#divName .fbForm")
+const fb2=document.querySelector("#divPassword .fbForm")
 
-
+console.log(fb1,fb2)
 
 //Acceder a los inputs
 let nameInput=document.getElementById("inputUserName")
@@ -46,7 +46,7 @@ nameInput.addEventListener("input",(e)=>{
     if (text.test(e.target.value)) {
         // Cuando se valide hará esto
         nameInput.classList.add("success");
-        
+
         fb1.classList.add("hidden");
         fb1.classList.remove("visible");
         fb1.textContent = '';

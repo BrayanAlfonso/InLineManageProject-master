@@ -40,13 +40,13 @@
             </div>
 
             <div class="garantiaEntrada">
-                <label for="garantiaEntrada">Garantia de entrada:</label>
+                <label for="garantiaEntrada">Meses de garantia de entrada:</label>
                 <input type="text" id="garantiaEntrada" name="garantiaEntrada" class="inputForm">
                 <span class="fbForm">Hola Mundo</span>
             </div>
 
             <div class="garantiaVentas">
-                <label for="garantiaVentas">Garantia de venta:</label>
+                <label for="garantiaVentas">Meses de garantia de venta:</label>
                 <input type="text" id="garantiaVentas" name="garantiaVentas" class="inputForm">
                 <span class="fbForm">Hola Mundo</span>
             </div>

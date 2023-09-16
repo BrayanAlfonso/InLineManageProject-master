@@ -18,7 +18,7 @@ public class ProveedorDao {
 
      //Registrar proveedor.
 
-     public int registerProveedorDao(ProveedorVo prov) throws SQLException{
+     public int registerSupplier(ProveedorVo prov) throws SQLException{
      sql="INSERT INTO proveedor (nombreProveedor, direccionProveedor) values(?,?)";
      System.out.println(sql);
 
@@ -98,7 +98,7 @@ public ProveedorVo obtenerProveedorPorId(int idProveedor) throws SQLException {
 }
 
 //Actualizar proveedor.
-public int updateProvDao(ProveedorVo prov) throws SQLException{
+public int updateSupplier(ProveedorVo prov) throws SQLException{
 
     sql="update proveedor set nombreProveedor=?, direccionProveedor=? where idProveedor = ?"; 
     System.out.println(sql);
@@ -128,7 +128,7 @@ public int updateProvDao(ProveedorVo prov) throws SQLException{
 }
 
 //Eliminar proveedor
-public void deleteProv(int provId) throws SQLException {
+public void deleteSupplier(int provId) throws SQLException {
     sql = "DELETE FROM proveedor WHERE idProveedor = ?";
     try (Connection con = Conexion.conectar();
             PreparedStatement ps = con.prepareStatement(sql)) {

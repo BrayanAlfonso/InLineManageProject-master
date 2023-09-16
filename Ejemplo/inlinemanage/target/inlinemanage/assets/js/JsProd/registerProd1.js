@@ -1,5 +1,5 @@
 const number=/^[0-9]{1,15}$/
-const text=/^[a-zA-ZñÑá-úÁ-Ú]{1,10}$/
+const text=/^[a-zA-ZñÑá-úÁ-Ú ]{1,10}$/
 const alfanumericos=/^[a-zA-ZñÑá-úÁ-Ú ]*[a-zA-ZñÑá-úÁ-Ú][0-9]*$/
 
 const form=document.getElementById("formValidacion");
@@ -111,7 +111,7 @@ precio.addEventListener('input', (e) => {
           serial.classList.remove("error")
           f5.classList.add("hidden");
           f5.classList.remove("visible");
-          flag = true;
+          flag4 = true;
         } else {
           serial.classList.add("error");
           f5.textContent = "Solo puede digitar valores numerios y debe ser minimo 1";
@@ -175,8 +175,8 @@ precio.addEventListener('input', (e) => {
 
       
       form.addEventListener("submit", (e) => {
-        e.preventDefault();
-      
+
+      // e.preventDefault()
         if (unidades.value==0||unidades.value==null||flag==false) {
           alert("por favor ingresa un numero de unidades valido")
           unidades.focus()

@@ -22,10 +22,7 @@
                 <input type="text" id="noDocument" name="noDocument" class="inputForm">
                 <span class="fbForm">Hola Mundo</span>
             </div>
-
-                
- 
-    
+            
             <div class="divName">
                 <label for="name">Nombre:</label>
                 <input type="text" id="name" name="name" class="inputForm">

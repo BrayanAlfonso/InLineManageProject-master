@@ -24,8 +24,8 @@
 
     <%-- Verificar si se encontró el usuario y mostrar el formulario de actualización --%>
     <% if (producto != null) { %>
-    <form action="ControllerInline" method="post">
-        <h1 class="title-table">Actualizacion de usuarios</h1>
+    <form action="ControllerInline" method="post" id="formValidacion">
+        <h1 class="title-table">Actualizacion de productos</h1>
 
         <input type="hidden" name="idProducto" id="idProducto" value="<%= producto.getIdProducto() %>">
 
@@ -34,41 +34,49 @@
             <div class="divUnidProd">
                 <label for="UpdateUnidadesDisponibles">Unidades de producto:</label>
                 <input type="text" id="UpdateUnidadesDisponibles" name="UpdateUnidadesDisponibles"value="<%= producto.getUnidadesDisponibles() %>" class="inputForm">
+                <span class="fbForm"></span>
             </div>
             
             <div class="divNameProd">
                 <label for="UpdateNameProducto">Nombre de producto:</label>
                 <input type="text" id="UpdateNameProducto" name="UpdateNameProducto"value="<%= producto.getNombreProducto() %>" class="inputForm">
+                <span class="fbForm"></span>
             </div>
 
             <div class="divPrecio">
                 <label for="UpdatePrecio">Precio:</label>
-                <input type="number" id="UpdatePrecio" name="UpdatePrecio" value="<%= producto.getPrecioVenta() %>" class="inputForm">
+                <input type="text" id="UpdatePrecio" name="UpdatePrecio" value="<%= producto.getPrecioVenta() %>" class="inputForm">
+                <span class="fbForm"></span>
             </div>
     
             <div class="divDescripcion">
                 <label for="UpdateDescripcion">Descripcion:</label>
                 <input type="text" id="UpdateDescripcion" name="UpdateDescripcion" value="<%= producto.getDescripcion() %>" class="inputForm">
+                <span class="fbForm"></span>
             </div>
 
-            <div class="divNumSerial">
+            <div class="divNumSerial" >
                 <label for="UpdateSerial">Numero serial:</label>
                 <input type="text" id="UpdateSerial" name="UpdateSerial" value="<%= producto.getSerial() %>" class="inputForm">
+                <span class="fbForm"></span>
             </div>
 
             <div class="divEntrada">
-                <label for="UpdateGarantiaEntrada">Garantia de entrada:</label>
-                <input type="number" id="UpdateGarantiaEntrada" name="UpdateGarantiaEntrada" value="<%= producto.getGarantiaEntradaMeses() %>" class="inputForm">
+                <label for="UpdateGarantiaEntrada">Meses de garantia de entrada:</label>
+                <input type="text" id="UpdateGarantiaEntrada" name="UpdateGarantiaEntrada" value="<%= producto.getGarantiaEntradaMeses() %>" class="inputForm">
+                <span class="fbForm"></span>
             </div>
 
             <div class="divVenta">
-                <label for="UpdateGarantiaVentas">Garantia de venta:</label>
-                <input type="number" id="UpdateGarantiaVentas" name="UpdateGarantiaVentas" value="<%= producto.getGarantiaVentaMeses() %>" class="inputForm">
+                <label for="UpdateGarantiaVentas">Meses de garantia de venta:</label>
+                <input type="text" id="UpdateGarantiaVentas" name="UpdateGarantiaVentas" value="<%= producto.getGarantiaVentaMeses() %>" class="inputForm">
+                <span class="fbForm"></span>
             </div>
 
             <div class="divCategoria">
                 <label for="UpdateCategoria">Categoria:</label>
-                <input type="number" id="UpdateCategoria" name="UpdateCategoria" value="<%= producto.getIdCategoria() %>" class="inputForm">
+                <input type="text" id="UpdateCategoria" name="UpdateCategoria" value="<%= producto.getIdCategoria() %>" class="inputForm">
+                <span class="fbForm"></span>
             </div>
     
 
@@ -83,5 +91,5 @@
 </main><br>
     
 <%@ include file="../plantillas/footer.jsp"%>
-<script src="assets/js/JsProd/updateProd.js"></script>
+<script src="assets/js/JsProd/Produpdate.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>

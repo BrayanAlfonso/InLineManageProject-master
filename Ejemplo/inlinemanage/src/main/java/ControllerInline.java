@@ -7,14 +7,17 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
-import model.CategoriaDao;
-import model.CategoriaVo;
+
 import model.ExistenciaDao;
 import model.ExistenciaVo;
 import model.ProductoDao;
 import model.ProductoVo;
+import model.ProveedorDao;
+import model.ProveedorVo;
 import model.UsuarioDao;
 import model.UsuarioVo;
+import model.CategoriaDao;
+import model.CategoriaVo;
 
 
 
@@ -29,6 +32,8 @@ public class ControllerInline extends HttpServlet{
     ProductoDao ProdDao=new ProductoDao();
     ExistenciaDao ExistDao=new ExistenciaDao();
     ExistenciaVo ExistVo=new ExistenciaVo();
+    ProveedorDao ProvDao=new ProveedorDao();
+    ProveedorVo ProvVo=new ProveedorVo();
     CategoriaDao CateDao=new CategoriaDao();
     CategoriaVo CateVo=new CategoriaVo();
 
@@ -57,17 +62,16 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
             req.getRequestDispatcher("FormsExistence/registerExistence.jsp").forward(req, resp);
         break;
 
-        case "updateExistence":
-            req.getRequestDispatcher("FormsExistence/updateExistence.jsp").forward(req, resp);
-        break;
-
-
         case "registerProduct":
             req.getRequestDispatcher("FormsProduct/registerProduct.jsp").forward(req, resp);
         break;
 
         case "supplier":
             req.getRequestDispatcher("FormsSupplier/indexSupplier.jsp").forward(req, resp);
+        break;
+
+        case "registerSupplier":
+            req.getRequestDispatcher("FormsSupplier/registerSupplier.jsp").forward(req, resp);
         break;
 
         case "vent":
@@ -223,6 +227,95 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
             }
         break;
 
+        //Actualizar la existencia
+        case "updateExistence":
+        // Obtener el user_id del usuario seleccionado desde la URL
+        String existIdStr = req.getParameter("idExistencia");
+        int existId = Integer.parseInt(existIdStr);
+
+        try {
+            // Obtener el usuario por su id y enviarlo al formulario de actualización
+            ExistenciaVo existencia = new ExistenciaDao().obtenerExistencePorId(existId);
+
+            if (existencia != null) {
+                req.setAttribute("Existencia", existencia);
+                req.getRequestDispatcher("FormsExistence/updateExistence.jsp").forward(req, resp);
+            } else {
+                // Si no se encuentra el proveedor, redirigir a la página de listado con un mensaje de error
+                List<ExistenciaVo> existencias = new ExistenciaDao().listarExist();
+                req.setAttribute("Proveedores", existencias);
+                req.setAttribute("mensaje", "La existencia seleccionado no existe.");
+                req.getRequestDispatcher("FormsExistence/indexExistence.jsp").forward(req, resp);
+            }
+        } catch (SQLException e) {
+            // Manejar la excepción SQLException aquí o propagarla hacia arriba según corresponda
+            e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al obtener la existencia");
+        }
+        break;
+
+        //Eliminar el producto
+        case "deleteExistence":
+        String ExistIdStrDelete = req.getParameter("idExistencia");
+            int ExistIdDelete = Integer.parseInt(ExistIdStrDelete);
+
+            try {
+                new ExistenciaDao().deleteExistence(ExistIdDelete);
+                System.out.println("Existencia eliminada correctamente");
+                listExistDelete(req, resp);
+                
+            } catch (Exception e) {
+                // Manejar la excepción SQLException aquí o propagarla hacia arriba según corresponda
+                e.printStackTrace();
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al obtener la existencia");
+            }
+        break;
+
+        //Actualizar el proveedor
+        case "updateSupplier":
+        // Obtener el user_id del usuario seleccionado desde la URL
+        String provIdStr = req.getParameter("idProveedor");
+        int provId = Integer.parseInt(provIdStr);
+
+        try {
+            // Obtener el usuario por su id y enviarlo al formulario de actualización
+            ProveedorVo proveedor = new ProveedorDao().obtenerProveedorPorId(provId);
+
+            if (proveedor != null) {
+                req.setAttribute("Proveedor", proveedor);
+                req.getRequestDispatcher("FormsSupplier/updateSupplier.jsp").forward(req, resp);
+            } else {
+                // Si no se encuentra el proveedor, redirigir a la página de listado con un mensaje de error
+                List<ProveedorVo> proveedores = new ProveedorDao().listarProv();
+                req.setAttribute("Proveedores", proveedores);
+                req.setAttribute("mensaje", "El proveedor seleccionado no existe.");
+                req.getRequestDispatcher("FormsSupplier/indexSupplier.jsp").forward(req, resp);
+            }
+        } catch (SQLException e) {
+            // Manejar la excepción SQLException aquí o propagarla hacia arriba según corresponda
+            e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al obtener el proveedor");
+        }
+        break;
+
+        //Eliminar el Proveedor
+        case "deleteSupplier":
+        String ProvIdStrDelete = req.getParameter("idProveedor");
+            int ProvIdDelete = Integer.parseInt(ProvIdStrDelete);
+            System.out.println(ProvIdDelete);
+
+            try {
+                new ProveedorDao().deleteSupplier(ProvIdDelete);
+                System.out.println("Proveedor eliminado correctamente");
+                listProvDelete(req, resp);
+                
+            } catch (Exception e) {
+                // Manejar la excepción SQLException aquí o propagarla hacia arriba según corresponda
+                e.printStackTrace();
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al obtener el proveedor");
+            }
+        break;
+
     }
 }
 
@@ -267,20 +360,26 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
         updateCategoryController(req, resp);
         break;
 
-            //Existencias
+        //Existencias
         case"registerExistence":
-            System.out.println("Se entro al caso 'registerExistence, en el metodo registerExistence()'");
-            registerExistenceController(req, resp);
+        System.out.println("Se entro al caso 'registerExistence, en el metodo registerExistence()'");
+        registerExistenceController(req, resp);
         break;
 
         case"updateExistence":
-            System.out.println("Se entro al caso 'updateExistence, en el metodo updateExistence()'");
-            updateExistenceController(req, resp);
+        System.out.println("Se entro al caso 'updateExistence, en el metodo updateExistence()'");
+        updateExistenceController(req, resp);
         break;
 
-        case"deleteExistence":
-            System.out.println("Se entro al caso 'deleteExistence, en el metodo deleteExistence()'");
-            deleteExistenceController(req, resp);
+        //Proveedores
+        case"registerSupplier":
+        System.out.println("Se entro al caso 'registerExistence, en el metodo registerExistence()'");
+        registerSupplierController(req, resp);
+        break;
+
+        case"updateSupplier":
+        System.out.println("Se entro al caso 'updateExistence, en el metodo updateExistence()'");
+        updateSupplierController(req, resp);
         break;
 
 }
@@ -466,6 +565,7 @@ private void registerProductController(HttpServletRequest req, HttpServletRespon
 
     //Actualizar Producto
     private void updateProdController(HttpServletRequest req, HttpServletResponse resp) {
+        System.out.println("entro al casos en dopost");
 
         if(req.getParameter("idProducto")!=null){
             ProdVo.setIdProducto(Integer.parseInt(req.getParameter("idProducto")));
@@ -586,8 +686,8 @@ private void registerExistenceController(HttpServletRequest req, HttpServletResp
 
     if(req.getParameter("cantidadUnidad")!=null){
         String cantidadUnidad=req.getParameter("cantidadUnidad");
-        int cantUnidParsed=Integer.parseInt(cantidadUnidad);
-        ExistVo.setCantidadUnidad(cantUnidParsed);
+        int CantUnidEntParsed=Integer.parseInt(cantidadUnidad);
+        ExistVo.setCantidadUnidad(CantUnidEntParsed);
     }
     if(req.getParameter("precioEntrada")!=null){
         String precioEntrada=req.getParameter("precioEntrada");
@@ -647,7 +747,7 @@ private void updateExistenceController(HttpServletRequest req, HttpServletRespon
     }
         
         try {
-            ExistDao.actualizarExistence(ExistVo);
+            ExistDao.updateExistence(ExistVo);
             System.out.println("Existencia actualizada correctamente");
 
             //NOTA: Redireccionamiento preventivo.       
@@ -659,12 +759,76 @@ private void updateExistenceController(HttpServletRequest req, HttpServletRespon
     }
 
 //ELIMINAR EXISTENCIA
-private void deleteExistenceController(HttpServletRequest req, HttpServletResponse resp) {
+private void listExistDelete(HttpServletRequest req, HttpServletResponse resp) {
         try {
             List<ExistenciaVo> existencia = ExistDao.listarExist();
-            req.setAttribute("Producto", existencia);
+            req.setAttribute("Existencia", existencia);
             req.getRequestDispatcher("FormsExistence/indexExistence.jsp").forward(req, resp);
             System.out.println("Datos listados correctamente despues de la existencia eliminada");
+        } catch (Exception e) {
+            System.out.println("Hay problemas al listar los datos en el metodo " + e.getMessage().toString());
+        }
+    }
+
+
+    //CRUD PROVEEDORES
+
+//REGISTRAR PROVEEDOR
+private void registerSupplierController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+
+    if(req.getParameter("nombreProveedor")!=null){
+        ProvVo.setNombreProveedor(req.getParameter("nombreProveedor"));
+    }
+    if(req.getParameter("direccionProveedor")!=null){
+        ProvVo.setDireccionProveedor(req.getParameter("direccionProveedor"));
+    }
+    else{
+        System.out.println("Ha habido un error al tratar de registrar los datos del proveedor en el metodo registerSupplierController");
+    }
+    try {
+        ProvDao.registerSupplier(ProvVo);
+        System.out.println("Registro insertado correctamente en controllerInLine");
+        //Redireccionamiento
+        req.getRequestDispatcher("FormsSupplier/registerSupplier.jsp").forward(req, resp);
+    } catch (Exception e) {
+        System.out.println("Error al registrar los datos del proveedor en ControllerInline en el metodo registerSupplierController");
+    }
+}
+
+//ACTUALIZAR PROVEEDOR
+private void updateSupplierController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+
+    if(req.getParameter("idProveedor")!=null){
+        String idProveedor=req.getParameter("idProveedor");
+        int idProvParse=Integer.parseInt(idProveedor);
+        ProvVo.setIdProveedor(idProvParse);
+    }
+    if(req.getParameter("UpdateNameSupplier")!=null){
+        ProvVo.setNombreProveedor(req.getParameter("UpdateNameSupplier"));
+    }
+    if(req.getParameter("UpdateAdressSupplier")!=null){
+        ProvVo.setDireccionProveedor(req.getParameter("UpdateAdressSupplier"));
+    }
+        
+        try {
+            ProvDao.updateSupplier(ProvVo);
+            System.out.println("Proveedor actualizado correctamente");
+
+            //NOTA: Redireccionamiento preventivo.       
+            req.getRequestDispatcher("FormsSupplier/indexSupplier.jsp").forward(req, resp);
+
+        } catch (Exception e) {
+            System.out.println("Error en la actualizacion del proveedor "+e.getMessage().toString());
+        }
+    }
+
+//ELIMINAR PROVEEDOR
+private void listProvDelete(HttpServletRequest req, HttpServletResponse resp) {
+        try {
+            List<ProveedorVo> proveedor = ProvDao.listarProv();
+            req.setAttribute("Proveedor", proveedor);
+            req.getRequestDispatcher("FormsSupplier/indexSupplier.jsp").forward(req, resp);
+            System.out.println("Datos listados correctamente despues del proveedor eliminado");
         } catch (Exception e) {
             System.out.println("Hay problemas al listar los datos en el metodo " + e.getMessage().toString());
         }

@@ -12,7 +12,7 @@
             </div>
             <button class="btnMenu" ><a href="ControllerInline?enviar=registerCategory">Agregar</a></button>
             <br>
-            <input type="text" placeholder="buscar" class="inputSearch">
+            <input type="text" placeholder="buscar" class="inputSearch" id="searchInput">
         </div>
         <div class="content2">
         
@@ -64,3 +64,4 @@
     
     
 <%@ include file="../plantillas/footer.jsp"%>
+<script src="assets/js/JsCate/searchCate.js"></script>

@@ -10,8 +10,7 @@
 <main class="main" id="mainForm">  
     <div>
         <a href="ControllerInline?enviar=existence"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
-    </div>
-    
+    </div><br><br>
     <%-- Obtener el id de la existencia seleccionado de la URL --%>
     <% String existId = request.getParameter("idExistencia"); %>
     <% int id = Integer.parseInt(existId); %>
@@ -32,24 +31,28 @@
 
         <div class="contentForm">
             
-            <div class="divCantidadUnidad">
+            <div class="divCantidadUnidad" id="divCantidadUnidad">
                 <label for="UpdateCantidadUnidad">Cantidad:</label>
-                <input type="text" id="UpdateCantidadUnidad" name="UpdateCantidadUnidad"value="<%= existencia.getCantidadUnidad() %>" class="inputForm">
+                <input type="text" id="UpdateCantidadUnidad" class="inputForm" name="UpdateCantidadUnidad"value="<%= existencia.getCantidadUnidad() %>">
+                <span class="fbForm"></span> 
             </div>
 
-            <div class="divPrecioEntrada">
+            <div class="divPrecioEntrada" id="divPrecioEntrada">
                 <label for="UpdatePrecioEntrada">Precio:</label>
-                <input type="number" id="UpdatePrecioEntrada" name="UpdatePrecioEntrada" value="<%= existencia.getPrecioEntrada() %>" class="inputForm">
+                <input type="number" id="UpdatePrecioEntrada" class="inputForm" name="UpdatePrecioEntrada" value="<%= existencia.getPrecioEntrada() %>">
+                <span class="fbForm"></span> 
             </div>
     
-            <div class="divIdProducto">
+            <div class="divIdProducto" id="divIdProducto">
                 <label for="UpdateIdProducto">Id de Producto:</label>
-                <input type="text" id="UpdateIdProducto" name="UpdateIdProducto" value="<%= existencia.getIdProducto() %>" class="inputForm">
+                <input type="text" id="UpdateIdProducto" class="inputForm" name="UpdateIdProducto" value="<%= existencia.getIdProducto() %>">
+                <span class="fbForm"></span> 
             </div>
     
-            <div class="divIdEntraProd">
+            <div class="divIdEntraProd" id="divIdEntraProd">
                 <label for="UpdateIdEntradaProd">Num. de Entrada de producto:</label>
-                <input type="number" id="UpdateIdEntradaProd" name="UpdateIdEntradaProd" value="<%= existencia.getIdEntradaProd() %>" class="inputForm">
+                <input type="number" id="UpdateIdEntradaProd" class="inputForm" name="UpdateIdEntradaProd" value="<%= existencia.getIdEntradaProd() %>">
+                <span class="fbForm"></span> 
             </div>
     
             <div class="divBtnForm">
@@ -63,5 +66,5 @@
 </main><br>
     
 <%@ include file="../plantillas/footer.jsp"%>
-
+<script src="assets/js/JsExist/updateValiderExistence.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>

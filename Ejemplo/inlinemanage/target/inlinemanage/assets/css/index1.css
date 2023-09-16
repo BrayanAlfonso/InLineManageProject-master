@@ -27,7 +27,7 @@
 
   }
 
-#mainForm{
+  #mainForm{
     justify-content: center;
     align-items: center;
   }
@@ -38,6 +38,9 @@ form{
     border-radius: 10px;
     position: relative;
 } 
+#formLogin{
+    border: none;
+}
 
 .fbForm{
     position: absolute;
@@ -148,6 +151,7 @@ h1{
 .inputs, button{
     text-align: left;
     font-size: 20px;
+    margin-top: 40px;
 }
 
 .inputForm, select{

@@ -16,13 +16,13 @@
                     <div class="inputs" id="divName">
                         <label for="inputUserName"><b>Nombre de usuario:</b></label><br><br>
                         <input type="text" id="inputUserName" name="inputUserName" class="inputForm">
-                        <div class="feedback"><p>sadasd</p></div> 
+                        <span class="fbForm"></span> 
                     </div>
                     
                     <div class="inputs" id="divPassword">
                         <label for="inputPassword"><b>Contraseña:</b></label><br><br>
                         <input type="text" id="inputPassword" name="inputPassword" class="inputForm">
-                        <div class="feedback"><p>dadsa</p></div> 
+                        <span class="fbForm"></span> 
                     </div>
                     
 
@@ -50,7 +50,7 @@
 <script>
     let mensajeJS="<%= mensaje %>"
 </script>
-<script src="assets/js/index.js"></script>
+<script src="assets/js/index1.js"></script>
 
 
 <%@ include file="../plantillas/footer2.jsp"%>

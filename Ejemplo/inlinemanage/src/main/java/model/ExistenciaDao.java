@@ -75,7 +75,7 @@ public class ExistenciaDao {
     }
 
     //SECCION: Actualizar existencia.
-    public int actualizarExistence(ExistenciaVo existencia) throws SQLException{
+    public int updateExistence(ExistenciaVo existencia) throws SQLException{
 
         sql="update existencia set cantidadUnidad = ?, precioEntrada = ?, idProducto = ?, idEntradaProd = ?  where idExistencia = ?"; 
         System.out.println(sql);
@@ -132,7 +132,7 @@ public class ExistenciaDao {
     }
 
     //SECCION: Eliminar existencia.
-    public void eliminarExistence(int existId) throws SQLException {
+    public void deleteExistence(int existId) throws SQLException {
         sql = "DELETE FROM existencia WHERE idExistencia = ?";
         try (Connection con = Conexion.conectar();
                 PreparedStatement ps = con.prepareStatement(sql)) {

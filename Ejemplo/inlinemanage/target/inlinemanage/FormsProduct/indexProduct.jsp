@@ -13,7 +13,7 @@
             <button class="btnMenu" ><a href="ControllerInline?enviar=registerProduct">Agregar</a></button>
             <button class="btnMenu" ><a href="ControllerInline?enviar=categoria">Categoria</a></button>
             <button class="btnMenu"><a href="ControllerInline?enviar=existence">Existencia</a></button>
-            <input type="text" placeholder="buscar" class="inputSearch">
+            <input type="text" placeholder="buscar" class="inputSearch" id="searchInput">
         </div>
         <div class="content2">
 
@@ -80,5 +80,5 @@
     
     
 <%@ include file="../plantillas/footer.jsp"%>
-
+<script src="assets/js/JsProd/searchProd.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>
