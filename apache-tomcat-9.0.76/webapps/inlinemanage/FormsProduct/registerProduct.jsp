@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ include file="../plantillas/header.jsp"%>
+<%@ page import="java.util.List" %>
+<%@ page import="model.CategoriaVo"%>
+<%@ page import="model.CategoriaDao"%>
 <main class="main" id="mainForm">
     <div>
         <a href="ControllerInline?enviar=product"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
@@ -51,11 +54,25 @@
                 <span class="fbForm">Hola Mundo</span>
             </div>
     
+            <% List<CategoriaVo> categorias = null;
+                try {
+                    categorias = new CategoriaDao().listar();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+             %>
             <div class="categoria">
-                <label for="categoria">Categoria:</label>
-                <input type="text" id="categoria" name="categoria" class="inputForm">
+                <label for="categoria">Categoría:</label>
+                <select id="categoria" name="categoria" class="inputForm">
+                    <option value="" disabled selected>-- Seleccione una categoría --</option>
+                    <% for (CategoriaVo categoria : categorias) { %>
+                        <option value="<%= categoria.getIdCategoria() %>"><%= categoria.getNombreCategoria() %></option>
+                    <% } %>
+                </select>
                 <span class="fbForm">Hola Mundo</span>
             </div>
+                    
+            
     
 
             <div class="divBtnForm">

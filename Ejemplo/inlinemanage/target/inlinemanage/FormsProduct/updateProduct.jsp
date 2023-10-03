@@ -5,6 +5,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.ProductoVo" %>
 <%@ page import="model.ProductoDao" %>
+<%@ page import="model.CategoriaVo"%>
+<%@ page import="model.CategoriaDao"%>
 
 <main class="main" id="mainForm"> 
     <div>
@@ -73,10 +75,22 @@
                 <span class="fbForm"></span>
             </div>
 
-            <div class="divCategoria">
-                <label for="UpdateCategoria">Categoria:</label>
-                <input type="text" id="UpdateCategoria" name="UpdateCategoria" value="<%= producto.getIdCategoria() %>" class="inputForm">
-                <span class="fbForm"></span>
+            <% List<CategoriaVo> categorias = null;
+                try {
+                    categorias = new CategoriaDao().listar();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+             %>
+            <div class="categoria">
+                <label for="UpdateCategoria">Categoría:</label>
+                <select id="UpdateCategoria" name="UpdateCategoria" class="inputForm">
+                    <option value="" disabled selected><%= producto.getIdCategoria() %></option>
+                    <% for (CategoriaVo categoria : categorias) { %>
+                        <option value="<%= categoria.getIdCategoria() %>"><%= categoria.getNombreCategoria() %></option>
+                    <% } %>
+                </select>
+                <span class="fbForm">Hola Mundo</span>
             </div>
     
 

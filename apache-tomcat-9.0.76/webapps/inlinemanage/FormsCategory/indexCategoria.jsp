@@ -17,12 +17,12 @@
         <div class="content2">
         
             <%List <CategoriaVo> categorias = null;
-               try {
-                categorias = new CategoriaDao().listar();
-               } catch (Exception e) {
-                   e.printStackTrace();
-               }
-            %>
+                try {
+                 categorias = new CategoriaDao().listar();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+             %>
         
             <%-- Verificar si hay productos y mostrarlos --%>
             <%if (categorias != null && !categorias.isEmpty()) {%>

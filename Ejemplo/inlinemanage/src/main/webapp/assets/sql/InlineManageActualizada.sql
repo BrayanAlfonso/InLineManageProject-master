@@ -10,7 +10,10 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 );
 
 insert into categoria values(1,'Cargadores');
-
+insert into categoria values(2,'Audifonos');
+insert into categoria values(3,'Cables 3x3');
+insert into categoria values(4,'Cables 1x3');
+insert into categoria values(5,'Cables cargador');
 
 
 CREATE TABLE IF NOT EXISTS `entradaprod` (
@@ -18,7 +21,11 @@ CREATE TABLE IF NOT EXISTS `entradaprod` (
   `fechaIngreso` date DEFAULT NULL,
   `idProveedor` int(11) DEFAULT NULL
 );
-insert into entradaprod values (1, 2023-11-11, 1);
+insert into entradaprod values (1, '2023-11-11', 1);
+insert into entradaprod values (2, '2023-07-11', 2);
+insert into entradaprod values (3, '2023-07-20', 3);
+insert into entradaprod values (4, '2023-12-31', 4);
+insert into entradaprod values (5, '2023-01-31', 5);
 
 CREATE TABLE IF NOT EXISTS `existencia` (
   `idExistencia` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -29,6 +36,10 @@ CREATE TABLE IF NOT EXISTS `existencia` (
 
 );
 insert into existencia values (1, 20, 16000,1,1);
+insert into existencia values (2, 14, 13000,2,2);
+insert into existencia values (3, 14, 14000,2,3);
+insert into existencia values (4, 14, 90000,2,4);
+insert into existencia values (5, 14, 20000,2,5);
 
 
 CREATE TABLE IF NOT EXISTS `producto` (
@@ -44,6 +55,11 @@ CREATE TABLE IF NOT EXISTS `producto` (
 
 );
 insert into producto values (1, 20, "Cargador JQ 130",20000,"Cargador Juqu Referencia 138 tipo C",12345,12,6,1);
+insert into producto values (2, 2, "Audifonos JQ 110",13000,"Audifnonos referencia JQ 110 color negro cable delgado",6789,12,6,2);
+insert into producto values (3, 5, "Cable 3x3 JQ 220",9000,"Cable de audio 3x3",101112,12,6,3);
+insert into producto values (4, 10, "Cable 1x3 JQ 95",7000,"Cable de audio 1x3",131415,12,6,4);
+insert into producto values (5, 12, "Cargador cable tipo c a tipo c JQ 120",14000,"Cable tipo c a tipo c",161718,12,6,5);
+
 
 CREATE TABLE IF NOT EXISTS `proveedor` (
   `idProveedor` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -51,7 +67,11 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
   `direccionProveedor` varchar(50) DEFAULT NULL
 ) ;
 
-insert into proveedor values (1, 'Hector', 'Carrera 6 f este 89c 18 sur');
+insert into proveedor values (1, 'Hector', 'Carrera 6 f este 25b 18 sur');
+insert into proveedor values (2, 'Brayan', 'Carrera 8 f este 16 sur');
+insert into proveedor values (3, 'Mateo', 'Carrera 56 f este 23c 14 sur');
+insert into proveedor values (4, 'Sebastian', 'Carrera 90 f este 89c 5 sur');
+insert into proveedor values (5, 'Laura', 'Carrera 15 f este 74d 3 sur');
 
 CREATE TABLE IF NOT EXISTS `usuario` (
   `idUsuario` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
