@@ -5,7 +5,9 @@ model\CategoriaVo.class
 model\ExistenciaVo.class
 controller\Usuario.class
 model\CategoriaDao.class
+model\EntradaVo.class
 model\UsuarioVo.class
+model\EntradaDao.class
 model\ProductoVo.class
 model\VentaVo.class
 model\ProveedorVo.class

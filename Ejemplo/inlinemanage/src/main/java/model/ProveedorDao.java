@@ -47,7 +47,7 @@ public class ProveedorDao {
 public List<ProveedorVo> listarProv() throws SQLException{
     List<ProveedorVo> prov= new ArrayList<>();
 
-    sql="Select * from proveedor limit 3";
+    sql="Select * from proveedor";
 
     try {
         con = Conexion.conectar();

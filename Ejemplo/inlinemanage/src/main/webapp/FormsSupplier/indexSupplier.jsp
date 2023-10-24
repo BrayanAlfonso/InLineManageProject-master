@@ -12,6 +12,7 @@
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
             <button class="btn" id="btnInsertSupplier" > <a href="ControllerInline?enviar=registerSupplier">Agregar</a></button>
+            <button class="btn" id="btnInsertSupplier" > <a href="ControllerInline?enviar=entrada">Entrada de producto</a></button>
             <input type="text" placeholder="buscar" class="inputSearch">
         </div>
         <div class="content2">
@@ -27,7 +28,7 @@
 
             <%-- Verificar si hay proveedores y mostrarlos --%>
             <% if (provs != null && !provs.isEmpty()) { %>
-            <table class="<%=(provs.size() > 2) ? "" : "few-rows"%>">
+            <table class="<%=(provs.size() > 10) ? "" : "few-rows"%>">
                 <tr class="title-table">
                     <th colspan="7">PROVEEDORES</th>
                 </tr>
