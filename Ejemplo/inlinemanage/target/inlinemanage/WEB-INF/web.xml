@@ -33,4 +33,18 @@
   <servlet-name>controller.Usuario</servlet-name>
   <url-pattern>/usuario</url-pattern>
 </servlet-mapping>
+
+  <servlet>
+  <servlet-name>reportVent</servlet-name>
+  <servlet-class>reportVent</servlet-class>
+</servlet>
+
+<!--HEAD DE LA PAGINA WEB-->
+<servlet-mapping> 
+  <servlet-name>reportVent</servlet-name>
+  <url-pattern>/reportVent</url-pattern>
+</servlet-mapping>
 </web-app>
+
+
+

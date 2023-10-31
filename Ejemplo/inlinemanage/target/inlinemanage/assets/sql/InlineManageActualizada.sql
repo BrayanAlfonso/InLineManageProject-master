@@ -160,3 +160,24 @@ insert into detalle_venta(idProducto, idVenta, precioProducto, cantidad)values(4
 select * from detalle_venta;
 select * from venta;
 
+
+delimiter //
+create trigger agregarUnidadesDisponibles
+after insert on existencia for each row
+begin
+	update producto set unidadesDisponibles=unidadesDisponibles+new.CantidadUnidad where idProducto=new.idProducto;
+end
+//
+
+insert into existencia values(6,10,13000,1,1)
+
+delimiter //
+create trigger descontarUnidadesDisponibles
+after insert on detalle_venta for each row
+begin
+	update producto set unidadesDisponibles=unidadesDisponibles-new.cantidad where idProducto=new.idProducto;
+end
+//
+
+insert into detalle_venta values(3,1,1,13000,15)
+

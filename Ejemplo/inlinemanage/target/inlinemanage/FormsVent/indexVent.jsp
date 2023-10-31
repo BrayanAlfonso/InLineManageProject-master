@@ -12,6 +12,10 @@
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
             <button class="btnMenu"><a href="ControllerInline?enviar=registerVent">Agregar</a></button>
+            <form action="/inlinemanage/reportVent">
+                <button class="btnMenu" id="generateReportVent">Generar reporte</button>
+            </form>
+            
             <input type="text" placeholder="buscar" class="inputSearch">
         </div>
         <div class="content2">
@@ -68,3 +72,5 @@
     
     
 <%@ include file="../plantillas/footer.jsp"%>
+
+<%@ include file="../plantillas/footer2.jsp"%>
