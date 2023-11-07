@@ -12,9 +12,9 @@
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
             <button class="btnMenu"><a href="ControllerInline?enviar=registerVent">Agregar</a></button>
-            <form action="/inlinemanage/reportVent">
-                <button class="btnMenu" id="generateReportVent">Generar reporte</button>
-            </form>
+
+            <button class="btnMenu"><a href="/inlinemanage/Reports?enviar=vent">Generar reporte</a></button>
+
             
             <input type="text" placeholder="buscar" class="inputSearch">
         </div>
