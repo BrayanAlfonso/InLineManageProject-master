@@ -48,6 +48,13 @@
                 <p>No se encontraron ventas.</p>
             <% } %>
     </div>
+
+    <div class="modal">
+        <div class="modal-content">
+            <div id="reader"></div>
+            <div id="result"></div>
+        </div>
+    </div>
 </div>
 
 </main>
