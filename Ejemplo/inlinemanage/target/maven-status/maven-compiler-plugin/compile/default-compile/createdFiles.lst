@@ -1,4 +1,5 @@
 model\VentaDao.class
+controller\Category.class
 model\UsuarioDao.class
 ControllerInline.class
 model\CategoriaVo.class
@@ -18,3 +19,4 @@ model\ExistenciaDao.class
 model\Conexion.class
 model\ProveedorDao.class
 model\ProductoDao.class
+controller\EntradaProd.class

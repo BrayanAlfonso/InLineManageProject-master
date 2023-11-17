@@ -10,7 +10,7 @@
             <div class="backlog">
                 <a href="ControllerInline?enviar=product"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
-            <button class="btnMenu" ><a href="ControllerInline?enviar=registerCategory">Agregar</a></button>
+            <button class="btnMenu" ><a href="category?enviar=registerCategory">Agregar</a></button>
             <br>
             <input type="text" placeholder="buscar" class="inputSearch" id="searchInput">
         </div>
@@ -48,8 +48,8 @@
                         <tr>
                             <td><%=categoria.getIdCategoria()%></td>
                             <td><%=categoria.getNombreCategoria()%></td>
-                            <td class="iconCenter"><a href="ControllerInline?enviar=updateCategory&idCategoria=<%=categoria.getIdCategoria()%>"><img src="https://img.icons8.com/ios/100/000000/refresh--v1.png" alt="refresh--v1" class="iconUpdate"/></a></td>
-                            <td class="iconCenter"><a href="ControllerInline?enviar=deleteCategory&idCategoria=<%=categoria.getIdCategoria()%>"><img height="30" src="https://img.icons8.com/ios/100/000000/delete--v1.png" alt="delete--v1" class="iconDelete"/></a></td>
+                            <td class="iconCenter"><a href="category?enviar=updateCategory&idCategoria=<%=categoria.getIdCategoria()%>"><img src="https://img.icons8.com/ios/100/000000/refresh--v1.png" alt="refresh--v1" class="iconUpdate"/></a></td>
+                            <td class="iconCenter"><a href="category?enviar=deleteCategory&idCategoria=<%=categoria.getIdCategoria()%>"><img height="30" src="https://img.icons8.com/ios/100/000000/delete--v1.png" alt="delete--v1" class="iconDelete"/></a></td>
                         </tr>
                     <%}%>
                 </table>

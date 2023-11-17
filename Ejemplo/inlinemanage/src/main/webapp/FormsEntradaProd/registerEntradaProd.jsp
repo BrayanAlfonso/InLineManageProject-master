@@ -7,13 +7,13 @@ pageEncoding="utf-8" %> <%@ include file="../plantillas/header.jsp"%>
 
 <main class="main" id="mainForm">
   <div>
-    <a href="ControllerInline?enviar=entrada"
+    <a href="entrada?enviar=entrada"
       ><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"
     /></a>
   </div>
   <br />
 
-  <form action="ControllerInline" method="post" id="formValidacion">
+  <form action="entrada" method="post" id="formValidacion">
     <h1 class="title-table">Registro de entrada</h1>
     <div class="contentForm">
 

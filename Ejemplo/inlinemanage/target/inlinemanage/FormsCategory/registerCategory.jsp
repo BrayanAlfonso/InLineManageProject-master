@@ -2,10 +2,10 @@
 <%@ include file="../plantillas/header.jsp"%>
 <main class="main" id="mainForm">
     <div>
-        <a href="ControllerInline?enviar=categoria"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+        <a href="category?enviar=categoria"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
     </div><br>
 
-    <form action="ControllerInline" method="post" id="formValidacion">
+    <form action="category" method="post" id="formValidacion">
         <h1 class="title-table">Registro de Categoria</h1>
         <div class="contentForm">
             <div class="divNameCategory">

@@ -12,7 +12,7 @@
             <div class="backlog">
                 <a href="ControllerInline?enviar=supplier"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
-            <button class="btnMenu" ><a href="ControllerInline?enviar=registerEntrada">Agregar</a></button>
+            <button class="btnMenu" ><a href="entrada?enviar=registerEntrada">Agregar</a></button>
             <br>
             <input type="text" placeholder="buscar" class="inputSearch" id="searchInput">
         </div>
@@ -65,8 +65,8 @@
                             <% }%>
                         <% } %>
 
-                            <td class="iconCenter"><a href="ControllerInline?enviar=updateEntrada&idEntradaProd=<%=entrada.getIdEntradaProd()%>"><img src="https://img.icons8.com/ios/100/000000/refresh--v1.png" alt="refresh--v1" class="iconUpdate"/></a></td>
-                            <td class="iconCenter"><a href="ControllerInline?enviar=deleteEntrada&idEntradaProd=<%=entrada.getIdEntradaProd()%>"><img height="30" src="https://img.icons8.com/ios/100/000000/delete--v1.png" alt="delete--v1" class="iconDelete"/></a></td>
+                            <td class="iconCenter"><a href="entrada?enviar=updateEntrada&idEntradaProd=<%=entrada.getIdEntradaProd()%>"><img src="https://img.icons8.com/ios/100/000000/refresh--v1.png" alt="refresh--v1" class="iconUpdate"/></a></td>
+                            <td class="iconCenter"><a href="entrada?enviar=deleteEntrada&idEntradaProd=<%=entrada.getIdEntradaProd()%>"><img height="30" src="https://img.icons8.com/ios/100/000000/delete--v1.png" alt="delete--v1" class="iconDelete"/></a></td>
                         </tr>
                     <%}%>
                 </table>

@@ -11,7 +11,7 @@
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
             <button class="btnMenu" ><a href="ControllerInline?enviar=registerProduct">Agregar</a></button>
-            <button class="btnMenu" ><a href="ControllerInline?enviar=categoria">Categoria</a></button>
+            <button class="btnMenu" ><a href="category?enviar=categoria">Categoria</a></button>
             <button class="btnMenu"><a href="ControllerInline?enviar=existence">Existencia</a></button>
             <button class="btnMenu"><a href="/inlinemanage/Reports?enviar=product">Generar reporte</a></button>
             <input type="text" placeholder="buscar" class="inputSearch" id="searchInput">
