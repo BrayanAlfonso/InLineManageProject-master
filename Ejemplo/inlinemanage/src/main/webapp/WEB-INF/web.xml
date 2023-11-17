@@ -62,6 +62,19 @@
   <url-pattern>/entrada</url-pattern>
 </servlet-mapping>
 
+  <!--CONTROLADOR-->
+  <!--CLASE EN JAVA-->
+<servlet>
+  <servlet-name>controller.Existence</servlet-name>
+  <servlet-class>controller.Existence</servlet-class>
+</servlet>
+
+<!--HEAD DE LA PAGINA WEB-->
+<servlet-mapping> 
+  <servlet-name>controller.Existence</servlet-name>
+  <url-pattern>/existence</url-pattern>
+</servlet-mapping>
+
 
   <servlet>
   <servlet-name>Reports</servlet-name>

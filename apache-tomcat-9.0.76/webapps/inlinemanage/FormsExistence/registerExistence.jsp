@@ -8,10 +8,10 @@
 
 <main class="main" id="mainForm">
     <div>
-        <a href="ControllerInline?enviar=existence"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+        <a href="existence?enviar=existence"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
     </div><br><br>
 
-    <form action="ControllerInline" id="formValiderE" method="post">
+    <form action="existence" id="formValiderE" method="post">
         <h1 class="title-table">Registro de Existencias</h1>
         <div class="contentForm">
 

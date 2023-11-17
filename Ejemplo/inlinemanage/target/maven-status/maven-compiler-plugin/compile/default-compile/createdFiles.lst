@@ -8,6 +8,7 @@ controller\Usuario.class
 model\CategoriaDao.class
 model\EntradaVo.class
 Reports.class
+controller\Existence.class
 model\UsuarioVo.class
 model\DetalleVentDao.class
 model\DetalleVentVo.class

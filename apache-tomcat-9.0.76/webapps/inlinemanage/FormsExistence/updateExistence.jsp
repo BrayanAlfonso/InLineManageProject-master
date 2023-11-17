@@ -9,7 +9,7 @@
 
 <main class="main" id="mainForm">  
     <div>
-        <a href="ControllerInline?enviar=existence"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+        <a href="existence?enviar=existence"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
     </div><br><br>
     <%-- Obtener el id de la existencia seleccionado de la URL --%>
     <% String existId = request.getParameter("idExistencia"); %>
@@ -24,7 +24,7 @@
 
     <%-- Verificar si se encontró la existencia y mostrar el formulario de actualización --%>
     <% if (existencia != null) { %>
-    <form action="ControllerInline" method="post">
+    <form action="existence" method="post">
         <h1 class="title-table">Actualizacion de existencias</h1>
 
         <input type="hidden" name="idExistencia" id="idExistencia" value="<%= existencia.getIdExistencia() %>">

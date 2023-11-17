@@ -8,8 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
 
-import model.ExistenciaDao;
-import model.ExistenciaVo;
+
 import model.ProductoDao;
 import model.ProductoVo;
 import model.ProveedorDao;
@@ -31,8 +30,7 @@ public class ControllerInline extends HttpServlet{
     UsuarioDao UsuDao=new UsuarioDao();
     ProductoVo ProdVo=new ProductoVo();
     ProductoDao ProdDao=new ProductoDao();
-    ExistenciaDao ExistDao=new ExistenciaDao();
-    ExistenciaVo ExistVo=new ExistenciaVo();
+
     ProveedorDao ProvDao=new ProveedorDao();
     ProveedorVo ProvVo=new ProveedorVo();
 
@@ -57,13 +55,6 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
             req.getRequestDispatcher("FormsProduct/indexProduct.jsp").forward(req, resp);
         break;
 
-        case "existence":
-            req.getRequestDispatcher("FormsExistence/indexExistence.jsp").forward(req, resp);
-        break;
-    
-        case "registerExistence":
-            req.getRequestDispatcher("FormsExistence/registerExistence.jsp").forward(req, resp);
-        break;
 
         case "registerProduct":
             req.getRequestDispatcher("FormsProduct/registerProduct.jsp").forward(req, resp);
@@ -187,49 +178,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
         break;
 
 
-        //Actualizar la existencia
-        case "updateExistence":
-        // Obtener el user_id del usuario seleccionado desde la URL
-        String existIdStr = req.getParameter("idExistencia");
-        int existId = Integer.parseInt(existIdStr);
-
-        try {
-            // Obtener el usuario por su id y enviarlo al formulario de actualización
-            ExistenciaVo existencia = new ExistenciaDao().obtenerExistencePorId(existId);
-
-            if (existencia != null) {
-                req.setAttribute("Existencia", existencia);
-                req.getRequestDispatcher("FormsExistence/updateExistence.jsp").forward(req, resp);
-            } else {
-                // Si no se encuentra el proveedor, redirigir a la página de listado con un mensaje de error
-                List<ExistenciaVo> existencias = new ExistenciaDao().listarExist();
-                req.setAttribute("Proveedores", existencias);
-                req.setAttribute("mensaje", "La existencia seleccionado no existe.");
-                req.getRequestDispatcher("FormsExistence/indexExistence.jsp").forward(req, resp);
-            }
-        } catch (SQLException e) {
-            // Manejar la excepción SQLException aquí o propagarla hacia arriba según corresponda
-            e.printStackTrace();
-            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al obtener la existencia");
-        }
-        break;
-
-        //Eliminar el producto
-        case "deleteExistence":
-        String ExistIdStrDelete = req.getParameter("idExistencia");
-            int ExistIdDelete = Integer.parseInt(ExistIdStrDelete);
-
-            try {
-                new ExistenciaDao().deleteExistence(ExistIdDelete);
-                System.out.println("Existencia eliminada correctamente");
-                listExistDelete(req, resp);
-                
-            } catch (Exception e) {
-                // Manejar la excepción SQLException aquí o propagarla hacia arriba según corresponda
-                e.printStackTrace();
-                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al obtener la existencia");
-            }
-        break;
+        
 
         //Actualizar el proveedor
         case "updateSupplier":
@@ -324,16 +273,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
         updateVentController(req, resp);
         break;
 
-        //Existencias
-        case"registerExistence":
-        System.out.println("Se entro al caso 'registerExistence, en el metodo registerExistence()'");
-        registerExistenceController(req, resp);
-        break;
 
-        case"updateExistence":
-        System.out.println("Se entro al caso 'updateExistence, en el metodo updateExistence()'");
-        updateExistenceController(req, resp);
-        break;
 
         //Proveedores
         case"registerSupplier":
@@ -653,98 +593,7 @@ private void listVentDelete(HttpServletRequest req, HttpServletResponse resp) {
     }
 
 
-    
-    //CRUD EXISTENCIAS
-
-//REGISTRAR EXISTENCIA
-private void registerExistenceController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-
-    if(req.getParameter("cantidadUnidad")!=null){
-        String cantidadUnidad=req.getParameter("cantidadUnidad");
-        int CantUnidEntParsed=Integer.parseInt(cantidadUnidad);
-        ExistVo.setCantidadUnidad(CantUnidEntParsed);
-    }
-    if(req.getParameter("precioEntrada")!=null){
-        String precioEntrada=req.getParameter("precioEntrada");
-        Float precioEntParsed=Float.parseFloat(precioEntrada);
-        ExistVo.setPrecioEntrada(precioEntParsed);
-    }
-    if(req.getParameter("idProducto")!=null){
-        String idProducto=req.getParameter("idProducto");
-        int idProdParsed=Integer.parseInt(idProducto);
-        ExistVo.setIdProducto(idProdParsed);
-    }
-    if(req.getParameter("idEntradaProd")!=null){
-        String idEntradaProd=req.getParameter("idEntradaProd");
-        int idEntProdParsed=Integer.parseInt(idEntradaProd);
-        ExistVo.setIdEntradaProd(idEntProdParsed);
-    }
-    else{
-        System.out.println("Ha habido un error al tratar de registrar los datos de la existencia en el metodo registerExistenceController");
-    }
-    try {
-        ExistDao.registerExistence(ExistVo);
-        System.out.println("Registro insertado correctamente en controllerInLine");
-        //Redireccionamiento
-        req.getRequestDispatcher("FormsExistence/registerExistence.jsp").forward(req, resp);
-    } catch (Exception e) {
-        System.out.println("Error al registrar los datos del usaurio en ControllerInline en el metodo registerExistenceController");
-    }
-}
-
-//ACTUALIZAR EXISTENCIA
-private void updateExistenceController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-
-    if(req.getParameter("idExistencia")!=null){
-        String idExistencia=req.getParameter("idExistencia");
-        int idProdParse=Integer.parseInt(idExistencia);
-        ExistVo.setIdExistencia(idProdParse);
-    }
-    if(req.getParameter("UpdateCantidadUnidad")!=null){
-        String UpdateCantidadUnidad=req.getParameter("UpdateCantidadUnidad");
-        int UpdateCantidadUnidadParsed=Integer.parseInt(UpdateCantidadUnidad);
-        ExistVo.setCantidadUnidad(UpdateCantidadUnidadParsed);
-    }
-    if(req.getParameter("UpdatePrecioEntrada")!=null){
-        String UpdatePrecioEntrada=req.getParameter("UpdatePrecioEntrada");
-        Float UpdatePrecioEntradaParsed=Float.parseFloat(UpdatePrecioEntrada);
-        ExistVo.setPrecioEntrada(UpdatePrecioEntradaParsed);
-    }
-    if(req.getParameter("UpdateIdProducto")!=null){
-        String UpdateIdProducto=req.getParameter("UpdateIdProducto");
-        int UpdateIdProductoParsed=Integer.parseInt(UpdateIdProducto);
-        ExistVo.setIdProducto(UpdateIdProductoParsed);
-    }
-    if(req.getParameter("UpdateIdEntradaProd")!=null){
-        String UpdateIdEntradaProd=req.getParameter("UpdateIdEntradaProd");
-        int UpdateIdEntradaProdParsed=Integer.parseInt(UpdateIdEntradaProd);
-        ExistVo.setIdEntradaProd(UpdateIdEntradaProdParsed);
-    }
-        
-        try {
-            ExistDao.updateExistence(ExistVo);
-            System.out.println("Existencia actualizada correctamente");
-
-            //NOTA: Redireccionamiento preventivo.       
-            req.getRequestDispatcher("FormsExistence/indexExistence.jsp").forward(req, resp);
-
-        } catch (Exception e) {
-            System.out.println("Error en la actualizacion de la existencia "+e.getMessage().toString());
-        }
-    }
-
-//ELIMINAR EXISTENCIA
-private void listExistDelete(HttpServletRequest req, HttpServletResponse resp) {
-        try {
-            List<ExistenciaVo> existencia = ExistDao.listarExist();
-            req.setAttribute("Existencia", existencia);
-            req.getRequestDispatcher("FormsExistence/indexExistence.jsp").forward(req, resp);
-            System.out.println("Datos listados correctamente despues de la existencia eliminada");
-        } catch (Exception e) {
-            System.out.println("Hay problemas al listar los datos en el metodo " + e.getMessage().toString());
-        }
-    }
-
+ 
 
     //CRUD PROVEEDORES
 
