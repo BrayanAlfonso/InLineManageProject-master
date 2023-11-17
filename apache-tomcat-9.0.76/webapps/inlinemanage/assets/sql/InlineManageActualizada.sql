@@ -24,8 +24,6 @@ CREATE TABLE IF NOT EXISTS `entradaprod` (
 insert into entradaprod values (1, '2023-11-11', 1);
 insert into entradaprod values (2, '2023-07-11', 2);
 insert into entradaprod values (3, '2023-07-20', 3);
-insert into entradaprod values (4, '2023-12-31', 4);
-insert into entradaprod values (5, '2023-01-31', 5);
 
 CREATE TABLE IF NOT EXISTS `existencia` (
   `idExistencia` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -38,8 +36,8 @@ CREATE TABLE IF NOT EXISTS `existencia` (
 insert into existencia values (1, 20, 16000,1,1);
 insert into existencia values (2, 14, 13000,2,2);
 insert into existencia values (3, 14, 14000,2,3);
-insert into existencia values (4, 14, 90000,2,4);
-insert into existencia values (5, 14, 20000,2,5);
+insert into existencia values (4, 14, 90000,2,1);
+insert into existencia values (5, 14, 20000,2,1);
 
 
 CREATE TABLE IF NOT EXISTS `producto` (
@@ -114,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `detalle_venta`(
 
 -- LLAVES FORANEAS
 
-	alter table entradaProd
+		alter table entradaProd
     add constraint FKentradaProdProveedor foreign key (idProveedor) references proveedor (idProveedor);
     
 
@@ -141,4 +139,45 @@ CREATE TABLE IF NOT EXISTS `detalle_venta`(
 	alter table detalle_venta
     add constraint FKDeveVenta foreign key (idVenta) references venta (idVenta);
     
+    -- Trigers de venta --
+    
+DELIMITER //
+
+CREATE TRIGGER antes_insertar_detalleventa
+BEFORE INSERT ON detalle_venta
+FOR EACH ROW
+BEGIN
+    -- Inserta una nueva venta
+    INSERT INTO venta(fechaVenta, idUsuario)
+    VALUES (NOW(), 1);
+
+    -- Obtiene el idVenta recién insertado
+    SET NEW.idVenta = LAST_INSERT_ID();
+END;
+//
+
+insert into detalle_venta(idProducto, idVenta, precioProducto, cantidad)values(4,idVenta,20000,4);
+select * from detalle_venta;
+select * from venta;
+
+
+delimiter //
+create trigger agregarUnidadesDisponibles
+after insert on existencia for each row
+begin
+	update producto set unidadesDisponibles=unidadesDisponibles+new.CantidadUnidad where idProducto=new.idProducto;
+end
+//
+
+insert into existencia values(6,10,13000,1,1)
+
+delimiter //
+create trigger descontarUnidadesDisponibles
+after insert on detalle_venta for each row
+begin
+	update producto set unidadesDisponibles=unidadesDisponibles-new.cantidad where idProducto=new.idProducto;
+end
+//
+
+insert into detalle_venta values(3,1,1,13000,15)
 

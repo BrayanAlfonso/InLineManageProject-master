@@ -10,7 +10,7 @@
             <div class="backlog">
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
-            <button class="btn" ><a href="ControllerInline?enviar=registerExistence">Agregar</a></button>
+            <button class="btn" ><a href="existence?enviar=registerExistence">Agregar</a></button>
             <button class="btn" ><a href="">Categoria</a></button>
             <input type="text" placeholder="buscar" class="inputSearch">
         </div>
@@ -54,8 +54,8 @@
                             <td><%=existencia.getPrecioEntrada()%></td>
                             <td><%=existencia.getIdProducto()%></td>
                             <td><%=existencia.getIdEntradaProd()%></td>
-                            <td class="iconCenter"><a href="ControllerInline?enviar=updateExistence&idExistencia=<%= existencia.getIdExistencia() %>"><img src="https://img.icons8.com/ios/100/000000/refresh--v1.png" alt="refresh--v1" class="iconUpdate"/></a></td>
-                            <td class="iconCenter"><a href="ControllerInline?enviar=deleteExistence&idExistencia=<%= existencia.getIdExistencia() %>"><img height="30" src="https://img.icons8.com/ios/100/000000/delete--v1.png" alt="delete--v1" class="iconDelete"/></a></td>
+                            <td class="iconCenter"><a href="existence?enviar=updateExistence&idExistencia=<%= existencia.getIdExistencia() %>"><img src="https://img.icons8.com/ios/100/000000/refresh--v1.png" alt="refresh--v1" class="iconUpdate"/></a></td>
+                            <td class="iconCenter"><a href="existence?enviar=deleteExistence&idExistencia=<%= existencia.getIdExistencia() %>"><img height="30" src="https://img.icons8.com/ios/100/000000/delete--v1.png" alt="delete--v1" class="iconDelete"/></a></td>
                         </tr>
                     <%}%>
                 </table>

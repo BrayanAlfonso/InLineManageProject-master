@@ -1,35 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ include file="../plantillas/header.jsp"%>
+<%@ page import="java.util.List" %>
+<%@ page import="model.EntradaVo"%>
+<%@ page import="model.EntradaDao"%>
+<%@ page import="model.ProductoVo"%>
+<%@ page import="model.ProductoDao"%>
+
 <main class="main" id="mainForm">
     <div>
-        <a href="ControllerInline?enviar=existence"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+        <a href="existence?enviar=existence"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
     </div><br><br>
 
-    <form action="ControllerInline" id="formValiderE" method="post">
+    <form action="existence" id="formValiderE" method="post">
         <h1 class="title-table">Registro de Existencias</h1>
         <div class="contentForm">
 
             <div class="cantidadUnidad" id="divCantidadUnidad">
                 <label for="cantidadUnidad">Cantidad:</label>
-                <input type="number" id="cantidadUnidad" class="inputForm" name="cantidadUnidad" required>
+                <input type="text" id="cantidadUnidad" class="inputForm" name="cantidadUnidad" required>
                 <span class="fbForm"></span> 
             </div>
     
             <div class="precioEntrada" id="divPrecioEntrada">
                 <label for="precioEntrada">Precio:</label>
-                <input type="number" id="precioEntrada" class="inputForm" name="precioEntrada" required>
+                <input type="text" id="precioEntrada" class="inputForm" name="precioEntrada" required>
                 <span class="fbForm"></span> 
             </div>
+
+            <% List <ProductoVo> productos = null;
+                try {
+                    productos = new ProductoDao().listar();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            %>
     
             <div class="idProducto" id="divIdProducto">
                 <label for="idProducto">Id de Producto:</label>
-                <input type="number" id="idProducto" class="inputForm" name="idProducto" required>
+                <select id="idProducto" name="idProducto" class="inputForm">
+                    <option value="" disabled selected>-- Seleccione un producto --</option>
+                    <% for (ProductoVo producto : productos) { %>
+                        <option value="<%= producto.getIdProducto() %>"><%= producto.getNombreProducto() %></option>
+                        <% } %>
+                </select>
                 <span class="fbForm"></span> 
             </div>
+
+            <%List <EntradaVo> entradas = null;
+                try {
+                 entradas = new EntradaDao().listar();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+             %>
     
             <div class="idEntradaProd" id="divIdEntradaProd">
                 <label for="idEntradaProd">Num. de Entrada del producto:</label>
-                <input type="number" id="idEntradaProd" class="inputForm" name="idEntradaProd" required>
+                <select id="idEntradaProd" name="idEntradaProd" class="inputForm">
+                    <option value="" disabled selected>-- Seleccione una entrada--</option>
+                    <% for (EntradaVo entrada : entradas) { %>
+                        <option value="<%= entrada.getIdEntradaProd() %>"><%= entrada.getIdEntradaProd() %></option>
+                        <% } %>
+                </select>
                 <span class="fbForm"></span> 
             </div>
        

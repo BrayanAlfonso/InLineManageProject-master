@@ -50,6 +50,15 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <version>1.2</version>
     </dependency>
 
+<!-- Dependencia para los reportes -->
+<dependency>
+    <groupId>net.sf.jasperreports</groupId>
+    <artifactId>jasperreports</artifactId>
+    <version>6.20.0</version>
+</dependency>
+
+
+
 
 </dependencies>
   

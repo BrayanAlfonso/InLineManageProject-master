@@ -33,4 +33,60 @@
   <servlet-name>controller.Usuario</servlet-name>
   <url-pattern>/usuario</url-pattern>
 </servlet-mapping>
+
+
+  <!--CONTROLADOR-->
+  <!--CLASE EN JAVA-->
+  <servlet>
+  <servlet-name>controller.Category</servlet-name>
+  <servlet-class>controller.Category</servlet-class>
+</servlet>
+
+<!--HEAD DE LA PAGINA WEB-->
+<servlet-mapping> 
+  <servlet-name>controller.Category</servlet-name>
+  <url-pattern>/category</url-pattern>
+</servlet-mapping>
+
+
+  <!--CONTROLADOR-->
+  <!--CLASE EN JAVA-->
+<servlet>
+  <servlet-name>controller.EntradaProd</servlet-name>
+  <servlet-class>controller.EntradaProd</servlet-class>
+</servlet>
+
+<!--HEAD DE LA PAGINA WEB-->
+<servlet-mapping> 
+  <servlet-name>controller.EntradaProd</servlet-name>
+  <url-pattern>/entrada</url-pattern>
+</servlet-mapping>
+
+  <!--CONTROLADOR-->
+  <!--CLASE EN JAVA-->
+<servlet>
+  <servlet-name>controller.Existence</servlet-name>
+  <servlet-class>controller.Existence</servlet-class>
+</servlet>
+
+<!--HEAD DE LA PAGINA WEB-->
+<servlet-mapping> 
+  <servlet-name>controller.Existence</servlet-name>
+  <url-pattern>/existence</url-pattern>
+</servlet-mapping>
+
+
+  <servlet>
+  <servlet-name>Reports</servlet-name>
+  <servlet-class>Reports</servlet-class>
+</servlet>
+
+<!--HEAD DE LA PAGINA WEB-->
+<servlet-mapping> 
+  <servlet-name>Reports</servlet-name>
+  <url-pattern>/Reports</url-pattern>
+</servlet-mapping>
 </web-app>
+
+
+
