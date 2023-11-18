@@ -15,22 +15,22 @@
         <h1 class="title-table">Registro de Ventas</h1>
         <div class="contentForm">
 
-            <div class="dateVent">
+            <!-- <div class="dateVent">
                 <label for="dateVent">Fecha de la venta:</label>
                 <input type="date" id="dateVent" name="dateVent" class="inputForm">
                 <span class="fbForm">Hola Mundo</span>
-            </div>
+            </div> -->
 
             <!-- Usuario -->
-            <%List <UsuarioVo> usuarios = null;
+            <!-- <%List <UsuarioVo> usuarios = null;
                 try {
                     usuarios = new UsuarioDao().listar();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                %>
+                %> -->
     
-            <div class="idUsuario">
+            <!-- <div class="idUsuario">
                 <label for="idUsuario">Usuario:</label>
                 <select name="idUsuario" id="idUsuario">
                     <option value="0">Seleccionar...</option>
@@ -39,7 +39,7 @@
                     <% }%>
                 </select>
                 <span class="fbForm">Hola Mundo</span>
-            </div>
+            </div> -->
     
             <div class="Producto">
 

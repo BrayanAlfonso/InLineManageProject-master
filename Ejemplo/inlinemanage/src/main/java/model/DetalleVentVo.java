@@ -4,19 +4,17 @@ public class DetalleVentVo {
     private int idDetalleVenta;
     private int idProducto;
     private int idVenta;
-    private int idUsuario;
     private Float precioProducto;
     private int cantidad;
 
     public DetalleVentVo() {
     }
 
-    public DetalleVentVo(int idDetalleVenta, int idProducto, int idVenta, int idUsuario, Float precioProducto,
+    public DetalleVentVo(int idDetalleVenta, int idProducto, int idVenta, Float precioProducto,
             int cantidad) {
         this.idDetalleVenta = idDetalleVenta;
         this.idProducto = idProducto;
         this.idVenta = idVenta;
-        this.idUsuario = idUsuario;
         this.precioProducto = precioProducto;
         this.cantidad = cantidad;
     }
@@ -43,14 +41,6 @@ public class DetalleVentVo {
 
     public void setIdVenta(int idVenta) {
         this.idVenta = idVenta;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public Float getPrecioProducto() {

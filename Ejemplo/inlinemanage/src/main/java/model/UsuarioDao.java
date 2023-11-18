@@ -23,6 +23,7 @@ public class UsuarioDao {
     //?validacion de login
     public boolean validarLogin(String userName, String password) throws SQLException{
         sql="select 1 from usuario where nombre=? and contraseña=?";
+        System.out.println(sql);
 
         try {
             con=Conexion.conectar();//Hacer una conexion con la base de datos
@@ -32,6 +33,7 @@ public class UsuarioDao {
             ps.setString(2, password);
 
             try(ResultSet rs=ps.executeQuery()){
+                System.out.println(rs);
                 return rs.next();
             }
         } catch (Exception e) {
@@ -43,6 +45,30 @@ public class UsuarioDao {
         return false;
         
     }
+
+    public int obtenerIdUsuarioPorNombre(String userName) throws SQLException {
+        int idUsuario = -1;  // Valor predeterminado en caso de error
+    
+        sql = "SELECT idUsuario FROM usuario WHERE nombre=?";
+        try {
+            con = Conexion.conectar();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, userName);
+    
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    idUsuario = rs.getInt("idUsuario");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error al obtener idUsuario por nombre en UsuarioDao: " + e.getMessage());
+        } finally {
+            con.close();
+        }
+    
+        return idUsuario;
+    }
+    
 
 
     //?SECCION: Registrar usuario.

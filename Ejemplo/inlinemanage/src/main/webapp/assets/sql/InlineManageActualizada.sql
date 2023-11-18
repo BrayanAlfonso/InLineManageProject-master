@@ -139,26 +139,6 @@ CREATE TABLE IF NOT EXISTS `detalle_venta`(
 	alter table detalle_venta
     add constraint FKDeveVenta foreign key (idVenta) references venta (idVenta);
     
-    -- Trigers de venta --
-    
-DELIMITER //
-
-CREATE TRIGGER antes_insertar_detalleventa
-BEFORE INSERT ON detalle_venta
-FOR EACH ROW
-BEGIN
-    -- Inserta una nueva venta
-    INSERT INTO venta(fechaVenta, idUsuario)
-    VALUES (NOW(), 1);
-
-    -- Obtiene el idVenta recién insertado
-    SET NEW.idVenta = LAST_INSERT_ID();
-END;
-//
-
-insert into detalle_venta(idProducto, idVenta, precioProducto, cantidad)values(4,idVenta,20000,4);
-select * from detalle_venta;
-select * from venta;
 
 
 delimiter //
@@ -179,5 +159,5 @@ begin
 end
 //
 
-insert into detalle_venta values(3,1,1,13000,15)
+
 

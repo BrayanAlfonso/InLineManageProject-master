@@ -2,6 +2,8 @@ package model;
 
 import java.sql.Date;
 
+
+
 public class VentaVo {
     private int idVenta;
     private Date fechaVenta;
@@ -15,6 +17,12 @@ public class VentaVo {
         this.fechaVenta = fechaVenta;
         this.idUsuario = idUsuario;
     }
+    public VentaVo(Date fechaVenta, int idUsuario) {
+        this.fechaVenta = fechaVenta;
+        this.idUsuario = idUsuario;
+    }
+    
+    
 
     public int getIdVenta() {
         return idVenta;

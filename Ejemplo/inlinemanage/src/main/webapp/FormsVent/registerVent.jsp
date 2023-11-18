@@ -15,11 +15,11 @@
         <h1 class="title-table">Registro de Ventas</h1>
         <div class="contentForm">
 
-            <div class="dateVent">
+            <!-- <div class="dateVent">
                 <label for="dateVent">Fecha de la venta:</label>
                 <input type="date" id="dateVent" name="dateVent" class="inputForm">
                 <span class="fbForm">Hola Mundo</span>
-            </div>
+            </div> -->
 
             <!-- Usuario -->
             <!-- <%List <UsuarioVo> usuarios = null;

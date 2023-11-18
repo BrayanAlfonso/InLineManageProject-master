@@ -6,9 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.VentaDao;
+import java.sql.Date;
 
 public class DetalleVentDao {
-
+    VentaDao ventaDao = new VentaDao();
     Connection con; 
     PreparedStatement ps; 
     ResultSet rs;
@@ -16,18 +18,22 @@ public class DetalleVentDao {
     int r;
 
     //SECCION: Registrar detalle de venta
-    public int registerDetailVent(DetalleVentVo dtventa) throws SQLException {
-        sql = "INSERT INTO detalle_venta (IdProducto,IdVenta,IdUsuario,precioProducto,cantidad) values (?,?,?,?,?)";
+    public int registerDetailVent(DetalleVentVo dtventa, int idUsuario) throws SQLException {
+
+        // Llamar al método existente en VentDao para registrar la venta
+        int idVenta = ventaDao.registerVent(new VentaVo(new Date(System.currentTimeMillis()), idUsuario));
+        System.out.println("id venta obtenido "+idVenta);
+
+        sql = "INSERT INTO detalle_venta (IdProducto,IdVenta,precioProducto,cantidad) values (?,?,?,?)";
         System.out.println(sql);
     
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
             ps.setInt(1, dtventa.getIdProducto());
-            ps.setInt(2, dtventa.getIdVenta());
-            ps.setInt(3, dtventa.getIdUsuario());
-            ps.setFloat(4, dtventa.getPrecioProducto());
-            ps.setInt(5, dtventa.getCantidad());
+            ps.setInt(2, idVenta);
+            ps.setFloat(3, dtventa.getPrecioProducto());
+            ps.setInt(4, dtventa.getCantidad());
             
             
             System.out.println(ps);
@@ -60,7 +66,6 @@ public class DetalleVentDao {
                 r.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
                 r.setIdProducto(rs.getInt("idProducto"));
                 r.setIdVenta(rs.getInt("idVenta"));
-                r.setIdUsuario(rs.getInt("idUsuario"));
                 r.setPrecioProducto(rs.getFloat("precioProducto"));
                 r.setCantidad(rs.getInt("cantidad"));
                 dtventa.add(r);
@@ -89,7 +94,6 @@ public class DetalleVentDao {
                     dtventa.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
                     dtventa.setIdProducto(rs.getInt("idProducto"));
                     dtventa.setIdVenta(rs.getInt("idVenta"));
-                    dtventa.setIdUsuario(rs.getInt("idUsuario"));  
                     dtventa.setPrecioProducto(rs.getFloat("precioProducto"));
                     dtventa.setCantidad(rs.getInt("cantidad"));
                 }
@@ -115,7 +119,6 @@ public class DetalleVentDao {
                     dtventa.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
                     dtventa.setIdProducto(rs.getInt("idProducto"));
                     dtventa.setIdVenta(rs.getInt("idVenta"));
-                    dtventa.setIdUsuario(rs.getInt("idUsuario"));
                     dtventa.setPrecioProducto(rs.getFloat("precioProducto"));
                     dtventa.setCantidad(rs.getInt("cantidad"));
                     listaDeDetallesDeVenta.add(dtventa);

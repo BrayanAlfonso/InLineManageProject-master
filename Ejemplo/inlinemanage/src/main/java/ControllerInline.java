@@ -7,8 +7,8 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
-
-
+import model.DetalleVentVo;
+import model.DetalleVentDao;
 import model.ProductoDao;
 import model.ProductoVo;
 import model.ProveedorDao;
@@ -36,6 +36,8 @@ public class ControllerInline extends HttpServlet{
 
     VentaVo VentVo=new VentaVo();
     VentaDao VentDao=new VentaDao();
+    DetalleVentDao DeveDao= new DetalleVentDao();
+    DetalleVentVo DeveVo= new DetalleVentVo();
     
 
 @Override
@@ -296,33 +298,36 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 }
 
 //Validacion y metodo para login
-private void loginUserController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-    String userName=req.getParameter("inputUserName");
-    String password=req.getParameter("inputPassword");
-    
-    if(userName != null && !userName.isEmpty() && password != null && !password.isEmpty()){
+private void loginUserController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    String userName = req.getParameter("inputUserName");
+    String password = req.getParameter("inputPassword");
+
+    if (userName != null && !userName.isEmpty() && password != null && !password.isEmpty()) {
         try {
-
-
             if (UsuDao.validarLogin(userName, password)) {
                 System.out.println("La validación ha sido exitosa!");
-                req.getRequestDispatcher("main.jsp").forward(req, resp);
 
+                // Obtener el idUsuario y guardarlo en la sesión
+                int idUsuario = UsuDao.obtenerIdUsuarioPorNombre(userName);
+                HttpSession session = req.getSession();
+                session.setAttribute("idUsuario", idUsuario);
+
+                req.getRequestDispatcher("main.jsp").forward(req, resp);
             } else {
                 System.out.println("Usuario y/o contraseña no encontrados");
                 req.setAttribute("mensaje", "Usuario y/o contraseña no encontrados:(");
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al intentar iniciar sesión");
         }
-    }else {
+    } else {
         req.setAttribute("mensaje", "Usuario y/o contraseña no encontrados:(");
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 }
+
 
 private void registerUserController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
     if(req.getParameter("documentType")!=null){
@@ -562,20 +567,28 @@ private void listProdDelete(HttpServletRequest req, HttpServletResponse resp) {
 
 
 private void registerVentController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        // Obtener el ID del usuario de la sesión
+    HttpSession session = req.getSession();
+    int idUsuario = (int) session.getAttribute("idUsuario");
     System.out.println("Se entro al metodo registerVentController");
-    if (req.getParameter("dateVent") != null) {
-        String fechaDate = req.getParameter("dateVent");
-        Date fechaVentaParsedDate = Date.valueOf(fechaDate);
-        VentVo.setFechaVenta(fechaVentaParsedDate);
+    System.out.println(idUsuario);
+
+
+
+    if(req.getParameter("idProducto")!=null){
+        DeveVo.setIdProducto(Integer.parseInt(req.getParameter("idProducto")));
+    } 
+    if(req.getParameter("precioProducto")!=null){
+        DeveVo.setPrecioProducto(Float.parseFloat(req.getParameter("precioProducto")));
+    }          
+    if(req.getParameter("Cantidad")!=null){
+        DeveVo.setCantidad(Integer.parseInt(req.getParameter("Cantidad")));
     }
-        if(req.getParameter("idProducto")!=null){
-            ProdVo.setIdProducto(Integer.parseInt(req.getParameter("idProducto")));
-        }   
     else{
         System.out.println("Ha habido un error al tratar de registrar los datos de la venta en el metodo registerVentController");
     }
     try {
-        VentDao.registerVent(VentVo);
+        DeveDao.registerDetailVent(DeveVo, idUsuario);
         System.out.println("Registro insertado correctamente en controllerInLine");
         //Redireccionamiento
         req.getRequestDispatcher("FormsVent/registerVent.jsp").forward(req, resp);

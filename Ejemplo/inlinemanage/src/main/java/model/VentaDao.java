@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,33 +16,33 @@ public class VentaDao {
     String sql=null;
     int r;
 
-    //SECCION: Registrar venta
-    public int registerVent(VentaVo venta) throws SQLException {
-        sql = "INSERT INTO venta (fechaVenta,IdUsuario) values (?,?)";
-        System.out.println(sql);
+//SECCION: Registrar venta
+public int registerVent(VentaVo venta) throws SQLException {
+    sql = "INSERT INTO venta (fechaVenta,IdUsuario) values (?,?)";
     
-        try {
-            con = Conexion.conectar();
-            ps = con.prepareStatement(sql);
+    try {
+        con = Conexion.conectar();
+        ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            ps.setDate(1, venta.getFechaVenta());
-            ps.setInt(2, venta.getIdUsuario());
-            
-            
-            System.out.println(ps);
-    
-            ps.executeUpdate();
-            ps.close();
-    
-            System.out.println("Se registró la venta correctamente");
-        } catch (Exception e) {
-            System.out.println("No se registró la venta correctamente: " + e.getMessage().toString());
-        } finally {
-            con.close();
+        ps.setDate(1, venta.getFechaVenta());
+        ps.setInt(2, venta.getIdUsuario());
+
+        ps.executeUpdate();
+
+        // Obtener el idVenta generado
+        ResultSet rs = ps.getGeneratedKeys();
+        if (rs.next()) {
+            return rs.getInt(1);
         }
-    
-        return r;
+    } catch (Exception e) {
+        System.out.println("No se registró la venta correctamente: " + e.getMessage());
+    } finally {
+        con.close();
     }
+
+    return 0; // o algún valor que indique un fallo
+}
+
 
     //SECCION: Consultar venta.
     public List<VentaVo> listar() throws SQLException {
