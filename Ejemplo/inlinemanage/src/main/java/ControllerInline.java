@@ -67,13 +67,13 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
         case "registerSupplier":
             req.getRequestDispatcher("FormsSupplier/registerSupplier.jsp").forward(req, resp);
         break;
-
+        
         case "vent":
             req.getRequestDispatcher("FormsVent/indexVent.jsp").forward(req, resp);
         break;
 
         case "registerVent":
-            req.getRequestDispatcher("FormsVent/registerVent.jsp").forward(req, resp);
+        req.getRequestDispatcher("FormsVent/registerVent.jsp").forward(req, resp);
         break;
 
         case "main":
@@ -268,10 +268,10 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
         registerVentController(req, resp);
         break;
 
-        case"updateVent":
-        System.out.println("Se entro al caso 'updateVent, en el metodo updateVent()'");
-        updateVentController(req, resp);
-        break;
+        // case"updateVent":
+        // System.out.println("Se entro al caso 'updateVent, en el metodo updateVent()'");
+        // updateVentController(req, resp);
+        // break;
 
 
 
@@ -555,42 +555,42 @@ private void registerVentController(HttpServletRequest req, HttpServletResponse 
     }
 }
 
-    //Actualizar Venta
-private void updateVentController(HttpServletRequest req, HttpServletResponse resp) {
+//     //Actualizar Venta
+// private void updateVentController(HttpServletRequest req, HttpServletResponse resp) {
 
-    if (req.getParameter("dateVent") != null) {
-        String fechaDate = req.getParameter("dateVent");
-        Date fechaVentaParsedDate = Date.valueOf(fechaDate);
-        VentVo.setFechaVenta(fechaVentaParsedDate);
-    }
-    if(req.getParameter("idUsuario")!=null){
-        String idUsuString=req.getParameter("idUsuario");
-        int idUsuParsed=Integer.parseInt(idUsuString);
-        VentVo.setIdUsuario(idUsuParsed);
-    }    
-        try {
-            VentDao.actualizar(VentVo);
-            System.out.println("Venta actualizado correctamente");
+//     if (req.getParameter("dateVent") != null) {
+//         String fechaDate = req.getParameter("dateVent");
+//         Date fechaVentaParsedDate = Date.valueOf(fechaDate);
+//         VentVo.setFechaVenta(fechaVentaParsedDate);
+//     }
+//     if(req.getParameter("idUsuario")!=null){
+//         String idUsuString=req.getParameter("idUsuario");
+//         int idUsuParsed=Integer.parseInt(idUsuString);
+//         VentVo.setIdUsuario(idUsuParsed);
+//     }    
+//         try {
+//             VentDao.actualizar(VentVo);
+//             System.out.println("Venta actualizado correctamente");
 
-            //NOTA: Redireccionamiento preventivo.       
-            req.getRequestDispatcher("FormsVent/indexVent.jsp").forward(req, resp);
+//             //NOTA: Redireccionamiento preventivo.       
+//             req.getRequestDispatcher("FormsVent/indexVent.jsp").forward(req, resp);
 
-        } catch (Exception e) {
-            System.out.println("Error en la actualizacion de la venta "+e.getMessage().toString());
-        }
-    }
+//         } catch (Exception e) {
+//             System.out.println("Error en la actualizacion de la venta "+e.getMessage().toString());
+//         }
+//     }
     
     
-private void listVentDelete(HttpServletRequest req, HttpServletResponse resp) {
-        try {
-            List<VentaVo> venta = VentDao.listar();
-            req.setAttribute("Venta", venta);
-            req.getRequestDispatcher("FormsVent/indexVent.jsp").forward(req, resp);
-            System.out.println("Datos listados correctamente despues de la venta eliminada");
-        } catch (Exception e) {
-            System.out.println("Hay problemas al listar los datos en el metodo listVentdelete" + e.getMessage().toString());
-        }
-    }
+// private void listVentDelete(HttpServletRequest req, HttpServletResponse resp) {
+//         try {
+//             List<VentaVo> venta = VentDao.listar();
+//             req.setAttribute("Venta", venta);
+//             req.getRequestDispatcher("FormsVent/indexVent.jsp").forward(req, resp);
+//             System.out.println("Datos listados correctamente despues de la venta eliminada");
+//         } catch (Exception e) {
+//             System.out.println("Hay problemas al listar los datos en el metodo listVentdelete" + e.getMessage().toString());
+//         }
+//     }
 
 
  

@@ -26,7 +26,7 @@
                     </div>
                     
 
-                    <button name="enviar" id="btnLogin"value="index">INICIAR SESIÓN</button>    
+                    <button name="enviar" id="btnLogin" value="index">INICIAR SESIÓN</button>    
 
                         <!-- Declaración de la variable mensaje que se trae desde el controlador "ControllerInline"-->
                         <% String mensaje = (String) request.getAttribute("mensaje"); %> 

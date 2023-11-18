@@ -17,7 +17,7 @@ public class DetalleVentDao {
 
     //SECCION: Registrar detalle de venta
     public int registerDetailVent(DetalleVentVo dtventa) throws SQLException {
-        sql = "INSERT INTO detalle_venta (IdProducto,IdVenta,precioProducto,cantidad) values (?,?,?,?)";
+        sql = "INSERT INTO detalle_venta (IdProducto,IdVenta,IdUsuario,precioProducto,cantidad) values (?,?,?,?,?)";
         System.out.println(sql);
     
         try {
@@ -25,8 +25,9 @@ public class DetalleVentDao {
             ps = con.prepareStatement(sql);
             ps.setInt(1, dtventa.getIdProducto());
             ps.setInt(2, dtventa.getIdVenta());
-            ps.setFloat(3, dtventa.getPrecioProducto());
-            ps.setInt(4, dtventa.getCantidad());
+            ps.setInt(3, dtventa.getIdUsuario());
+            ps.setFloat(4, dtventa.getPrecioProducto());
+            ps.setInt(5, dtventa.getCantidad());
             
             
             System.out.println(ps);
@@ -59,6 +60,7 @@ public class DetalleVentDao {
                 r.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
                 r.setIdProducto(rs.getInt("idProducto"));
                 r.setIdVenta(rs.getInt("idVenta"));
+                r.setIdUsuario(rs.getInt("idUsuario"));
                 r.setPrecioProducto(rs.getFloat("precioProducto"));
                 r.setCantidad(rs.getInt("cantidad"));
                 dtventa.add(r);
@@ -87,6 +89,7 @@ public class DetalleVentDao {
                     dtventa.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
                     dtventa.setIdProducto(rs.getInt("idProducto"));
                     dtventa.setIdVenta(rs.getInt("idVenta"));
+                    dtventa.setIdUsuario(rs.getInt("idUsuario"));  
                     dtventa.setPrecioProducto(rs.getFloat("precioProducto"));
                     dtventa.setCantidad(rs.getInt("cantidad"));
                 }

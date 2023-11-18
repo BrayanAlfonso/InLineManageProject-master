@@ -23,6 +23,7 @@ public class VentaDao {
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
+
             ps.setDate(1, venta.getFechaVenta());
             ps.setInt(2, venta.getIdUsuario());
             
@@ -69,35 +70,35 @@ public class VentaDao {
         return venta;
     }
 
-    //SECCION: Actualizar venta.
-    public int actualizar(VentaVo venta) throws SQLException{
+    // //SECCION: Actualizar venta.
+    // public int actualizar(VentaVo venta) throws SQLException{
 
-        sql="update venta set fechaVenta = ?, set idUsuario = ? where idVenta = ?"; 
-        System.out.println(sql);
+    //     sql="update venta set fechaVenta = ?, set idUsuario = ? where idVenta = ?"; 
+    //     System.out.println(sql);
 
-        try{
-            con=Conexion.conectar(); //abrir conexión.
-            ps=con.prepareStatement(sql); //preparar sentencia.
+    //     try{
+    //         con=Conexion.conectar(); //abrir conexión.
+    //         ps=con.prepareStatement(sql); //preparar sentencia.
             
-            ps.setDate(1, venta.getFechaVenta());
-            ps.setInt(2, venta.getIdUsuario());
-            ps.setInt(3, venta.getIdVenta());
+    //         ps.setDate(1, venta.getFechaVenta());
+    //         ps.setInt(2, venta.getIdUsuario());
+    //         ps.setInt(3, venta.getIdVenta());
 
-            System.out.println(ps);
-            ps.executeUpdate(); //Ejecutar sentencia.
-            ps.close(); //cerrar sentencia.
-            System.out.println("Se actualizó el registro de la venta correctamente, revisa la base de datos.");
+    //         System.out.println(ps);
+    //         ps.executeUpdate(); //Ejecutar sentencia.
+    //         ps.close(); //cerrar sentencia.
+    //         System.out.println("Se actualizó el registro de la venta correctamente, revisa la base de datos.");
 
-        }catch(Exception e){
+    //     }catch(Exception e){
 
-            System.out.println("VentaDao dice: Error en la actualizacion del registro "+e.getMessage().toString());
+    //         System.out.println("VentaDao dice: Error en la actualizacion del registro "+e.getMessage().toString());
 
-        }
-        finally{
-            con.close();//cerrando conexión
-        }
-        return r;
-    }
+    //     }
+    //     finally{
+    //         con.close();//cerrando conexión
+    //     }
+    //     return r;
+    // }
 
     public VentaVo obtenerVentaPorId(int idVenta) throws SQLException {
         sql = "SELECT * FROM venta WHERE idVenta  = ?";
@@ -121,16 +122,16 @@ public class VentaDao {
         }
     }
 
-    //SECCION: Eliminar Venta
-    public void eliminar(int idVenta) throws SQLException {
-        sql = "DELETE FROM venta WHERE idVenta = ?";
-        try (Connection con = Conexion.conectar();
-                PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idVenta);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Error al eliminar la venta: " + e.getMessage());
-            throw e;
-        }
-    }
+    // //SECCION: Eliminar Venta
+    // public void eliminar(int idVenta) throws SQLException {
+    //     sql = "DELETE FROM venta WHERE idVenta = ?";
+    //     try (Connection con = Conexion.conectar();
+    //             PreparedStatement ps = con.prepareStatement(sql)) {
+    //         ps.setInt(1, idVenta);
+    //         ps.executeUpdate();
+    //     } catch (SQLException e) {
+    //         System.out.println("Error al eliminar la venta: " + e.getMessage());
+    //         throw e;
+    //     }
+    // }
 }
