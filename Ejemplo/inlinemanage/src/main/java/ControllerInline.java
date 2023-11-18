@@ -76,6 +76,10 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
         req.getRequestDispatcher("FormsVent/registerVent.jsp").forward(req, resp);
         break;
 
+        case "consultsVent":
+        req.getRequestDispatcher("FormsVent/consultsVent.jsp").forward(req, resp);
+        break;
+
         case "main":
             req.getRequestDispatcher("main.jsp").forward(req, resp);
         break;
@@ -531,17 +535,42 @@ private void listProdDelete(HttpServletRequest req, HttpServletResponse resp) {
     //CRUD VENTA
 //REGISTRAR venta
 
+// private void registerVentController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+//     System.out.println("Se entro al metodo registerVentController");
+//     if (req.getParameter("dateVent") != null) {
+//         String fechaDate = req.getParameter("dateVent");
+//         Date fechaVentaParsedDate = Date.valueOf(fechaDate);
+//         VentVo.setFechaVenta(fechaVentaParsedDate);
+//     }
+//     if(req.getParameter("idUsuario")!=null){
+//         String idUsuString=req.getParameter("idUsuario");
+//         int idUsuParsed=Integer.parseInt(idUsuString);
+//         VentVo.setIdUsuario(idUsuParsed);
+//     }    
+//     else{
+//         System.out.println("Ha habido un error al tratar de registrar los datos de la venta en el metodo registerVentController");
+//     }
+//     try {
+//         VentDao.registerVent(VentVo);
+//         System.out.println("Registro insertado correctamente en controllerInLine");
+//         //Redireccionamiento
+//         req.getRequestDispatcher("FormsVent/registerVent.jsp").forward(req, resp);
+//     } catch (Exception e) {
+//         System.out.println("Error al registrar los datos de la venta en ControllerInline en el metodo registerVentController");
+//     }
+// }
+
+
 private void registerVentController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    System.out.println("Se entro al metodo registerVentController");
     if (req.getParameter("dateVent") != null) {
         String fechaDate = req.getParameter("dateVent");
         Date fechaVentaParsedDate = Date.valueOf(fechaDate);
         VentVo.setFechaVenta(fechaVentaParsedDate);
     }
-    if(req.getParameter("idUsuario")!=null){
-        String idUsuString=req.getParameter("idUsuario");
-        int idUsuParsed=Integer.parseInt(idUsuString);
-        VentVo.setIdUsuario(idUsuParsed);
-    }    
+        if(req.getParameter("idProducto")!=null){
+            ProdVo.setIdProducto(Integer.parseInt(req.getParameter("idProducto")));
+        }   
     else{
         System.out.println("Ha habido un error al tratar de registrar los datos de la venta en el metodo registerVentController");
     }
@@ -551,7 +580,7 @@ private void registerVentController(HttpServletRequest req, HttpServletResponse 
         //Redireccionamiento
         req.getRequestDispatcher("FormsVent/registerVent.jsp").forward(req, resp);
     } catch (Exception e) {
-        System.out.println("Error al registrar los datos del usuario en ControllerInline en el metodo registerVentController");
+        System.out.println("Error al registrar los datos de la venta en ControllerInline en el metodo registerVentController");
     }
 }
 

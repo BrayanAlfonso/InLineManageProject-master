@@ -99,4 +99,32 @@ public class DetalleVentDao {
             return dtventa;
         }
     }
+
+
+    public List<DetalleVentVo> listarPorIdVenta(int idVenta) throws SQLException {
+        sql = "SELECT * FROM detalle_venta WHERE idVenta = ?";
+        List<DetalleVentVo> listaDeDetallesDeVenta = new ArrayList<>();
+        try (Connection con = Conexion.conectar();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+    
+            ps.setInt(1, idVenta);
+    
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    DetalleVentVo dtventa = new DetalleVentVo();
+                    dtventa.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
+                    dtventa.setIdProducto(rs.getInt("idProducto"));
+                    dtventa.setIdVenta(rs.getInt("idVenta"));
+                    dtventa.setIdUsuario(rs.getInt("idUsuario"));
+                    dtventa.setPrecioProducto(rs.getFloat("precioProducto"));
+                    dtventa.setCantidad(rs.getInt("cantidad"));
+                    listaDeDetallesDeVenta.add(dtventa);
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al obtener detalles de venta: " + e.getMessage());
+            }
+        }
+        return listaDeDetallesDeVenta;
+    }
+    
 }

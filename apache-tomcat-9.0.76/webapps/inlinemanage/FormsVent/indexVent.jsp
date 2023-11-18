@@ -6,6 +6,8 @@
 <%@ page import="model.UsuarioDao" %>
 <%@ page import="model.VentaVo" %>
 <%@ page import="model.VentaDao" %>
+<%@ page import="model.DetalleVentVo" %>
+<%@ page import="model.DetalleVentDao" %>
 
 <main class="main">
     <div class="content1">
@@ -20,6 +22,15 @@
             <% List<VentaVo> ventas = null;
                 try {
                     ventas = new VentaDao().listar();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                %>
+            
+                
+            <% List<DetalleVentVo> dtventas = null;
+                try {
+                    dtventas = new DetalleVentDao().listar();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -56,9 +67,10 @@
                                 <td><%= usuario.getNombre() %></td>
                             <% } %>
                         <% } %>
+
                         <td class="iconCenter">
                             <button style="color: #0eb1de;">
-                                <a href="ControllerInLine?enviar=consultVent&idVenta=<%= venta.getIdVenta() %>">Más Info.</a>
+                                <a href="ControllerInline?enviar=consultsVent&idVenta=<%= venta.getIdVenta() %>">Más Info.</a>
                             </button>
                         </td>
                     </tr>
