@@ -27,7 +27,7 @@ public class ProductoDao {
             ps.setString(2, producto.getNombreProducto());
             ps.setFloat(3, producto.getPrecioVenta());
             ps.setString(4, producto.getDescripcion());
-            ps.setInt(5, producto.getSerial());
+            ps.setString(5, producto.getSerial());
             ps.setInt(6, producto.getGarantiaEntradaMeses());
             ps.setInt(7, producto.getGarantiaVentaMeses());
             ps.setInt(8, producto.getIdCategoria());
@@ -65,7 +65,7 @@ public class ProductoDao {
                 r.setNombreProducto(rs.getString("nombreProducto"));
                 r.setPrecioVenta(rs.getFloat("precioVenta"));
                 r.setDescripcion(rs.getString("descripcion"));
-                r.setSerial(rs.getInt("serial"));
+                r.setSerial(rs.getString("serial"));
                 r.setGarantiaEntradaMeses(rs.getInt("garantiaEntradaMeses"));
                 r.setGarantiaVentaMeses(rs.getInt("garantiaVentaMeses"));
                 r.setIdCategoria(rs.getInt("idCategoria"));
@@ -99,7 +99,7 @@ public class ProductoDao {
                 ps.setString(2, producto.getNombreProducto());
                 ps.setFloat(3, producto.getPrecioVenta());
                 ps.setString(4, producto.getDescripcion());
-                ps.setInt(5, producto.getSerial());
+                ps.setString(5, producto.getSerial());
                 ps.setInt(6, producto.getGarantiaEntradaMeses());
                 ps.setInt(7, producto.getGarantiaVentaMeses());
                 ps.setInt(8, producto.getIdCategoria());
@@ -138,7 +138,7 @@ public class ProductoDao {
                         producto.setNombreProducto(rs.getString("nombreProducto"));
                         producto.setPrecioVenta(rs.getFloat("precioVenta"));
                         producto.setDescripcion(rs.getString("descripcion"));
-                        producto.setSerial(rs.getInt("serial"));
+                        producto.setSerial(rs.getString("serial"));
                         producto.setGarantiaEntradaMeses(rs.getInt("garantiaEntradaMeses"));
                         producto.setGarantiaVentaMeses(rs.getInt("garantiaVentaMeses"));
                         producto.setIdCategoria(rs.getInt("idCategoria"));

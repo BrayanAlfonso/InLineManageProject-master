@@ -9,6 +9,7 @@
     <title>InLineManage</title>
     <link rel="stylesheet" href="assets/css/index1.css">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/StylesBarCode.css">
     <link rel="stylesheet" href="assets/css/indexModule1.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="assets/css/formsUpdate.css">

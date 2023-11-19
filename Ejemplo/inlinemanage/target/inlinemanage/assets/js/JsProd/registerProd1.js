@@ -1,4 +1,4 @@
-const number=/^[0-9]{1,15}$/
+const number=/^[0-9]{1,30}$/
 const text=/^[a-zA-ZñÑ á-úÁ-Ú ]{1,10}$/
 const alfanumericos=/^[a-zA-ZñÑá-úÁ-Ú ]*[a-zA-ZñÑá-úÁ-Ú][0-9]*$/
 
@@ -213,3 +213,37 @@ precio.addEventListener('input', (e) => {
           form.submit()
         }
       });
+
+
+      //Lector
+      document.getElementById('abrirModal').addEventListener('click', () => {
+        const modal = document.getElementById('modal');
+        modal.style.visibility = 'visible';
+        html5QrcodeScanner.render(onScanSuccess);
+    });
+    
+    document.getElementById('cerrarModal').addEventListener('click', () => {
+        const modal = document.getElementById('modal');
+        modal.style.visibility = 'hidden';
+        html5QrcodeScanner.clear();
+    });
+    
+    
+    function onScanSuccess(decodedText, decodedResult) {
+        let inputSerial=document.getElementById("serial")
+        let value=decodedText
+        inputSerial.value=value
+        console.log(`Code scanned = ${decodedText}`, decodedResult);
+        const modal = document.getElementById('modal');
+        modal.style.visibility = 'hidden';
+
+        html5QrcodeScanner.clear();
+                // Verificar la altura del modal y ajustar la posición
+        if (modal.clientHeight > 700) {
+          modal.style.top = '50px'; // Ajusta la posición según tus necesidades
+  }
+
+    }
+    var html5QrcodeScanner = new Html5QrcodeScanner(
+      "qr-reader", { fps: 10, qrbox: 250 });
+    html5QrcodeScanner.render(onScanSuccess);

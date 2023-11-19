@@ -1,0 +1,65 @@
+
+#abrirModal{
+    width: 20%;
+    position: absolute;
+    left: 75%;
+}
+
+#qr-reader {
+    width: 100%;
+}
+#result {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+
+.modal-content{
+    
+    background-color: white;
+    width: 50%;
+
+    animation-name: animarModal;
+    animation-duration: 1s;
+    border-radius: 20px;
+}
+
+.qr-reader__scan_region{
+    background: "url('src/main/webapp/assets/img/LogoInterline.PNG') center / cover no-repeat";
+}
+@keyframes animarModal{
+    from{top:-300px; opacity: 0;}
+    to{top:0px; opacity: 1;}
+}
+#reader{
+    width: 100%;
+}
+.modal-header{
+    display: flex;
+    justify-content: end; padding: 3%;
+}
+.cerrarModal{
+    
+    width: 20px;
+    font-size: 18;
+    padding: 5px;
+}
+.cerrarModal:hover{
+    cursor: pointer;
+    background-color: red;
+}

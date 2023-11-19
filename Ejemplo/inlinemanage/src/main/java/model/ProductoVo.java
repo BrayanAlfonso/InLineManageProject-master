@@ -8,7 +8,7 @@ public class ProductoVo {
     private String nombreProducto; 
     private float precioVenta; 
     private String descripcion;
-    private int serial;
+    private String serial;
     private int garantiaEntradaMeses;
     private int garantiaVentaMeses;
     private int idCategoria;
@@ -17,7 +17,7 @@ public class ProductoVo {
     }
 
     public ProductoVo(int idProducto, int unidadesDisponibles, String nombreProducto, float precioVenta,
-            String descripcion, int serial, int garantiaEntradaMeses, int garantiaVentaMeses, int idCategoria) {
+            String descripcion, String serial, int garantiaEntradaMeses, int garantiaVentaMeses, int idCategoria) {
         this.idProducto = idProducto;
         this.unidadesDisponibles = unidadesDisponibles;
         this.nombreProducto = nombreProducto;
@@ -69,11 +69,11 @@ public class ProductoVo {
         this.descripcion = descripcion;
     }
 
-    public int getSerial() {
+    public String getSerial() {
         return serial;
     }
 
-    public void setSerial(int serial) {
+    public void setSerial(String serial) {
         this.serial = serial;
     }
 
@@ -100,6 +100,7 @@ public class ProductoVo {
     public void setIdCategoria(int idCategoria) {
         this.idCategoria = idCategoria;
     }
+
     
     
     

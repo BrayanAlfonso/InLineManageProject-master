@@ -450,7 +450,7 @@ private void registerProductController(HttpServletRequest req, HttpServletRespon
         ProdVo.setDescripcion(req.getParameter("descripcion"));
     }
     if(req.getParameter("serial")!=null){
-        ProdVo.setSerial(Integer.parseInt(req.getParameter("serial")));
+        ProdVo.setSerial(req.getParameter("serial"));
     }
     if(req.getParameter("garantiaEntrada")!=null){
         ProdVo.setGarantiaEntradaMeses(Integer.parseInt(req.getParameter("garantiaEntrada")));
@@ -497,7 +497,7 @@ private void registerProductController(HttpServletRequest req, HttpServletRespon
             ProdVo.setDescripcion(req.getParameter("UpdateDescripcion"));
         }
         if(req.getParameter("UpdateSerial")!=null){
-            ProdVo.setSerial(Integer.parseInt(req.getParameter("UpdateSerial")));
+            ProdVo.setSerial(req.getParameter("UpdateSerial"));
         }
         if(req.getParameter("UpdateGarantiaEntrada")!=null){
             ProdVo.setGarantiaEntradaMeses(Integer.parseInt(req.getParameter("UpdateGarantiaEntrada")));

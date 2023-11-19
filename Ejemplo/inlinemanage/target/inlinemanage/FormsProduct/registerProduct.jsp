@@ -80,7 +80,25 @@
             </div>
         </div>
     </form>
+
+        <!-- Botón para abrir la modal -->
+        <button id="abrirModal">Escanea el código de barras</button>
+    <div class="divModal">
+        <!-- Modal -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="cerrarModal" id="cerrarModal">X</div>
+                </div>
+                <!-- Contenido del lector de códigos de barras -->
+                <div id="qr-reader"></div>
+                <div id="result"></div>
+            </div>
+        </div>
+    </div>
 </main> 
 <%@ include file="../plantillas/footer.jsp"%>
+<!-- Referencia al script de html5-qrcode -->
+<script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
 <script src="assets/js/JsProd/registerProd1.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>

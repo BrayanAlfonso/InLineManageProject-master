@@ -81,8 +81,13 @@
             </div>
         </div>
     </form>
+
 </main>
 
 <%@ include file="../plantillas/footer.jsp"%>
-<script src="assets/js/JsVent/registerVent.js"></script>
+
+
+
+<script src="assets/js/JsVent/registerVent1.js">
+</script>
 <%@ include file="../plantillas/footer2.jsp"%>
