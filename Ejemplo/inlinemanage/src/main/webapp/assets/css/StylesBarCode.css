@@ -39,9 +39,7 @@
     border-radius: 20px;
 }
 
-.qr-reader__scan_region{
-    background: "url('src/main/webapp/assets/img/LogoInterline.PNG') center / cover no-repeat";
-}
+
 @keyframes animarModal{
     from{top:-300px; opacity: 0;}
     to{top:0px; opacity: 1;}

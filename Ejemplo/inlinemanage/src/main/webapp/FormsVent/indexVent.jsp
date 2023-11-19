@@ -16,6 +16,7 @@
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
             <button class="btnMenu"><a href="Vent?enviar=registerVent">Agregar</a></button>
+            <button class="btnMenu"><a href="Reports?enviar=DeVent">Generar reporte</a></button>
             <input type="text" placeholder="buscar" class="inputSearch">
         </div>
         <div class="content2">

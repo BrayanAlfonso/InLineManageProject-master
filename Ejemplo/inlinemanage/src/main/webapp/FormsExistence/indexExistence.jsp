@@ -8,10 +8,9 @@
     <div class="content1">
         <div class="options">
             <div class="backlog">
-                <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
+                <a href="Product?enviar=product"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
             <button class="btn" ><a href="existence?enviar=registerExistence">Agregar</a></button>
-            <button class="btn" ><a href="">Categoria</a></button>
             <input type="text" placeholder="buscar" class="inputSearch">
         </div>
         <div class="content2">

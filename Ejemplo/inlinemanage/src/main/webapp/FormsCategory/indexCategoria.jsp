@@ -8,7 +8,7 @@
     <div class="content1">
         <div class="options">
             <div class="backlog">
-                <a href="ControllerInline?enviar=product"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
+                <a href="Product?enviar=product"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
             <button class="btnMenu" ><a href="category?enviar=registerCategory">Agregar</a></button>
             <br>

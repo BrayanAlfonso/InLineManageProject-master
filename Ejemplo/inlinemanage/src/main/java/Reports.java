@@ -1,11 +1,7 @@
 
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,13 +15,10 @@ import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPTable;
-import com.lowagie.text.pdf.PdfTable;
+
 import com.lowagie.text.pdf.PdfWriter;
 
 
-
-import model.CategoriaVo;
-import model.Conexion;
 import model.DetalleVentDao;
 import model.DetalleVentVo;
 import model.ProductoDao;
@@ -51,7 +44,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse res) throws Ser
     System.out.println(enviar);
     switch (enviar) {
         
-        case "vent":
+        case "DeVent":
             try {
                 // Configura la respuesta HTTP para PDF
                 res.setContentType("application/pdf");
@@ -182,8 +175,6 @@ protected void doGet(HttpServletRequest req, HttpServletResponse res) throws Ser
             }
 
         break;
-
-
 
         default:
         break;

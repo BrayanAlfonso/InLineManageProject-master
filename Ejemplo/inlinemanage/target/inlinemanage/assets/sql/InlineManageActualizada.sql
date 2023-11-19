@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `nombreProducto` varchar(50) DEFAULT NULL,
   `precioVenta` float(11) DEFAULT NULL,
   `descripcion` varchar(50) DEFAULT NULL,
-	`serial` int(11) DEFAULT NULL,
+	`serial` varchar(30) DEFAULT NULL,
     `garantiaEntradaMeses` int(11) DEFAULT NULL,
     `garantiaVentaMeses` int(11) DEFAULT NULL,
   `idCategoria` int(11) DEFAULT NULL
