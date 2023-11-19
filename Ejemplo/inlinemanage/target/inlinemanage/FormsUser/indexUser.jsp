@@ -11,7 +11,7 @@
             <div class="backlog">
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
-            <button class="btnMenu" id="btnInsertUser"><a href="ControllerInline?enviar=registerUser">Agregar</a></button>
+            <button class="btnMenu" id="btnInsertUser"><a href="User?enviar=registerUser">Agregar</a></button>
             <input type="text" placeholder="buscar" class="inputSearch" id="searchInput">
         </div>
         <div class="content2">
@@ -56,8 +56,8 @@
                     <td><%= user.getApellido() %></td>
                     <td><%= user.getCorreo() %></td>
                     <td><%= user.getIdRol() %></td>
-                    <td class="iconCenter"><a href="ControllerInline?enviar=updateUser&idUsuario=<%= user.getIdUsuario() %>"><img src="https://img.icons8.com/ios/100/000000/refresh--v1.png" alt="refresh--v1" class="iconUpdate"/></a></td>
-                    <td class="iconCenter"><a href="ControllerInline?enviar=deleteUser&idUsuario=<%= user.getIdUsuario() %>"><img height="30" src="https://img.icons8.com/ios/100/000000/delete--v1.png" alt="delete--v1" class="iconDelete"/></a></td>
+                    <td class="iconCenter"><a href="User?enviar=updateUser&idUsuario=<%= user.getIdUsuario() %>"><img src="https://img.icons8.com/ios/100/000000/refresh--v1.png" alt="refresh--v1" class="iconUpdate"/></a></td>
+                    <td class="iconCenter"><a href="User?enviar=deleteUser&idUsuario=<%= user.getIdUsuario() %>"><img height="30" src="https://img.icons8.com/ios/100/000000/delete--v1.png" alt="delete--v1" class="iconDelete"/></a></td>
                 </tr>
                 <% } %>
 

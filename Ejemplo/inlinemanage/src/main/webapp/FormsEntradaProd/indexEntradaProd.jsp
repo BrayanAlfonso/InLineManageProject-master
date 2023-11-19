@@ -10,7 +10,7 @@
     <div class="content1">
         <div class="options">
             <div class="backlog">
-                <a href="ControllerInline?enviar=supplier"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
+                <a href="Supplier?enviar=supplier"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
             <button class="btnMenu" ><a href="entrada?enviar=registerEntrada">Agregar</a></button>
             <br>

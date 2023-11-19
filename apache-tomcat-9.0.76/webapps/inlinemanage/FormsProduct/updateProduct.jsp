@@ -10,7 +10,7 @@
 
 <main class="main" id="mainForm"> 
     <div>
-        <a href="ControllerInline?enviar=product"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+        <a href="Product?enviar=product"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
     </div> 
     
     <%-- Obtener el id del producto seleccionado de la URL --%>
@@ -26,7 +26,7 @@
 
     <%-- Verificar si se encontró el usuario y mostrar el formulario de actualización --%>
     <% if (producto != null) { %>
-    <form action="ControllerInline" method="post" id="formValidacion">
+    <form action="Product" method="post" id="formValidacion">
         <h1 class="title-table">Actualizacion de productos</h1>
 
         <input type="hidden" name="idProducto" id="idProducto" value="<%= producto.getIdProducto() %>">

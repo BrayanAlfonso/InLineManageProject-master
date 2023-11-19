@@ -11,7 +11,7 @@
 
 <main class="main" id="mainForm">  
     <div>
-        <a href="ControllerInline?enviar=user"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+        <a href="User?enviar=user"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
     </div>
     <%-- Obtener el id del usuario seleccionado de la URL --%>
     <% String userId = request.getParameter("idUsuario"); %>
@@ -26,7 +26,7 @@
 
     <%-- Verificar si se encontró el usuario y mostrar el formulario de actualización --%>
     <% if (user != null) { %>
-    <form action="ControllerInline" method="post" class="formUpdate">
+    <form action="User" method="post" class="formUpdate">
         <h1 class="title-table">Actualizacion de usuarios</h1>
 
         <input type="hidden" name="idUsuario" id="idUsuario" value="<%= user.getIdUsuario() %>">

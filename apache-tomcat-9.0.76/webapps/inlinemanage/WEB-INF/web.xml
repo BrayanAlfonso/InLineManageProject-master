@@ -24,14 +24,14 @@
   <!--CONTROLADOR-->
   <!--CLASE EN JAVA-->
   <servlet>
-  <servlet-name>controller.Usuario</servlet-name>
-  <servlet-class>controller.Usuario</servlet-class>
+  <servlet-name>controller.User</servlet-name>
+  <servlet-class>controller.User</servlet-class>
 </servlet>
 
 <!--HEAD DE LA PAGINA WEB-->
 <servlet-mapping> 
-  <servlet-name>controller.Usuario</servlet-name>
-  <url-pattern>/usuario</url-pattern>
+  <servlet-name>controller.User</servlet-name>
+  <url-pattern>/User</url-pattern>
 </servlet-mapping>
 
 
@@ -75,6 +75,44 @@
   <url-pattern>/existence</url-pattern>
 </servlet-mapping>
 
+  <!--CONTROLADOR-->
+  <!--CLASE EN JAVA-->
+<servlet>
+  <servlet-name>controller.Product</servlet-name>
+  <servlet-class>controller.Product</servlet-class>
+</servlet>
+
+<!--HEAD DE LA PAGINA WEB-->
+<servlet-mapping> 
+  <servlet-name>controller.Product</servlet-name>
+  <url-pattern>/Product</url-pattern>
+</servlet-mapping>
+
+  <!--CONTROLADOR-->
+  <!--CLASE EN JAVA-->
+<servlet>
+  <servlet-name>controller.Supplier</servlet-name>
+  <servlet-class>controller.Supplier</servlet-class>
+</servlet>
+
+<!--HEAD DE LA PAGINA WEB-->
+<servlet-mapping> 
+  <servlet-name>controller.Supplier</servlet-name>
+  <url-pattern>/Supplier</url-pattern>
+</servlet-mapping>
+
+  <!--CONTROLADOR-->
+  <!--CLASE EN JAVA-->
+<servlet>
+  <servlet-name>controller.Vent</servlet-name>
+  <servlet-class>controller.Vent</servlet-class>
+</servlet>
+
+<!--HEAD DE LA PAGINA WEB-->
+<servlet-mapping> 
+  <servlet-name>controller.Vent</servlet-name>
+  <url-pattern>/Vent</url-pattern>
+</servlet-mapping>
 
   <servlet>
   <servlet-name>Reports</servlet-name>

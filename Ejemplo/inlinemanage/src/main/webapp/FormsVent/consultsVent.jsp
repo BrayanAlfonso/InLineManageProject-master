@@ -8,7 +8,7 @@
     <div class="content1">
         <div class="options">
             <div class="backlog">
-                <a href="ControllerInline?enviar=vent"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
+                <a href="Vent?enviar=vent"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
         </div>
 

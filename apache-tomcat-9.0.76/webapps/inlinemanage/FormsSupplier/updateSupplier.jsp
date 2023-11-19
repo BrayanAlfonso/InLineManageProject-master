@@ -8,7 +8,7 @@
 
 <main class="mainFrom" id="mainForm">  
     <div>
-        <a href="ControllerInline?enviar=supplier"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+        <a href="Supplier?enviar=supplier"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
     </div><br><br>
     <%-- Obtener el id del proveedor seleccionado de la URL --%>
     <% String provId = request.getParameter("idProveedor"); %>
@@ -23,7 +23,7 @@
 
     <%-- Verificar si se encontró el proveedor y mostrar el formulario de actualización --%>
     <% if (prov != null) { %>
-    <form action="ControllerInline" method="post">
+    <form action="Supplier" method="post">
         <h1 class="title-table">Actualizacion de proveedores</h1>
 
         <input type="hidden" name="idProveedor" id="idProveedor" value="<%= prov.getIdProveedor() %>">

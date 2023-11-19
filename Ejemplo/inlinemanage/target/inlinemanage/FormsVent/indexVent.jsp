@@ -15,7 +15,7 @@
             <div class="backlog">
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
-            <button class="btnMenu"><a href="ControllerInline?enviar=registerVent">Agregar</a></button>
+            <button class="btnMenu"><a href="Vent?enviar=registerVent">Agregar</a></button>
             <input type="text" placeholder="buscar" class="inputSearch">
         </div>
         <div class="content2">
@@ -70,7 +70,7 @@
 
                         <td class="iconCenter">
                             <button style="color: #0eb1de;">
-                                <a href="ControllerInline?enviar=consultsVent&idVenta=<%= venta.getIdVenta() %>">Más Info.</a>
+                                <a href="Vent?enviar=consultsVent&idVenta=<%= venta.getIdVenta() %>">Más Info.</a>
                             </button>
                         </td>
                     </tr>

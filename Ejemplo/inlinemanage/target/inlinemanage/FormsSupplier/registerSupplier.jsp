@@ -2,10 +2,10 @@
 <%@ include file="../plantillas/header.jsp"%>
 <main class="mainForm" id="mainForm">
     <div>
-        <a href="ControllerInline?enviar=supplier"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+        <a href="Supplier?enviar=supplier"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
     </div><br><br>
 
-    <form action="ControllerInline" id="formValiderP" method="post">
+    <form action="Supplier" id="formValiderP" method="post">
         <h1 class="title-table">Registro de Proveedores</h1>
         <div class="contentForm">
 

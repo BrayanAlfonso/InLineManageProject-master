@@ -8,10 +8,10 @@
 
 <main class="main" id="mainForm">
     <div>
-        <a href="ControllerInline?enviar=vent"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+        <a href="Vent?enviar=vent"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
     </div>
 
-    <form action="ControllerInline" method="post" id="formValidVent" novalidate>
+    <form action="Vent" method="post" id="formValidVent" novalidate>
         <h1 class="title-table">Registro de Ventas</h1>
         <div class="contentForm">
 

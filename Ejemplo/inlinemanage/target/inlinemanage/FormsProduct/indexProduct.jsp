@@ -10,7 +10,7 @@
             <div class="backlog">
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
-            <button class="btnMenu" ><a href="ControllerInline?enviar=registerProduct">Agregar</a></button>
+            <button class="btnMenu" ><a href="Product?enviar=registerProduct">Agregar</a></button>
             <button class="btnMenu" ><a href="category?enviar=categoria">Categoria</a></button>
             <button class="btnMenu"><a href="existence?enviar=existence">Existencia</a></button>
             <button class="btnMenu"><a href="/inlinemanage/Reports?enviar=product">Generar reporte</a></button>
@@ -64,8 +64,8 @@
                             <td><%=producto.getGarantiaEntradaMeses()%></td>
                             <td><%=producto.getGarantiaVentaMeses()%></td>
                             <td><%=producto.getIdCategoria()%></td>
-                            <td class="iconCenter"><a href="ControllerInline?enviar=updateProduct&idProducto=<%= producto.getIdProducto() %>"><img src="https://img.icons8.com/ios/100/000000/refresh--v1.png" alt="refresh--v1" class="iconUpdate"/></a></td>
-                            <td class="iconCenter"><a href="ControllerInline?enviar=deleteProduct&idProducto=<%= producto.getIdProducto() %>"><img height="30" src="https://img.icons8.com/ios/100/000000/delete--v1.png" alt="delete--v1" class="iconDelete"/></a></td>
+                            <td class="iconCenter"><a href="Product?enviar=updateProduct&idProducto=<%= producto.getIdProducto() %>"><img src="https://img.icons8.com/ios/100/000000/refresh--v1.png" alt="refresh--v1" class="iconUpdate"/></a></td>
+                            <td class="iconCenter"><a href="Product?enviar=deleteProduct&idProducto=<%= producto.getIdProducto() %>"><img height="30" src="https://img.icons8.com/ios/100/000000/delete--v1.png" alt="delete--v1" class="iconDelete"/></a></td>
                         </tr>
                     <%}%>
                 </table>

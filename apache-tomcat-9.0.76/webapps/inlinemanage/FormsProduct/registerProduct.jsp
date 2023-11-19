@@ -5,10 +5,10 @@
 <%@ page import="model.CategoriaDao"%>
 <main class="main" id="mainForm">
     <div>
-        <a href="ControllerInline?enviar=product"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
+        <a href="Product?enviar=product"><img src="assets/img/back.PNG" alt="backlog" class="backlogForm"></a>
     </div>
 
-    <form action="ControllerInline" method="post" id="formValidacion" novalidate>
+    <form action="Product" method="post" id="formValidacion" novalidate>
         <h1 class="title-table">Registro de Productos</h1>
         <div class="contentForm">
 
