@@ -11,40 +11,32 @@
         
         <div class="Button">
             <a href="User?enviar=user">
-            <h1>Usuarios</h1>
-            <img width="122" height="122" src="https://img.icons8.com/ios/50/user--v1.png" alt="user--v1"/></a>
-            <div>
-                <a  href="https://icons8.com/icon/23264/usuario">Usuario</a> icon by <a href="https://icons8.com">Icons8</a>
-            </div>
+            <h1 style="color: black;">Usuarios</h1>
+            <i class="fa-solid fa-users" style="font-size: 100px; margin-top: 10px; color: #2d8c94;"></i>
+            </a>
         </div>
 
         <div class="Button">
             <a href="Product?enviar=product">
-            <h1>Productos</h1>
-            <img width="122" height="122" src="https://img.icons8.com/ios/50/product--v1.png" alt="product--v1"/></a>
-            <div>
-                <a  href="https://icons8.com/icon/12091/producto">Producto</a> icon by <a href="https://icons8.com">Icons8</a>
-            </div>
+            <h1 style="color: black;">Productos</h1>
+            <i class="fa-solid fa-boxes-stacked" style="font-size: 100px; margin-top: 10px; color: #2d8c94;"></i>
+            </a>
         </div>
     </div>
 
     <div class="row-buttons">
         <div class="Button">
             <a href="Supplier?enviar=supplier">
-            <h1>Proveedores</h1>
-            <img width="122" height="122" src="https://img.icons8.com/ios/50/supplier.png" alt="supplier"/></a>
-            <div>
-                <a  href="https://icons8.com/icon/61849/proveedor">Proveedor</a> icon by <a href="https://icons8.com">Icons8</a>
-            </div>
+            <h1 style="color: black;">Proveedores</h1>
+            <i class="fa-solid fa-user-tie" style="font-size: 100px; margin-top: 10px; color: #2d8c94;"></i>
+            </a>
         </div>
 
         <div class="Button">
             <a href="Vent?enviar=vent">
-            <h1>Ventas</h1>
-            <img width="122" height="122" src="https://img.icons8.com/ios/50/total-sales-1.png" alt="total-sales-1"/></a>
-            <div>
-                <a  href="https://icons8.com/icon/70641/ventas">Ventas</a> icon by <a href="https://icons8.com">Icons8</a>
-            </div>
+            <h1 style="color: black;">Ventas</h1>
+            <i class="fa-solid fa-cash-register" style="font-size: 100px; margin-top: 10px; color: #2d8c94;"></i>
+            </a>
         </div>
     </div>
 </div>

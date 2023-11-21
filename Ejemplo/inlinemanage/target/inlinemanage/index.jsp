@@ -21,7 +21,7 @@
                     
                     <div class="inputs" id="divPassword">
                         <label for="inputPassword"><b>Contraseña:</b></label><br><br>
-                        <input type="text" id="inputPassword" name="inputPassword" class="inputForm">
+                        <input type="password" id="inputPassword" name="inputPassword" class="inputForm">
                         <span class="fbForm"></span> 
                     </div>
                     
