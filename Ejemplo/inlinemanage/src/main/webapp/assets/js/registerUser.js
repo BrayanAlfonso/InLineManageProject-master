@@ -30,7 +30,7 @@ let flag7
 
 const text=/^[A-Za-z á-úÁ-ÚÑñ]{3,50}$/
 const validacionPassword=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*().-])[A-Za-z0-9!@#$%^&*().-]{10,}$/
-const number=/^[0-9]{7,10}$/
+const number=/^[0-9]{7,30}$/
 
 //Espacio para la validacion del tipo de documento
 

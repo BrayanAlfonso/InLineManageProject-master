@@ -1,4 +1,4 @@
-const number=/[0-9]{1,15}/
+const number=/[0-9]{1,30}/
 const text=/^[a-zA-ZñÑá-úÁ-Ú ]{1,10}$/
 const alfanumericos=/^[a-zA-ZñÑá-úÁ-Ú ]*[a-zA-ZñÑá-úÁ-Ú][0-9]*$/
 

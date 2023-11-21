@@ -142,6 +142,36 @@ public class ProductoDao {
                         producto.setGarantiaEntradaMeses(rs.getInt("garantiaEntradaMeses"));
                         producto.setGarantiaVentaMeses(rs.getInt("garantiaVentaMeses"));
                         producto.setIdCategoria(rs.getInt("idCategoria"));
+                        System.out.println("Termino el try del metodo");
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Error al obtener el producto: " + e.getMessage());
+                }
+                return producto;
+            }
+        }
+
+        // UNICO: Crear función que llame los productos por el idCategoria
+        public ProductoVo obtenerCategoriaPorId(int idCategoria) throws SQLException {
+            sql = "SELECT * FROM producto WHERE idCategoria  = ?";
+            ProductoVo producto = null;
+            try(Connection con = Conexion.conectar();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+        
+                ps.setInt(1, idCategoria);
+        
+                try(ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        producto = new ProductoVo();
+                        producto.setIdProducto(rs.getInt("idProducto"));
+                        producto.setUnidadesDisponibles(rs.getInt("unidadesDisponibles"));
+                        producto.setNombreProducto(rs.getString("nombreProducto"));
+                        producto.setPrecioVenta(rs.getFloat("precioVenta"));
+                        producto.setDescripcion(rs.getString("descripcion"));
+                        producto.setSerial(rs.getString("serial"));
+                        producto.setGarantiaEntradaMeses(rs.getInt("garantiaEntradaMeses"));
+                        producto.setGarantiaVentaMeses(rs.getInt("garantiaVentaMeses"));
+                        producto.setIdCategoria(rs.getInt("idCategoria"));
                     }
                 } catch (SQLException e) {
                     System.out.println("Error al obtener el producto: " + e.getMessage());

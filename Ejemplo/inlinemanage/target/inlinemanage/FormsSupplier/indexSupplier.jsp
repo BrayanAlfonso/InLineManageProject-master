@@ -52,8 +52,8 @@
                 <tr>
                     <td><%= prov.getNombreProveedor() %></td>
                     <td><%= prov.getDireccionProveedor() %></td>
-                    <td class="iconCenter"><a href="Supplier?enviar=updateSupplier&idProveedor=<%= prov.getIdProveedor() %>"><img src="https://img.icons8.com/ios/100/000000/refresh--v1.png" alt="refresh--v1" class="iconUpdate"/></a></td>
-                    <td class="iconCenter"><a href="Supplier?enviar=deleteSupplier&idProveedor=<%= prov.getIdProveedor() %>"><img height="30" src="https://img.icons8.com/ios/100/000000/delete--v1.png" alt="delete--v1" class="iconDelete"/></a></td>
+                    <td class="iconCenter"><a href="Supplier?enviar=updateSupplier&idProveedor=<%= prov.getIdProveedor() %>"><i class="fa-solid fa-repeat" style="color: #54AC9C;" alt="refresh--v1" class="iconUpdate"></i></a></td>
+                    <td class="iconCenter"><a href="Supplier?enviar=deleteSupplier&idProveedor=<%= prov.getIdProveedor() %>"><i class="fa-solid fa-trash" style="color: #ff0000;" alt="delete--v1" class="iconDelete"></i></a></td>
                 </tr>
                 <% } %>
 

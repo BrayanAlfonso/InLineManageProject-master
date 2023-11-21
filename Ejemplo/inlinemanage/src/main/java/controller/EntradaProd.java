@@ -116,8 +116,10 @@ private void registerEntradaController(HttpServletRequest req, HttpServletRespon
     try {
         EntraDao.registerEntrada(EntraVo);
         System.out.println("Registro insertado correctamente en controllerInLine");
+        //mensaje
+        req.setAttribute("mensaje1", "Entrada Registrada");
         //Redireccionamiento
-        req.getRequestDispatcher("FormsEntradaProd/registerEntradaProd.jsp").forward(req, resp);
+        req.getRequestDispatcher("FormsEntradaProd/indexEntradaProd.jsp").forward(req, resp);
     } catch (Exception e) {
         System.out.println("Error al registrar los datos del usaurio en ControllerInline en el metodo registerEntradaController");
     }
@@ -145,7 +147,8 @@ private void updateEntradaController(HttpServletRequest req, HttpServletResponse
         try {
             EntraDao.actualizar(EntraVo);
             System.out.println("entrada actualizada correctamente");
-
+            //mensaje
+            req.setAttribute("mensaje1", "Entrada Actualizada");
             //NOTA: Redireccionamiento preventivo.       
             req.getRequestDispatcher("FormsEntradaProd/indexEntradaProd.jsp").forward(req, resp);
 
@@ -159,6 +162,7 @@ private void listEntradaDelete(HttpServletRequest req, HttpServletResponse resp)
         try {
             List<EntradaVo> entrada = EntraDao.listar();
             req.setAttribute("entrada",  entrada);
+            req.setAttribute("mensaje1", "Entrada Eliminada");
             req.getRequestDispatcher("FormsEntradaProd/indexEntradaProd.jsp").forward(req, resp);
             System.out.println("Datos listados correctamente despues de entrada eliminado");
         } catch (Exception e) {

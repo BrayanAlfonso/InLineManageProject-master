@@ -53,8 +53,8 @@
                             <td><%=existencia.getPrecioEntrada()%></td>
                             <td><%=existencia.getIdProducto()%></td>
                             <td><%=existencia.getIdEntradaProd()%></td>
-                            <td class="iconCenter"><a href="existence?enviar=updateExistence&idExistencia=<%= existencia.getIdExistencia() %>"><img src="https://img.icons8.com/ios/100/000000/refresh--v1.png" alt="refresh--v1" class="iconUpdate"/></a></td>
-                            <td class="iconCenter"><a href="existence?enviar=deleteExistence&idExistencia=<%= existencia.getIdExistencia() %>"><img height="30" src="https://img.icons8.com/ios/100/000000/delete--v1.png" alt="delete--v1" class="iconDelete"/></a></td>
+                            <td class="iconCenter"><a href="existence?enviar=updateExistence&idExistencia=<%= existencia.getIdExistencia() %>"><i class="fa-solid fa-repeat" style="color: #54AC9C;" alt="refresh--v1" class="iconUpdate"></i></a></td>
+                            <td class="iconCenter"><a href="existence?enviar=deleteExistence&idExistencia=<%= existencia.getIdExistencia() %>"><i class="fa-solid fa-trash" style="color: #ff0000;" alt="delete--v1" class="iconDelete"></i></a></td>
                         </tr>
                     <%}%>
                 </table>
@@ -65,12 +65,21 @@
 
 
 </div>
-<div class="form">
+<!-- Declaración de la variable mensaje que se trae desde el controlador "ControllerInline"-->
+                        <% String mensaje1 = (String) request.getAttribute("mensaje1"); %> 
     
-</div>
+                        <!-- Campo para mostrar el mensaje traido desde Java -->
+                        <% if (mensaje1 == null) {%>
+                            <div></div>
+                        <%}else{%>
+                            <div id="mensaje1"></div>
+                        <%}%>
 </main>
     
     
 <%@ include file="../plantillas/footer.jsp"%>
-
+<script>
+    let mensajeJS="<%= mensaje1 %>"
+</script>
+<script src="assets/js/JsExist/indexEx.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>

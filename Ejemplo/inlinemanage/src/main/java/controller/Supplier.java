@@ -110,7 +110,7 @@ private void registerSupplierController(HttpServletRequest req, HttpServletRespo
         ProvDao.registerSupplier(ProvVo);
         System.out.println("Registro insertado correctamente en controllerInLine");
         //Redireccionamiento
-        req.getRequestDispatcher("FormsSupplier/registerSupplier.jsp").forward(req, resp);
+        req.getRequestDispatcher("FormsSupplier/indexSupplier.jsp").forward(req, resp);
     } catch (Exception e) {
         System.out.println("Error al registrar los datos del proveedor en ControllerInline en el metodo registerSupplierController");
     }

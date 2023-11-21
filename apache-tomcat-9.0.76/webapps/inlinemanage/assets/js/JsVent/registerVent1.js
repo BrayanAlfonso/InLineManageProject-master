@@ -19,8 +19,6 @@ let f5=document.querySelector(".Cantidad .fbForm")
 let idProducto=document.getElementById("idProducto")
 
 // Acceder a los Inputs
-
-
 let precioProd=document.getElementById("precioProducto")
 let Cant=document.getElementById("Cantidad")
 
