@@ -64,3 +64,19 @@ AddressProv.addEventListener("input",(e)=>{
         flag2 = false;
     }
 })
+
+form.addEventListener("submit", (e) => {
+
+    // e.preventDefault()
+      if (NameProv.value==0||NameProv.value==null||flag==false) {
+        alert("por favor ingresa un numero de NameProv valido")
+        NameProv.focus()
+        NameProv.classList.add("error");
+      }else if(AddressProv.value==0||AddressProv.value==null||flag1==false){
+        alert("por favor ingresa un AddressProv valido")
+        AddressProv.focus()
+        AddressProv.classList.add("error");
+      }else {
+        form.submit()
+      }
+    });

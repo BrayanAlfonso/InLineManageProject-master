@@ -111,3 +111,28 @@ idEntraProd.addEventListener("input",(e)=>{
         flag4 = false;
     }
 })
+
+form.addEventListener("submit", (e) => {
+
+    // e.preventDefault()
+      if (cantUnidad.value==0||cantUnidad.value==null||flag==false) {
+        alert("por favor ingresa un numero de cantUnidad valido")
+        cantUnidad.focus()
+        cantUnidad.classList.add("error");
+      }else if(precEntrad.value==0||precEntrad.value==null||flag1==false){
+        alert("por favor ingresa un precEntrad valido")
+        precEntrad.focus()
+        precEntrad.classList.add("error");
+      }else if(idProduc.value==0||idProduc.value==null||flag2==false){
+        alert("por favor ingresa un idProduc valido")
+        idProduc.focus()
+        idProduc.classList.add("error");
+      }else if(idEntraProd.value==0||idEntraProd.value==null||flag3==false){
+        alert("por favor ingresa una idEntraProd valida")
+        idEntraProd.focus()
+        idEntraProd.classList.add("error");
+      }else {
+        form.submit()
+        
+      }
+    });

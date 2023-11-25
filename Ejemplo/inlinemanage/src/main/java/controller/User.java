@@ -129,9 +129,8 @@ private void registerUserController(HttpServletRequest req, HttpServletResponse 
         UsuDao.registerUserDao(UsuVo);
         System.out.println("Registro insertado correctamente en controllerInLine");
 
-
         //Redireccionamiento
-        req.getRequestDispatcher("FormsUser/registerUser.jsp").forward(req, resp);
+        req.getRequestDispatcher("FormsUser/indexUser.jsp").forward(req, resp);
     } catch (Exception e) {
         System.out.println("Error al registrar los datos del usaurio en ControllerInline en el metodo registerUserController");
     }

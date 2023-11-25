@@ -81,7 +81,14 @@
             </div>
         </div>
     </form>
+        <% String mensaje1 = (String) request.getAttribute("mensaje1"); %> 
 
+        <!-- Campo para mostrar el mensaje traido desde Java -->
+        <% if (mensaje1 == null) {%>
+            <div></div>
+        <%}else{%>
+            <div id="mensaje2"></div>
+        <%}%>
 </main>
 
 <%@ include file="../plantillas/footer.jsp"%>

@@ -92,7 +92,7 @@ public class Category extends HttpServlet{
         }
     }
 
-    
+ //registro de categoria   
 private void registerCategoryController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
     if(req.getParameter("nameCategory")!=null){
         CateVo.setNombreCategoria(req.getParameter("nameCategory"));
@@ -104,7 +104,8 @@ private void registerCategoryController(HttpServletRequest req, HttpServletRespo
         CateDao.registerCategory(CateVo);
         System.out.println("Registro insertado correctamente en controllerInLine");
         //Redireccionamiento
-        req.getRequestDispatcher("FormsCategory/registerCategory.jsp").forward(req, resp);
+         req.setAttribute("mensaje1", "Categoria Registrada");
+        req.getRequestDispatcher("FormsCategory/indexCategoria.jsp").forward(req, resp);
     } catch (Exception e) {
         System.out.println("Error al registrar los datos del usaurio en ControllerInline en el metodo registerUserController");
     }
@@ -126,7 +127,8 @@ private void updateCategoryController(HttpServletRequest req, HttpServletRespons
             CateDao.actualizar(CateVo);
             System.out.println("Categoria actualizado correctamente");
 
-            //NOTA: Redireccionamiento preventivo.       
+            //NOTA: Redireccionamiento preventivo.
+            req.setAttribute("mensaje1", "Categoria Actualizada");      
             req.getRequestDispatcher("FormsCategory/indexCategoria.jsp").forward(req, resp);
 
         } catch (Exception e) {
@@ -139,6 +141,7 @@ private void listCateDelete(HttpServletRequest req, HttpServletResponse resp) {
         try {
             List<CategoriaVo> categoria = CateDao.listar();
             req.setAttribute("Categoria", categoria);
+            req.setAttribute("mensaje1", "Categoria Eliminada");
             req.getRequestDispatcher("FormsCategory/indexCategoria.jsp").forward(req, resp);
             System.out.println("Datos listados correctamente despues del categoria eliminado");
         } catch (Exception e) {

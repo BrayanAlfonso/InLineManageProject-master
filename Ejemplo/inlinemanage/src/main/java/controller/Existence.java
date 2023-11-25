@@ -121,8 +121,10 @@ public class Existence extends HttpServlet{
         try {
             ExistDao.registerExistence(ExistVo);
             System.out.println("Registro insertado correctamente en controllerInLine");
+            //mensaje
+            req.setAttribute("mensaje1", "Existencia Registrada");
             //Redireccionamiento
-            req.getRequestDispatcher("FormsExistence/registerExistence.jsp").forward(req, resp);
+            req.getRequestDispatcher("FormsExistence/indexExistence.jsp").forward(req, resp);
         } catch (Exception e) {
             System.out.println("Error al registrar los datos del usaurio en ControllerInline en el metodo registerExistenceController");
         }
@@ -160,7 +162,8 @@ public class Existence extends HttpServlet{
             try {
                 ExistDao.updateExistence(ExistVo);
                 System.out.println("Existencia actualizada correctamente");
-
+                //mensaje
+            req.setAttribute("mensaje1", "Existencia Actualizada");
                 //NOTA: Redireccionamiento preventivo.       
                 req.getRequestDispatcher("FormsExistence/indexExistence.jsp").forward(req, resp);
 
@@ -174,6 +177,8 @@ public class Existence extends HttpServlet{
             try {
                 List<ExistenciaVo> existencia = ExistDao.listarExist();
                 req.setAttribute("Existencia", existencia);
+                //mensaje
+                req.setAttribute("mensaje1", "Existencia Eliminada");
                 req.getRequestDispatcher("FormsExistence/indexExistence.jsp").forward(req, resp);
                 System.out.println("Datos listados correctamente despues de la existencia eliminada");
             } catch (Exception e) {

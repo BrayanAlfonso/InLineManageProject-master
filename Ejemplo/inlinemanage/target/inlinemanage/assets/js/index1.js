@@ -1,7 +1,4 @@
 
-
-
-
 let mensajeLogin = document.getElementById("mensaje");
 if(mensajeJS==" " || mensajeJS==null){
 

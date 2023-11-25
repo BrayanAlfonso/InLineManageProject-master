@@ -130,8 +130,10 @@ private void registerProductController(HttpServletRequest req, HttpServletRespon
     try {
         ProdDao.registerProduct(ProdVo);
         System.out.println("Registro insertado correctamente en controllerInLine");
+        //mensaje
+            req.setAttribute("mensaje1", "Producto Registrado");
         //Redireccionamiento
-        req.getRequestDispatcher("FormsProduct/registerProduct.jsp").forward(req, resp);
+        req.getRequestDispatcher("FormsProduct/indexProduct.jsp").forward(req, resp);
     } catch (Exception e) {
         System.out.println("Error al registrar los datos del usaurio en ControllerInline en el metodo registerUserController");
     }
@@ -173,6 +175,8 @@ private void registerProductController(HttpServletRequest req, HttpServletRespon
             try {
                 ProdDao.actualizar(ProdVo);
                 System.out.println("Producto actualizado correctamente");
+                //mensaje
+            req.setAttribute("mensaje1", "Producto Actualizado");
     
                 //NOTA: Redireccionamiento preventivo.       
                 req.getRequestDispatcher("FormsProduct/indexProduct.jsp").forward(req, resp);
@@ -187,6 +191,8 @@ private void listProdDelete(HttpServletRequest req, HttpServletResponse resp) {
         try {
             List<ProductoVo> producto = ProdDao.listar();
             req.setAttribute("Producto", producto);
+            //mensaje
+            req.setAttribute("mensaje1", "Producto Eliminado");
             req.getRequestDispatcher("FormsProduct/indexProduct.jsp").forward(req, resp);
             System.out.println("Datos listados correctamente despues del producto eliminado");
         } catch (Exception e) {

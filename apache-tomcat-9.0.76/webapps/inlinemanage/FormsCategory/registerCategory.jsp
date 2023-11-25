@@ -15,10 +15,13 @@
             </div>
     
             <div class="divBtnForm">
-                <button class="btnForm" name="enviar" value="registerCategory" >Registrar</button>
+                <button class="btnForm" name="enviar" value="registerCategory">Registrar</button>
             </div>
         </div>
+
     </form>
 </main> 
 <%@ include file="../plantillas/footer.jsp"%>
+
+
 <script src="assets/js/JsCate/registerCate.js"></script>

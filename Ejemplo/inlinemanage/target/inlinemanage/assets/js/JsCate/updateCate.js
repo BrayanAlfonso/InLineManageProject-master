@@ -36,3 +36,16 @@ form.addEventListener("submit", (e) =>{
       form.submit()
     }
 });
+
+let mensajeC = document.getElementById("mensaje1");
+if(mensajeJS==" " || mensajeJS==null){
+
+    console.log(mensajeJS+"es nulo")
+}else{
+    mensajeC.textContent=mensajeJS
+    mensajeC.style.opacity = "1"
+    
+    setTimeout(function() {
+      mensajeC.style.opacity = "0";
+    }, 3000);
+}
