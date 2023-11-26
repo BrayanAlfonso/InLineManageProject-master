@@ -24,6 +24,27 @@ function filterProd() {
     });
 }
 
+document.getElementById("selectMenu").addEventListener("change",()=>{
+    const value=document.getElementById("selectMenu").value
+    if (value === "category") {
+        window.location.href = "category?enviar=categoria";
+    } else if (value === "existence") {
+        window.location.href = "existence?enviar=existence";
+    }
+})
+
+
+document.getElementById("abrirModalReportes").addEventListener("click", ()=>{
+    const modal = document.getElementById("modalReportes")
+    modal.style.visibility="visible"
+})
+
+
+document.getElementById("cerrarModal").addEventListener("click", ()=>{
+    const modal = document.getElementById("modalReportes")
+    modal.style.visibility="hidden"
+})
+
 // Escuchar el evento de entrada de texto en el campo de búsqueda
 //evento de mensaje
 ProdInput.addEventListener("input", filterProd);
@@ -40,3 +61,5 @@ if(mensajeJS==" " || mensajeJS==null){
       mensajeC.style.opacity = "0";
     }, 3000);
 }
+
+

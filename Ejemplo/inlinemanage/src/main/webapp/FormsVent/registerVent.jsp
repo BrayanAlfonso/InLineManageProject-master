@@ -55,7 +55,7 @@
                     %>
                 
                 <!-- Filtra productos por la categoria (idCategoria) -->
-                <select name="idProducto" id="idProducto">
+                <select name="idProducto" id="idProducto" class="inputForm">
                     <option value="0">Selecciona el producto...</option>
                     <% for (ProductoVo producto : productos) { %>
                     <option value=<%=producto.getIdProducto()%>><%=producto.getNombreProducto()%></option>

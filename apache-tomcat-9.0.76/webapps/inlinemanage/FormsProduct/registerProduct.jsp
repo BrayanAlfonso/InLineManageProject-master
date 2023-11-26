@@ -88,7 +88,7 @@
         <div class="modal" id="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div class="cerrarModal" id="cerrarModal">X</div>
+                    <div class="cerrarModal" id="cerrarModal">&times;</div>
                 </div>
                 <!-- Contenido del lector de códigos de barras -->
                 <div id="qr-reader"></div>

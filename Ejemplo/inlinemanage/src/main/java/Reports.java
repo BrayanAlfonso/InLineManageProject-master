@@ -197,14 +197,11 @@ protected void doGet(HttpServletRequest req, HttpServletResponse res) throws Ser
                 
                 // Crear variable que llame el campo IdCategoria
                  String IdCategorySTR= req.getParameter("idCategory");
-                 int IdCategory = Integer.parseInt(IdCategorySTR);
-                 ProductoVo producto = prodsObjDao.obtenerCategoriaPorId(IdCategory);
-                
-                
+                 int IdCategory = Integer.parseInt(IdCategorySTR);      
 
                 List<ProductoVo> prodsFilters = null;
                     try {
-                        prodsFilters = new ProductoDao().listar();
+                        prodsFilters = new ProductoDao().listarPorCate(IdCategory);
                     } catch (Exception e) {
                     e.printStackTrace();
                     }
@@ -255,10 +252,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse res) throws Ser
                 document.close();
             } catch (DocumentException e) {
                 e.printStackTrace();
-            } catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+            }
 
         break;
 

@@ -30,10 +30,8 @@
 
 
 .modal-content{
-    
     background-color: white;
     width: 50%;
-
     animation-name: animarModal;
     animation-duration: 1s;
     border-radius: 20px;
@@ -50,12 +48,13 @@
 .modal-header{
     display: flex;
     justify-content: end; padding: 3%;
+    font-size: 2rem;
 }
 .cerrarModal{
-    
-    width: 20px;
-    font-size: 18;
+    width: 50px;
+    display: flex;
     padding: 5px;
+    justify-content: center;
 }
 .cerrarModal:hover{
     cursor: pointer;
