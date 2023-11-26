@@ -52,7 +52,7 @@
 
 .modalHeader{
     display: flex;
-    justify-content: space-around; 
+    justify-content: space-between; 
     padding: 3%;
     font-size: 2rem;
 }

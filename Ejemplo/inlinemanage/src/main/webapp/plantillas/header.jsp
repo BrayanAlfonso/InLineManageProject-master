@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InLineManage</title>
-    <link rel="stylesheet" href="assets/css/index2.css">
+    <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/main1.css">
     <link rel="stylesheet" href="assets/css/StylesBarCode1.css">
     <link rel="stylesheet" href="assets/css/indexModule1.css">

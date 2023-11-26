@@ -9,6 +9,7 @@ controller\Vent.class
 model\DetalleVentVo.class
 model\EntradaDao.class
 model\ProductoVo.class
+model\ReporteVentaVo.class
 model\ProveedorVo.class
 controller\Supplier.class
 model\ProveedorDao.class
@@ -19,6 +20,7 @@ model\CategoriaVo.class
 model\CategoriaDao.class
 model\EntradaVo.class
 Reports.class
+model\ReporteVentaDao.class
 model\MovimientoVo.class
 model\VentaVo.class
 model\MovimientoDao.class

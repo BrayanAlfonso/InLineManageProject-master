@@ -80,6 +80,8 @@ public class DetalleVentDao {
         return dtventa;
     }
 
+
+
     public DetalleVentVo obtenerVentaPorId(int idDetalleVenta) throws SQLException {
         sql = "SELECT * FROM detalle_venta WHERE idDetalleVenta  = ?";
         DetalleVentVo dtventa = null;
@@ -109,7 +111,7 @@ public class DetalleVentDao {
         sql = "SELECT * FROM detalle_venta WHERE idVenta = ?";
         List<DetalleVentVo> listaDeDetallesDeVenta = new ArrayList<>();
         try (Connection con = Conexion.conectar();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+            PreparedStatement ps = con.prepareStatement(sql)) {
     
             ps.setInt(1, idVenta);
     

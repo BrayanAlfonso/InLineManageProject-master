@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -23,6 +24,8 @@ import model.DetalleVentDao;
 import model.DetalleVentVo;
 import model.ProductoDao;
 import model.ProductoVo;
+import model.ReporteVentaDao;
+import model.ReporteVentaVo;
 
 public class Reports extends HttpServlet {
 
@@ -58,15 +61,15 @@ protected void doGet(HttpServletRequest req, HttpServletResponse res) throws Ser
                 document.add(new Paragraph("Infome detalles de venta."));
                 document.add(new Paragraph(" "));
 
-                List<DetalleVentVo> deves = null;
+                List<ReporteVentaVo> reporte = null;
                     try {
-                        deves = new DetalleVentDao().listar();
+                        reporte = new ReporteVentaDao().listarPorInner();
                     } catch (Exception e) {
                     e.printStackTrace();
                     }
                 
-                if (deves != null && !deves.isEmpty()) {
-                    PdfPTable table = new PdfPTable(5);
+                if (reporte != null && !reporte.isEmpty()) {
+                    PdfPTable table = new PdfPTable(7);
                     table.getDefaultCell().setPadding(8);
                     
 
@@ -75,20 +78,96 @@ protected void doGet(HttpServletRequest req, HttpServletResponse res) throws Ser
                     table.addCell(new Phrase("Id venta"));
                     table.addCell(new Phrase("Precio"));
                     table.addCell(new Phrase("Cantidad"));
+                    table.addCell(new Phrase("Fecha"));
+                    table.addCell(new Phrase("idUsuario"));
                 
 
-                    for(DetalleVentVo deve: deves){
-                        String idDetalleVentaSTR= String.valueOf(deve.getIdDetalleVenta());
-                        String idProductoSTR= String.valueOf(deve.getIdProducto());
-                        String idVentaSTR= String.valueOf(deve.getIdVenta());
-                        String precioSTR = String.valueOf(deve.getPrecioProducto());
-                        String cantidadSTR = String.valueOf(deve.getCantidad());
+                    for(ReporteVentaVo report: reporte){
+                        String idDetalleVentaSTR= String.valueOf(report.getIdDetalleVenta());
+                        String idProductoSTR= String.valueOf(report.getIdProducto());
+                        String idVentaSTR= String.valueOf(report.getIdVenta());
+                        String precioSTR = String.valueOf(report.getPrecioProducto());
+                        String cantidadSTR = String.valueOf(report.getCantidad());
+                        String fechaSTR = String.valueOf(report.getFechaVenta());
+                        String idUsuarioSTR = String.valueOf(report.getIdUsuario());
 
                         table.addCell(idDetalleVentaSTR);
                         table.addCell(idProductoSTR);
                         table.addCell(idVentaSTR);
                         table.addCell(precioSTR);
                         table.addCell(cantidadSTR);    
+                        table.addCell(fechaSTR);
+                        table.addCell(idUsuarioSTR);   
+                    }
+
+                document.add(table);
+                }else{
+                    PdfPTable tableError = new PdfPTable(1);
+                    tableError.addCell(new Phrase("No se encontraron detalles de venta"));
+                    document.add(tableError);
+                }
+                document.close();
+            } catch (DocumentException e) {
+                e.printStackTrace();
+            }
+            
+        break;
+
+        case "DeVentFilter":
+            try {
+                // Configura la respuesta HTTP para PDF
+                res.setContentType("application/pdf");
+                res.setHeader("Content-Disposition", "inline; filename=informe.pdf");
+
+                // Crea un nuevo documento PDF
+                Document document = new Document();
+                PdfWriter.getInstance(document, res.getOutputStream());
+
+                document.open();
+                document.add(new Paragraph("Infome detalles de venta."));
+                document.add(new Paragraph(" "));
+
+                List<ReporteVentaVo> reporte = null;
+                    try {
+                        String fechaSTR = req.getParameter("dateFilter");
+                        System.out.println(fechaSTR);
+                        Date fecha = Date.valueOf(fechaSTR);
+                        System.out.println(fecha);
+                        reporte = new ReporteVentaDao().listarPorInnerFiltrado(fecha);
+                    } catch (Exception e) {
+                    e.printStackTrace();
+                    }
+                
+                if (reporte != null && !reporte.isEmpty()) {
+                    PdfPTable table = new PdfPTable(7);
+                    table.getDefaultCell().setPadding(8);
+                    
+
+                    table.addCell(new Phrase("Id detalle de venta"));
+                    table.addCell(new Phrase("Id producto"));
+                    table.addCell(new Phrase("Id venta"));
+                    table.addCell(new Phrase("Precio"));
+                    table.addCell(new Phrase("Cantidad"));
+                    table.addCell(new Phrase("Fecha"));
+                    table.addCell(new Phrase("idUsuario"));
+                
+
+                    for(ReporteVentaVo report: reporte){
+                        String idDetalleVentaSTR= String.valueOf(report.getIdDetalleVenta());
+                        String idProductoSTR= String.valueOf(report.getIdProducto());
+                        String idVentaSTR= String.valueOf(report.getIdVenta());
+                        String precioSTR = String.valueOf(report.getPrecioProducto());
+                        String cantidadSTR = String.valueOf(report.getCantidad());
+                        String fechaSTR = String.valueOf(report.getFechaVenta());
+                        String idUsuarioSTR = String.valueOf(report.getIdUsuario());
+
+                        table.addCell(idDetalleVentaSTR);
+                        table.addCell(idProductoSTR);
+                        table.addCell(idVentaSTR);
+                        table.addCell(precioSTR);
+                        table.addCell(cantidadSTR);    
+                        table.addCell(fechaSTR);
+                        table.addCell(idUsuarioSTR);   
                     }
 
                 document.add(table);
@@ -192,8 +271,6 @@ protected void doGet(HttpServletRequest req, HttpServletResponse res) throws Ser
                 document.add(new Paragraph("Informe productos filtrados."));
                 document.add(new Paragraph(" "));
 
-                // Llamar el parametro del IdCategoria de producto
-                 ProductoDao prodsObjDao = new ProductoDao();
                 
                 // Crear variable que llame el campo IdCategoria
                  String IdCategorySTR= req.getParameter("idCategory");

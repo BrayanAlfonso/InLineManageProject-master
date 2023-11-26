@@ -90,6 +90,13 @@ public class Vent extends HttpServlet{
                 try {
                     DeveDao.registerDetailVent(DeveVo, idUsuario);
                     System.out.println("Registro insertado correctamente en controllerInLine");
+                    int unidadesDisponibles = productoObtenido.getUnidadesDisponibles()-Cantidad;
+                    System.out.println(unidadesDisponibles);
+                    if(unidadesDisponibles<=2){
+                        System.out.println("Entro al if de la condición de las existencias");
+                        req.setAttribute("mensajeInventario", "El producto esta llegando a su limite de dos existencias");
+                        System.out.println("El producto esta llegando a su limite de dos existencias");
+                    }
                     //Redireccionamiento
                     req.getRequestDispatcher("FormsVent/indexVent.jsp").forward(req, resp);
                 } catch (Exception e) {
@@ -97,7 +104,9 @@ public class Vent extends HttpServlet{
                 }
 
             }else{
-                req.setAttribute("mensaje2", "La cantidad es superior a la cantidad de unidades disponibles");
+                req.setAttribute("mensaje", "La cantidad es superior a la cantidad de unidades disponibles");
+                req.getRequestDispatcher("FormsVent/indexVent.jsp").forward(req, resp);
+                
             }
         } catch (SQLException e) {
             // Maneja la excepción aquí o relánzala si es necesario
