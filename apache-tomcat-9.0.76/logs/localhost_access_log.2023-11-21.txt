@@ -681,3 +681,5 @@
 0:0:0:0:0:0:0:1 - - [21/Nov/2023:11:27:07 -1200] "GET /inlinemanage/Product?enviar=product HTTP/1.1" 200 11417
 0:0:0:0:0:0:0:1 - - [21/Nov/2023:11:27:07 -1200] "GET /inlinemanage/assets/js/JsProd/searchProd.js HTTP/1.1" 200 1286
 0:0:0:0:0:0:0:1 - - [21/Nov/2023:11:27:10 -1200] "GET /inlinemanage/Reports?enviar=product_filter?IdCategory=1 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Nov/2023:11:28:54 -1200] "GET / HTTP/1.1" 200 11428
+127.0.0.1 - - [21/Nov/2023:11:28:54 -1200] "GET / HTTP/1.1" 200 11428
