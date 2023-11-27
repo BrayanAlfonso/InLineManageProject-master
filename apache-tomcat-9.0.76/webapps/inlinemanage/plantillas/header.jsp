@@ -7,10 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InLineManage</title>
-    <link rel="stylesheet" href="assets/css/index1.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/StylesBarCode.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/main1.css">
+    <link rel="stylesheet" href="assets/css/StylesBarCode1.css">
     <link rel="stylesheet" href="assets/css/indexModule1.css">
+    <link rel="stylesheet" href="assets/css/modalReports.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/8232721784.js" crossorigin="anonymous"></script>

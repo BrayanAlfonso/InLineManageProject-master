@@ -29,9 +29,9 @@
             <% if (users != null && !users.isEmpty()) { %>
             <table class="<%=(users.size() > 8) ? "" : "few-rows"%>">
                 <tr class="title-table">
-                    <th colspan="7" class="title-table">USUARIOS</th>
+                    <th colspan="7">USUARIOS</th>
                 </tr>
-                <tr>
+                <tr class="encabezados-tabla">
                     <th rowspan="2">Tipo Documento</th>
                     <th rowspan="2">Nombre</th>
                     <th rowspan="2">Apellido</th>

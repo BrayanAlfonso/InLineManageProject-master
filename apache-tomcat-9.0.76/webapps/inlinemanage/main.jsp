@@ -1,10 +1,20 @@
 
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-
-
+<%@ page import="java.util.List" %>
+<%@ page import="model.MovimientoVo" %>
+<%@ page import="model.MovimientoDao" %>
 <%@ include file="plantillas/header.jsp"%>
 
 <main>
+    <% List<MovimientoVo> movimientos = null;
+        MovimientoDao movimientoDao = new MovimientoDao();
+        try {
+            movimientos = new MovimientoDao().listar();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        %>
 
 <div class="buttons">
     <div class="row-buttons">
@@ -41,45 +51,33 @@
     </div>
 </div>
 <div class="container-table">
-    <table>
-        <tr class="title-table">
-            <th colspan="3">Ultimas acciones</th>
-        </tr>
-        <tr>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Accion realizada</th>
-        </tr>
-        <tr>
-            <td>Fecha</td>
-            <td>Hora</td>
-            <td>Accion realizada</td>
-        </tr>
 
-        <tr>
-            <td>Fecha</td>
-            <td>Hora</td>
-            <td>Accion realizada</td>
-        </tr>
+    <% if (movimientos != null && !movimientos.isEmpty()) { %>
+        <table class="<%=(movimientos.size() > 8) ? "" : "few-rows"%>">
+            <tr class="title-table">
+                <th colspan="3" class="title-table">Movimientos</th>
+            </tr>
+            <tr>
+                <th>Id Movimiento</th>
+                <th>Fecha y hora</th>
+                <th>Accion realizada</th>
+            </tr>
 
-        <tr>
-            <td>Fecha</td>
-            <td>Hora</td>
-            <td>Accion realizada</td>
-        </tr>
+            <%-- Recorrer la lista de usuarios y mostrar sus detalles --%>
+            <% for (MovimientoVo movimiento : movimientos) { %>
+            <tr>
+                <td><%= movimiento.getIdMovimiento() %></td>
+                <td><%= movimientoDao.formatDate(movimiento.getFecha_hora()) %></td>
+                <td><%= movimiento.getAccion() %></td>
+            </tr>
+            <% } %>
 
-        <tr>
-            <td>Fecha</td>
-            <td>Hora</td>
-            <td>Accion realizada</td>
-        </tr>
+        </table>
+        <% } else { %>
+            <p>No se encontraron movimientos.</p>
+        <% } %>
 
-        <tr>
-            <td>Fecha</td>
-            <td>Hora</td>
-            <td>Accion realizada</td>
-        </tr>
-    </table>
+        
 
 </div>
 </main>

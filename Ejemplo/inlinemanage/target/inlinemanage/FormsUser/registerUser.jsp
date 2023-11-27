@@ -10,7 +10,7 @@
         <div class="contentForm">
             <div class="divDocumentType">
                 <label for="documentType">Tipo de documento:</label><br>
-                <select name="documentType" id="documentType">
+                <select name="documentType" id="documentType" class="inputForm">
                     <option value="CC">CC</option>
                     <option value="TI">TI</option>
                 </select>
@@ -49,7 +49,7 @@
     
             <div class="divRol">
                 <label for="rol">Rol</label><br>
-                <select name="rol" id="rol">
+                <select name="rol" id="rol" class="inputForm">
                     <option value="1">Administrador</option>
                     <option value="2">Empleado</option>
                 </select>

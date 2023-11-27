@@ -84,6 +84,42 @@ public class ProductoDao {
         return producto;
     }
 
+    
+        //SECCION: Filtrar productos
+
+        public List<ProductoVo> listarPorCate(int idCategoria) throws SQLException {
+            sql = "SELECT * FROM producto WHERE idCategoria  = ?";
+            List<ProductoVo> productos = new ArrayList<>();
+
+            try (Connection con = Conexion.conectar();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+
+                ps.setInt(1, idCategoria);
+
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        ProductoVo producto = new ProductoVo();
+                        producto.setIdProducto(rs.getInt("idProducto"));
+                        producto.setUnidadesDisponibles(rs.getInt("unidadesDisponibles"));
+                        producto.setNombreProducto(rs.getString("nombreProducto"));
+                        producto.setPrecioVenta(rs.getFloat("precioVenta"));
+                        producto.setDescripcion(rs.getString("descripcion"));
+                        producto.setSerial(rs.getString("serial"));
+                        producto.setGarantiaEntradaMeses(rs.getInt("garantiaEntradaMeses"));
+                        producto.setGarantiaVentaMeses(rs.getInt("garantiaVentaMeses"));
+                        producto.setIdCategoria(rs.getInt("idCategoria"));
+
+                        productos.add(producto);
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Error al obtener los productos: " + e.getMessage());
+                }
+
+                return productos;
+            }
+        }
+
+
 
         //SECCION: Actualizar usuario.
         public int actualizar(ProductoVo producto) throws SQLException{

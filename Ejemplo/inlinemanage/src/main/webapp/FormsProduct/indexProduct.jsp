@@ -3,6 +3,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.ProductoVo"%>
 <%@ page import="model.ProductoDao"%>
+<%@ page import="model.CategoriaVo"%>
+<%@ page import="model.CategoriaDao"%>
 
 <main class="main">  
     <div class="content1">
@@ -11,14 +13,60 @@
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
             <button class="btnMenu" ><a href="Product?enviar=registerProduct">Agregar</a></button>
-            <button class="btnMenu" ><a href="category?enviar=categoria">Categoria</a></button>
-            <button class="btnMenu"><a href="existence?enviar=existence">Existencia</a></button>
-            <button class="btnMenu"><a href="/inlinemanage/Reports?enviar=product">Generar reporte</a></button>
-            <button class="btnMenu"><a href="/inlinemanage/Reports?enviar=product_filter?IdCategory=1">Generar reporte Filtrado</a></button>
+            <!-- Menú desplegable -->
+            <select class="selectMenu" id="selectMenu">
+                <option value="" disabled selected>Mas opciones</option>
+                <option value="category">Categoria</option>
+                <option value="existence">Existencia</option>
+            </select>
+            <button class="btnMenu" id="abrirModalReportes">Generar reporte Filtrado</button>
+            <!-- <button class="btnMenu"><a href="/inlinemanage/Reports?enviar=product_filter?IdCategory=1">Generar reporte Filtrado</a></button> -->
             <input type="text" placeholder="buscar" class="inputSearch" id="searchInput">
         </div>
         <div class="content2">
+            
+            <div class="modal" id="modalReportes">
+                <div class="modalBody">
+                    <div class="modalHeader">
+                        <h1>Reportes</h1>
+                        <span class="cerrarModal" id="cerrarModal">&times;</span>
+                    </div>
+                    <div class="modalContent">
+                        
+                        <form action="Reports" class="formReports">
+                            <div class="divReports">
+                                <div class="divContent">
+                                    <button class="btnReport"><a href="/inlinemanage/Reports?enviar=product">Reporte completo</a></button>
+                                </div>
+                                <% List<CategoriaVo> categorias = null;
+                                    try {
+                                        categorias = new CategoriaDao().listar();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                %>
+                                <div class="divContent2">
+                                    <h1>Reporte filtrado</h1>
+                                    <div class="categoria">
+                                        <label for="idCategory">Categoría:</label>
+                                        <select id="idCategory" name="idCategory" class="inputForm">
+                                            <option value="" disabled selected>-- Seleccione una categoría --</option>
+                                            <% for (CategoriaVo categoria : categorias) { %>
+                                                <option value="<%= categoria.getIdCategoria() %>"><%= categoria.getNombreCategoria() %></option>
+                                            <% } %>
+                                        </select>
+                                        <span class="fbForm">Hola Mundo</span>
+                                    </div>
 
+                                    <button name="enviar" value="product_filter">Generar reporte filtrado</button>
+                                </div>    
+
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
 
         
             <%List <ProductoVo> productos = null;
@@ -95,6 +143,8 @@
 <%@ include file="../plantillas/footer.jsp"%>
 <script>
     let mensajeJS="<%= mensaje1 %>"
+
+
 </script>
-<script src="assets/js/JsProd/searchProd.js"></script>
+<script src="assets/js/JsProd/searchProd1.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>

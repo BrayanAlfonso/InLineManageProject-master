@@ -3,6 +3,11 @@ DROP DATABASE IF EXISTS `inlinemanage`;
 CREATE DATABASE IF NOT EXISTS `inlinemanage`;
 USE `inlinemanage`;
 
+CREATE TABLE IF NOT EXISTS `movimientos` (
+	idMovimiento int auto_increment primary key,
+    fecha_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    accion varchar(255)
+);
 
 CREATE TABLE IF NOT EXISTS `categoria` (
   `idCategoria` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -149,7 +154,7 @@ begin
 end
 //
 
-insert into existencia values(6,10,13000,1,1)
+insert into existencia values(6,10,13000,1,1);
 
 delimiter //
 create trigger descontarUnidadesDisponibles
@@ -160,4 +165,78 @@ end
 //
 
 
+
+
+
+INSERT INTO Movimientos VALUES (NULL, CURRENT_TIMESTAMP, 'Prueba');
+
+delimiter //
+create trigger InsertMovimientoCate
+after insert on categoria for each row
+begin
+	insert into Movimientos values (null, CURRENT_TIMESTAMP, "Se ha insertado una nueva categoria.");
+end
+//
+
+
+delimiter //
+create trigger InsertMovimientoDeVe
+after insert on detalle_venta for each row
+begin
+	insert into Movimientos values (null, CURRENT_TIMESTAMP, "Se ha insertado un nuevo detalle de venta.");
+end
+//
+
+
+delimiter //
+create trigger InsertMovimientoEntrada
+after insert on entradaprod for each row
+begin
+	insert into Movimientos values (null, CURRENT_TIMESTAMP, "Se ha insertado una nueva entrada de producto.");
+end
+//
+
+delimiter //
+create trigger InsertMovimientoExistencia
+after insert on existencia for each row
+begin
+	insert into Movimientos values (null, CURRENT_TIMESTAMP, "Se ha insertado una nueva existencia.");
+end
+//
+
+
+delimiter //
+create trigger InsertMovimientoProducto
+after insert on producto for each row
+begin
+	insert into Movimientos values (null, CURRENT_TIMESTAMP, "Se ha insertado un nuevo producto.");
+end
+//
+
+
+delimiter //
+create trigger InsertMovimientoProveedor
+after insert on proveedor for each row
+begin
+	insert into Movimientos values (null, CURRENT_TIMESTAMP, "Se ha insertado un nuevo proveedor.");
+end
+//
+
+
+delimiter //
+create trigger InsertMovimientoUsu
+after insert on usuario for each row
+begin
+	insert into Movimientos values (null, CURRENT_TIMESTAMP, "Se ha insertado un nuevo usuario.");
+end
+//
+
+
+delimiter //
+create trigger InsertMovimientoVenta
+after insert on venta for each row
+begin
+	insert into Movimientos values (null, CURRENT_TIMESTAMP, "Se ha insertado una nueva venta.");
+end
+//
 

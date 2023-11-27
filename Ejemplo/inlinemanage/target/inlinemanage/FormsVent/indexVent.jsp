@@ -16,10 +16,39 @@
                 <a href="ControllerInline?enviar=main"><img src="assets/img/back.PNG" alt="backlog" class="backlog"></a>
             </div>
             <button class="btnMenu"><a href="Vent?enviar=registerVent">Agregar</a></button>
-            <button class="btnMenu"><a href="Reports?enviar=DeVent">Generar reporte</a></button>
+            <button class="btnMenu" id="abrirModalReportes">Generar reporte</button>
+
             <input type="text" placeholder="buscar" class="inputSearch">
         </div>
         <div class="content2">
+
+            <div class="modal" id="modalReportes">
+                <div class="modalBody">
+                    <div class="modalHeader">
+                        <h1>Reportes</h1>
+                        <span class="cerrarModal" id="cerrarModal">&times;</span>
+                    </div>
+                    <div class="modalContent">
+                        
+                        <form action="Reports" class="formReports">
+                            <div class="divReports">
+                                <div class="divContent">
+                                    <button class="btnReport"><a href="Reports?enviar=DeVent">Reporte completo</a></button>
+                                </div>
+
+                                <div class="divContent2">
+                                    <h1>Reporte filtrado</h1>
+
+                                    <input type="date" name="dateFilter" id="dateFilter">
+                                    <button name="enviar" value="DeVentFilter">Generar reporte filtrado</button>
+                                </div>    
+
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
             <% List<VentaVo> ventas = null;
                 try {
                     ventas = new VentaDao().listar();
@@ -82,9 +111,34 @@
                 <p>No se encontraron ventas.</p>
             <% } %>
     </div>
+            <!-- Declaración de la variable mensaje que se trae desde el controlador "Vent"-->
+            <% String mensajeInventario = (String) request.getAttribute("mensajeInventario"); %> 
+            <% if (mensajeInventario == null) {%>
+                <div></div>
+            <%}else{%>
+                <div class="mensajeInventario" id="mensajeInventario"></div>
+            <%}%>
+
+
+
+            <!-- Declaración de la variable mensaje que se trae desde el controlador "ControllerInline"-->
+            <% String mensaje = (String) request.getAttribute("mensaje"); %> 
+
+            <!-- Campo para mostrar el mensaje traido desde Java -->
+            <% if (mensaje == null) {%>
+                <div></div>
+            <%}else{%>
+                <div id="mensaje"></div>
+            <%}%>
 </div>
 
 </main>
     
     
 <%@ include file="../plantillas/footer.jsp"%>
+<script>
+    let mensajeJS="<%= mensaje %>"
+    let mensajeInventario="<%= mensajeInventario %>"
+</script>
+<script src="assets/js/JsVent/indexVent1.js"></script>
+<%@ include file="../plantillas/footer2.jsp"%>
