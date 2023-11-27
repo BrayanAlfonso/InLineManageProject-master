@@ -1,3 +1,7 @@
+
+document.getElementById("mensajeInventario").addEventListener("",()=>{
+    
+})
 let mensajeInvent = document.getElementById("mensajeInventario");
 if(mensajeInventario==" " || mensajeInventario==null){
 
