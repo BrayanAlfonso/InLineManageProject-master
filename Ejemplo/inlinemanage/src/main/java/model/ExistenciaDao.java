@@ -47,7 +47,7 @@ public class ExistenciaDao {
      //SECCION: Consultar existencia.
      public List<ExistenciaVo> listarExist() throws SQLException {
         List<ExistenciaVo> existencia = new ArrayList<>();
-        sql = "select * from existencia limit 5";
+        sql = "select * from existencia";
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);

@@ -1,4 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="javax.servlet.http.HttpServletRequest"%>
+<%@ page import="javax.servlet.RequestDispatcher"%>
+
+<%
+    HttpSession session1 = request.getSession();
+    if(session1.getAttribute("idUsuario")!=null){
+%>
+
+
 <%@ include file="../plantillas/header.jsp"%>
 <%@ page import="java.util.List" %>
 <%@ page import="model.CategoriaVo"%>
@@ -102,3 +113,10 @@
 <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
 <script src="assets/js/JsProd/registerProd1.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>
+
+<%
+}else{
+    request.setAttribute("mensaje", "Debes iniciar sesión.");
+    response.sendRedirect(request.getContextPath() + "/ControllerInline?enviar=index");
+}
+%>

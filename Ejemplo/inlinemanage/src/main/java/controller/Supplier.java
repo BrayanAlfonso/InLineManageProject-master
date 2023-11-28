@@ -109,6 +109,7 @@ private void registerSupplierController(HttpServletRequest req, HttpServletRespo
     try {
         ProvDao.registerSupplier(ProvVo);
         System.out.println("Registro insertado correctamente en controllerInLine");
+        req.setAttribute("mensaje1", "Proveedor Registrado");
         //Redireccionamiento
         req.getRequestDispatcher("FormsSupplier/indexSupplier.jsp").forward(req, resp);
     } catch (Exception e) {
@@ -134,6 +135,7 @@ private void updateSupplierController(HttpServletRequest req, HttpServletRespons
         try {
             ProvDao.updateSupplier(ProvVo);
             System.out.println("Proveedor actualizado correctamente");
+            req.setAttribute("mensaje1", "Proveedor Acutalizado");
 
             //NOTA: Redireccionamiento preventivo.       
             req.getRequestDispatcher("FormsSupplier/indexSupplier.jsp").forward(req, resp);
@@ -148,6 +150,7 @@ private void listProvDelete(HttpServletRequest req, HttpServletResponse resp) {
         try {
             List<ProveedorVo> proveedor = ProvDao.listarProv();
             req.setAttribute("Proveedor", proveedor);
+            req.setAttribute("mensaje1", "Proveedor Eliminado");
             req.getRequestDispatcher("FormsSupplier/indexSupplier.jsp").forward(req, resp);
             System.out.println("Datos listados correctamente despues del proveedor eliminado");
         } catch (Exception e) {

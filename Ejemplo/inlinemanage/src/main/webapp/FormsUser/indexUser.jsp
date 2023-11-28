@@ -1,5 +1,14 @@
 
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="javax.servlet.http.HttpServletRequest"%>
+<%@ page import="javax.servlet.RequestDispatcher"%>
+
+<%
+    HttpSession session1 = request.getSession();
+    if(session1.getAttribute("idUsuario")!=null){
+%>
+
 <%@ include file="../plantillas/header.jsp"%>
 <%-- Importar la clase UsuarioVo y UsuarioDao --%>
 <%@ page import="java.util.List" %>
@@ -24,10 +33,10 @@
                 e.printStackTrace();
             }
             %>
-
+        <div class="tabla-scroll">    
             <%-- Verificar si hay usuarios y mostrarlos --%>
             <% if (users != null && !users.isEmpty()) { %>
-            <table class="<%=(users.size() > 8) ? "" : "few-rows"%>">
+            <table>
                 <tr class="title-table">
                     <th colspan="7">USUARIOS</th>
                 </tr>
@@ -65,14 +74,45 @@
             <% } else { %>
                 <p>No se encontraron usuarios.</p>
             <% } %>
+        </div>
     </div>
 
 
 </div>
-
+<% String mensaje1 = (String) request.getAttribute("mensaje1"); %> 
+    
+                        <!-- Campo para mostrar el mensaje traido desde Java -->
+                        <% if (mensaje1 == null) {%>
+                            <div></div>
+                        <%}else{%>
+                            <div id="mensaje1"></div>
+                        <%}%>
 </main>
     
     
 <%@ include file="../plantillas/footer.jsp"%>
-<script src="assets/js/searchUser.js"></script>
+<script>
+    const mensajeJS="<%= mensaje1 %>"
+
+    let mensajeU = document.getElementById("mensaje1");
+    if(mensajeJS==" " || mensajeJS==null){
+
+        console.log(mensajeJS+"es nulo")
+    }else{
+        mensajeU.textContent=mensajeJS
+        mensajeU.style.opacity = "1"
+        
+        setTimeout(function() {
+        mensajeU.style.opacity = "0";
+        }, 3000);
+    }
+</script>
+<script src="assets/js/searchUser1.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>
+
+<%
+}else{
+    request.setAttribute("mensaje3", "Debes iniciar sesión.");
+    response.sendRedirect(request.getContextPath() + "/ControllerInline?enviar=index");
+}
+%>

@@ -1,6 +1,16 @@
 
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="javax.servlet.http.HttpServletRequest"%>
+<%@ page import="javax.servlet.RequestDispatcher"%>
 <%@ page import="java.util.List" %>
+
+
+<%
+    HttpSession session1 = request.getSession();
+    if(session1.getAttribute("idUsuario")!=null){
+%>
+
 <%@ page import="model.MovimientoVo" %>
 <%@ page import="model.MovimientoDao" %>
 <%@ include file="plantillas/header.jsp"%>
@@ -51,38 +61,46 @@
     </div>
 </div>
 <div class="container-table">
+    <div class="tabla-scroll">        
+        <% if (movimientos != null && !movimientos.isEmpty()) { %>
+            <table class="<%=(movimientos.size() > 8) ? "" : "few-rows"%>">
+                <tr class="title-table">
+                    <th colspan="3" class="title-table">Movimientos</th>
+                </tr>
+                <tr>
+                    <th>Id Movimiento</th>
+                    <th>Fecha y hora</th>
+                    <th>Accion realizada</th>
+                </tr>
 
-    <% if (movimientos != null && !movimientos.isEmpty()) { %>
-        <table class="<%=(movimientos.size() > 8) ? "" : "few-rows"%>">
-            <tr class="title-table">
-                <th colspan="3" class="title-table">Movimientos</th>
-            </tr>
-            <tr>
-                <th>Id Movimiento</th>
-                <th>Fecha y hora</th>
-                <th>Accion realizada</th>
-            </tr>
+                <%-- Recorrer la lista de usuarios y mostrar sus detalles --%>
+                <% for (MovimientoVo movimiento : movimientos) { %>
+                <tr>
+                    <td><%= movimiento.getIdMovimiento() %></td>
+                    <td><%= movimientoDao.formatDate(movimiento.getFecha_hora()) %></td>
+                    <td><%= movimiento.getAccion() %></td>
+                </tr>
+                <% } %>
 
-            <%-- Recorrer la lista de usuarios y mostrar sus detalles --%>
-            <% for (MovimientoVo movimiento : movimientos) { %>
-            <tr>
-                <td><%= movimiento.getIdMovimiento() %></td>
-                <td><%= movimientoDao.formatDate(movimiento.getFecha_hora()) %></td>
-                <td><%= movimiento.getAccion() %></td>
-            </tr>
+            </table>
+            <% } else { %>
+                <p>No se encontraron movimientos.</p>
             <% } %>
 
-        </table>
-        <% } else { %>
-            <p>No se encontraron movimientos.</p>
-        <% } %>
-
-        
+    </div>        
 
 </div>
 </main>
-    
-    
+
 <%@ include file="../plantillas/footer.jsp"%>
 <!-- Si necesitan un archivo js especifico ira aqui -->
 <%@ include file="../plantillas/footer2.jsp"%>
+
+<%
+}else{
+    response.sendRedirect(request.getContextPath() + "/ControllerInline?enviar=index");
+}
+%>
+    
+
+

@@ -15,6 +15,11 @@
     width: 60%;
 }
 
+.tabla-scroll {
+    max-height: 550px; 
+    overflow-y: auto; /* Habilita el desplazamiento vertical */
+}  
+
 table {
     margin-top: 30px;
     width: 100vh;

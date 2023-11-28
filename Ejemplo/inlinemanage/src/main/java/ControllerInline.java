@@ -22,11 +22,20 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
     switch (enviar) {
 
         case "index":
+
+            req.setAttribute("mensaje", "Inicia sesión");
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         break;
 
         case "main":
             req.getRequestDispatcher("main.jsp").forward(req, resp);
+        break;
+
+        case "closeSession":
+            System.out.println("Entro al caso closeSession");
+            HttpSession session = req.getSession();
+            session.removeAttribute("idUsuario");
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
         break;
 
     }
@@ -42,6 +51,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
         System.out.println("Se entro en el caso index para validar login");
         loginUserController(req, resp);
         break;
+
 
 }
 
@@ -59,8 +69,8 @@ private void loginUserController(HttpServletRequest req, HttpServletResponse res
 
                 // Obtener el idUsuario y guardarlo en la sesión
                 int idUsuario = UsuDao.obtenerIdUsuarioPorNombre(userName);
-                HttpSession session = req.getSession();
-                session.setAttribute("idUsuario", idUsuario);
+                HttpSession session2 = req.getSession();
+                session2.setAttribute("idUsuario", idUsuario);
 
                 req.getRequestDispatcher("main.jsp").forward(req, resp);
             } else {

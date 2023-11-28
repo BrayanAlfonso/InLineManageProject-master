@@ -49,17 +49,17 @@ document.getElementById("cerrarModal").addEventListener("click", ()=>{
 //evento de mensaje
 ProdInput.addEventListener("input", filterProd);
 
-let mensajeC = document.getElementById("mensaje1");
+
+let mensajeP = document.getElementById("mensaje1");
 if(mensajeJS==" " || mensajeJS==null){
 
     console.log(mensajeJS+"es nulo")
 }else{
-    mensajeC.textContent=mensajeJS
-    mensajeC.style.opacity = "1"
+    mensajeP.textContent=mensajeJS
+    mensajeP.style.opacity = "1"
     
     setTimeout(function() {
-      mensajeC.style.opacity = "0";
+      mensajeP.style.opacity = "0";
     }, 3000);
 }
-
 

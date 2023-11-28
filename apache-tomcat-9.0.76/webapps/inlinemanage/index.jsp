@@ -1,7 +1,30 @@
 
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="plantillas/header.jsp"%>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InLineManage</title>
+    <link rel="stylesheet" href="assets/css/index1.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/StylesBarCode1.css">
+    <link rel="stylesheet" href="assets/css/indexModule1.css">
+    <link rel="stylesheet" href="assets/css/modalReports1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="./LogoInterline.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://kit.fontawesome.com/8232721784.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Concert+One&family=Oxygen&family=Playfair:ital,wght@0,300;1,500&family=Wix+Madefor+Display:wght@800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+    <header>
+        <img src="assets/img/LogoInterline.PNG" alt="LogoInterline" class="logo">
+        <h1 class="nameInterline">INTERLINE COMUNICACIONES</h1>
+    </header>
 
 <main>
     <div class="welcome">
@@ -49,8 +72,21 @@
 
 <script>
     let mensajeJS="<%= mensaje %>"
+    let mensajeLogin = document.getElementById("mensaje");
+    if(mensajeJS==" " || mensajeJS==null ){
+
+        console.log(mensajeJS+"es nulo")
+    }else{
+        console.log(mensajeLogin)
+        if(mensajeLogin!=null){
+            mensajeLogin.style.visibility="visible"
+            mensajeLogin.style.opacity="1"
+            mensajeLogin.style.transition="visibility 0s, opacity 0.5s"
+            mensajeLogin.textContent=mensajeJS
+        }
+    }
 </script>
-<script src="assets/js/index1.js"></script>
+<script src="assets/js/index.js"></script>
 
 
 <%@ include file="../plantillas/footer2.jsp"%>

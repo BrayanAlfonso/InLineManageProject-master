@@ -59,8 +59,15 @@
 
 .selectMenu{
     width: 250px;
+    height: 50px;
     background-color: #54AC9C;
     padding: 6px;
-    border-radius: 10px;
+    border-radius: 20px;
     margin-top: 20px;
+    font-size: 15px;
+}
+
+.selectMenu > .opciones{
+    background-color: #cccccc;
+    text-align: left;
 }

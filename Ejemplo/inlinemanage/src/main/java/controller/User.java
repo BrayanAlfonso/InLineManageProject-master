@@ -128,7 +128,7 @@ private void registerUserController(HttpServletRequest req, HttpServletResponse 
     try {
         UsuDao.registerUserDao(UsuVo);
         System.out.println("Registro insertado correctamente en controllerInLine");
-
+        req.setAttribute("mensaje1", "Usuario Registrado");
         //Redireccionamiento
         req.getRequestDispatcher("FormsUser/indexUser.jsp").forward(req, resp);
     } catch (Exception e) {
@@ -174,7 +174,7 @@ private void registerUserController(HttpServletRequest req, HttpServletResponse 
         try {
             UsuDao.updateUserDao(UsuVo);
             System.out.println("Usuario actualizado correctamente");
-
+            req.setAttribute("mensaje1", "Usuario Actualizado");
             //NOTA: Redireccionamiento preventivo.       
             req.getRequestDispatcher("FormsUser/indexUser.jsp").forward(req, resp);
 
@@ -189,6 +189,7 @@ private void registerUserController(HttpServletRequest req, HttpServletResponse 
         try {
             List<UsuarioVo> usuario = UsuDao.listar();
             req.setAttribute("usuarios", usuario);
+            req.setAttribute("mensaje1", "Usuario Eliminado");
             req.getRequestDispatcher("FormsUser/indexUser.jsp").forward(req, resp);
             System.out.println("Datos listados correctamente despues del usuario eliminado");
         } catch (Exception e) {

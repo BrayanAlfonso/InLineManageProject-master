@@ -1,5 +1,16 @@
 
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="javax.servlet.http.HttpServletRequest"%>
+<%@ page import="javax.servlet.RequestDispatcher"%>
+
+<%
+    HttpSession session1 = request.getSession();
+    if(session1.getAttribute("idUsuario")!=null){
+%>
+
+
 <%@ include file="../plantillas/header.jsp"%>
 <%@ page import="java.util.List" %>
 <%@ page import="model.UsuarioVo" %>
@@ -73,11 +84,11 @@
                     e.printStackTrace();
                 }
                 %>
-                
+        <div class="tabla-scroll">                    
             <%-- Verificar si hay usuarios y mostrarlos --%>
             <% if (usuarios != null && !usuarios.isEmpty()) { %>
             <% if (ventas != null && !ventas.isEmpty()) { %>
-            <table class="<%=(ventas.size() > 8) ? "" : "few-rows"%>">
+            <table>
                 <tr class="title-table">
                     <th colspan="4">VENTAS</th>
                 </tr>
@@ -110,6 +121,7 @@
             <% } else { %>
                 <p>No se encontraron ventas.</p>
             <% } %>
+        </div>
     </div>
             <!-- Declaración de la variable mensaje que se trae desde el controlador "Vent"-->
             <% String mensajeInventario = (String) request.getAttribute("mensajeInventario"); %> 
@@ -122,13 +134,13 @@
 
 
             <!-- Declaración de la variable mensaje que se trae desde el controlador "ControllerInline"-->
-            <% String mensaje = (String) request.getAttribute("mensaje"); %> 
+            <% String mensaje1 = (String) request.getAttribute("mensaje1"); %> 
 
             <!-- Campo para mostrar el mensaje traido desde Java -->
-            <% if (mensaje == null) {%>
+            <% if (mensaje1 == null) {%>
                 <div></div>
             <%}else{%>
-                <div id="mensaje"></div>
+                <div id="mensaje1"></div>
             <%}%>
 </div>
 
@@ -137,8 +149,52 @@
     
 <%@ include file="../plantillas/footer.jsp"%>
 <script>
-    let mensajeJS="<%= mensaje %>"
+    let mensajeJS="<%= mensaje1 %>"
     let mensajeInventario="<%= mensajeInventario %>"
+
+
+let mensajeInvent = document.getElementById("mensajeInventario");
+if(mensajeInventario==" " || mensajeInventario==null || mensajeInventario=="null"){
+
+    console.log(mensajeInventario+"es nulo")
+}else{
+    if(mensajeInvent!=null){
+        mensajeInvent.style.opacity="1"
+        mensajeInvent.textContent=mensajeInventario
+
+        setTimeout(()=>{
+            mensajeInvent.style.opacity="0"
+            mensajeInvent.textContent=""
+        }, 5000)
+    }
+}
+
+let mensajeVenta = document.getElementById("mensaje1");
+if(mensajeJS==" " || mensajeJS==null){
+
+    console.log(mensajeJS+"es nulo")
+}else{
+    if(mensajeVenta!=null){
+        mensajeVenta.style.visibility="visible"
+        mensajeVenta.style.opacity="1"
+        mensajeVenta.textContent=mensajeJS
+
+        setTimeout(()=>{
+            
+            mensajeVenta.style.visibility="hidden"
+            mensajeVenta.style.opacity="0"
+            mensajeVenta.textContent=""
+        },3000)
+    }
+
+}
 </script>
-<script src="assets/js/JsVent/indexVent1.js"></script>
+<script src="assets/js/JsVent/indexVent.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>
+
+<%
+}else{
+    request.setAttribute("mensaje3", "Debes iniciar sesión.");
+    response.sendRedirect(request.getContextPath() + "/ControllerInline?enviar=index");
+}
+%>

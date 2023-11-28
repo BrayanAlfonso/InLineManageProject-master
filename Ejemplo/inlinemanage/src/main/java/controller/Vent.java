@@ -74,6 +74,7 @@ public class Vent extends HttpServlet{
             int Cantidad = Integer.parseInt(CantidadSTR);
             ProductoVo productoObtenido = ProductDao.obtenerProductPorId(idProducto);
             if (productoObtenido != null && producto.getUnidadesDisponibles() >= Cantidad) {
+                System.out.println("Entro al if de la condicion de cantidad");
 
                 if(req.getParameter("idProducto")!=null){
                     DeveVo.setIdProducto(Integer.parseInt(req.getParameter("idProducto")));
@@ -90,6 +91,7 @@ public class Vent extends HttpServlet{
                 try {
                     DeveDao.registerDetailVent(DeveVo, idUsuario);
                     System.out.println("Registro insertado correctamente en controllerInLine");
+                    req.setAttribute("mensaje1", "Venta Registrada");
                     int unidadesDisponibles = productoObtenido.getUnidadesDisponibles()-Cantidad;
                     System.out.println(unidadesDisponibles);
                     if(unidadesDisponibles<=2){
@@ -105,6 +107,7 @@ public class Vent extends HttpServlet{
 
             }else{
                 req.setAttribute("mensaje", "La cantidad es superior a la cantidad de unidades disponibles");
+                req.setAttribute("mensajeInventario", "El producto no cuenta con unidades disponibles");
                 req.getRequestDispatcher("FormsVent/indexVent.jsp").forward(req, resp);
                 
             }

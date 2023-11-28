@@ -1,3 +1,5 @@
+
+
 // Acceder al elemento de entrada de búsqueda
 const searchInput = document.getElementById("searchInput");
 
@@ -26,6 +28,10 @@ function filterUsers() {
 
 // Escuchar el evento de entrada de texto en el campo de búsqueda
 searchInput.addEventListener("input", filterUsers);
+
+
+
+
 
 
 

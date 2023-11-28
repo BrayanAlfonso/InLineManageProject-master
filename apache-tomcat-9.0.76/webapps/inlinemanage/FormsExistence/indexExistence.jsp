@@ -1,4 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="javax.servlet.http.HttpServletRequest"%>
+<%@ page import="javax.servlet.RequestDispatcher"%>
+
+<%
+    HttpSession session1 = request.getSession();
+    if(session1.getAttribute("idUsuario")!=null){
+%>
+
 <%@ include file="../plantillas/header.jsp"%>
 <%@ page import="java.util.List" %>
 <%@ page import="model.ExistenciaVo"%>
@@ -15,7 +25,7 @@
         </div>
         <div class="content2">
 
-            <h1>Listado de existencias</h1>
+
         
             <%List <ExistenciaVo> existencias = null;
             try {
@@ -24,10 +34,10 @@
                 e.printStackTrace();
             }
             %>
-        
+        <div class="tabla-scroll">
             <%-- Verificar si hay existencias y mostrarlos --%>
             <%if (existencias != null && !existencias.isEmpty()) {%>
-                <table class="<%=(existencias.size() > 7) ? "" : "few-rows"%>">
+                <table>
                     <tr class="title-table">
                         <th colspan="7">EXISTENCIAS</th>
                     </tr>
@@ -61,9 +71,8 @@
             <%} else{%>
                 <p>No se encontraron Existencias.</p>
             <%}%>
+        </div>       
     </div>
-
-
 </div>
 <!-- Declaración de la variable mensaje que se trae desde el controlador "ControllerInline"-->
                         <% String mensaje1 = (String) request.getAttribute("mensaje1"); %> 
@@ -83,3 +92,10 @@
 </script>
 <script src="assets/js/JsExist/indexEx.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>
+
+<%
+}else{
+    request.setAttribute("mensaje", "Debes iniciar sesión.");
+    response.sendRedirect(request.getContextPath() + "/ControllerInline?enviar=index");
+}
+%>

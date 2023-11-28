@@ -1,4 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="javax.servlet.http.HttpServletRequest"%>
+<%@ page import="javax.servlet.RequestDispatcher"%>
+
+<%
+    HttpSession session1 = request.getSession();
+    if(session1.getAttribute("idUsuario")!=null){
+%>
+
 <%@ include file="../plantillas/header.jsp"%>
 <main class="main" id="mainForm">
     <div>
@@ -22,6 +32,12 @@
     </form>
 </main> 
 <%@ include file="../plantillas/footer.jsp"%>
+    <script src="assets/js/JsCate/registerCate.js"></script>
+<%@ include file="../plantillas/footer2.jsp"%>
 
-
-<script src="assets/js/JsCate/registerCate.js"></script>
+<%
+}else{
+    request.setAttribute("mensaje", "Debes iniciar sesión.");
+    response.sendRedirect(request.getContextPath() + "/ControllerInline?enviar=index");
+}
+%>
