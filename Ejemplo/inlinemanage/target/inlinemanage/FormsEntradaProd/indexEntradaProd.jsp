@@ -102,9 +102,24 @@
     
 <%@ include file="../plantillas/footer.jsp"%>
 <script>
-    let mensajeJS="<%= mensaje1 %>"
+    const mensajeJS="<%= mensaje1 %>"
+
+    let mensajeE = document.getElementById("mensaje1");
+    if(mensajeJS==" " || mensajeJS==null){
+
+        console.log(mensajeJS+"es nulo")
+    }else{
+        if(mensajeE!=null){
+            mensajeE.textContent=mensajeJS
+            mensajeE.style.opacity = "1"
+        
+            setTimeout(function() {
+            mensajeE.style.opacity = "0";
+            }, 3000);
+        }
+    }
 </script>
-<script src="assets/js/JsEntrada/indexE.js"></script>
+<script src="assets/js/JsEntrada/indexE1.js"></script>
 
 <%
 }else{

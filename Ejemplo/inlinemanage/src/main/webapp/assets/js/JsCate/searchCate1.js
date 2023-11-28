@@ -27,16 +27,3 @@ function filterCate() {
 // Escuchar el evento de entrada de texto en el campo de búsqueda
 CateInput.addEventListener("input", filterCate);
 
-//metodo para mensaje
-let mensajeC = document.getElementById("mensaje1");
-if(mensajeJS==" " || mensajeJS==null){
-
-    console.log(mensajeJS+"es nulo")
-}else{
-    mensajeC.textContent=mensajeJS
-    mensajeC.style.opacity = "1"
-    
-    setTimeout(function() {
-      mensajeC.style.opacity = "0";
-    }, 3000);
-}

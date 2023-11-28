@@ -61,19 +61,28 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 private void loginUserController(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String userName = req.getParameter("inputUserName");
     String password = req.getParameter("inputPassword");
+    Integer rol = Integer.parseInt(req.getParameter("inputRol"));
 
-    if (userName != null && !userName.isEmpty() && password != null && !password.isEmpty()) {
+    if (userName != null && !userName.isEmpty() && password != null && !password.isEmpty() && rol != null) {
         try {
-            if (UsuDao.validarLogin(userName, password)) {
+            if (UsuDao.validarLogin(userName, password, rol) && rol==1) {
                 System.out.println("La validación ha sido exitosa!");
 
                 // Obtener el idUsuario y guardarlo en la sesión
-                int idUsuario = UsuDao.obtenerIdUsuarioPorNombre(userName);
+                int idUsuario = UsuDao.obtenerIdUsuarioPorDatos(userName, password, rol);
                 HttpSession session2 = req.getSession();
                 session2.setAttribute("idUsuario", idUsuario);
 
                 req.getRequestDispatcher("main.jsp").forward(req, resp);
-            } else {
+
+            } else if(UsuDao.validarLogin(userName, password, rol) && rol==2){
+                // Obtener el idUsuario y guardarlo en la sesión
+                int idUsuario = UsuDao.obtenerIdUsuarioPorDatos(userName, password, rol);
+                HttpSession session2 = req.getSession();
+                session2.setAttribute("idUsuario", idUsuario);
+
+                req.getRequestDispatcher("FormsVentEmployee/indexVentEp.jsp").forward(req, resp);
+            }else {
                 System.out.println("Usuario y/o contraseña no encontrados");
                 req.setAttribute("mensaje", "Usuario y/o contraseña no encontrados:(");
                 req.getRequestDispatcher("index.jsp").forward(req, resp);

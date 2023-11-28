@@ -2,8 +2,11 @@
 
 import java.io.IOException;
 import java.sql.Date;
+
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,12 +15,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
-
+import com.lowagie.text.pdf.PdfPageEventHelper;
 import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.Font;
+import com.lowagie.text.Paragraph;
+
 
 
 import model.DetalleVentDao;
@@ -55,23 +63,60 @@ protected void doGet(HttpServletRequest req, HttpServletResponse res) throws Ser
 
                 // Crea un nuevo documento PDF
                 Document document = new Document();
-                PdfWriter.getInstance(document, res.getOutputStream());
+                PdfWriter writer = PdfWriter.getInstance(document, res.getOutputStream());
 
+                // Agregar un pie de página con la fecha
+                writer.setPageEvent(new PdfPageEventHelper() {
+                    public void onEndPage(PdfWriter writer, Document document) {
+                        try {
+                            PdfPTable footer = new PdfPTable(1);
+                            footer.setWidthPercentage(100);
+                            PdfPCell cell = new PdfPCell(new Phrase("Fecha de generación: " + LocalDateTime.now()));
+                            cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+                            cell.setBorder(0);
+                            footer.addCell(cell);
+                            document.add(footer);
+                        } catch (DocumentException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                
                 document.open();
+
+                Paragraph imageAndTitle = new Paragraph();
+                // Agregar imagen y título de la empresa
+                Image image = Image.getInstance(getServletContext().getRealPath("/assets/img/LogoInterline.PNG"));
+
+                // Reemplaza "ruta_de_la_imagen.jpg" con la ruta de tu imagen
+                image.scaleAbsolute(100, 100); // Ajusta el tamaño de la imagen según tus necesidades
+                image.setAlignment(PdfPCell.ALIGN_LEFT);
+                
+
+                Paragraph title = new Paragraph("Nombre de la Empresa", new Font(Font.TIMES_ROMAN, 18, Font.BOLD));
+
+                title.setAlignment(PdfPCell.ALIGN_LEFT);
+
+                imageAndTitle.add(image);
+                imageAndTitle.add(title);
+                document.add(imageAndTitle);
+
+                // Espacio entre la imagen y la tabla
+                document.add(new Paragraph(" "));
+
                 document.add(new Paragraph("Infome detalles de venta."));
                 document.add(new Paragraph(" "));
 
                 List<ReporteVentaVo> reporte = null;
-                    try {
-                        reporte = new ReporteVentaDao().listarPorInner();
-                    } catch (Exception e) {
+                try {
+                    reporte = new ReporteVentaDao().listarPorInner();
+                } catch (Exception e) {
                     e.printStackTrace();
-                    }
-                
+                }
+
                 if (reporte != null && !reporte.isEmpty()) {
                     PdfPTable table = new PdfPTable(7);
                     table.getDefaultCell().setPadding(8);
-                    
 
                     table.addCell(new Phrase("Id detalle de venta"));
                     table.addCell(new Phrase("Id producto"));
@@ -80,9 +125,8 @@ protected void doGet(HttpServletRequest req, HttpServletResponse res) throws Ser
                     table.addCell(new Phrase("Cantidad"));
                     table.addCell(new Phrase("Fecha"));
                     table.addCell(new Phrase("idUsuario"));
-                
 
-                    for(ReporteVentaVo report: reporte){
+                    for (ReporteVentaVo report : reporte) {
                         String idDetalleVentaSTR= String.valueOf(report.getIdDetalleVenta());
                         String idProductoSTR= String.valueOf(report.getIdProducto());
                         String idVentaSTR= String.valueOf(report.getIdVenta());
@@ -100,16 +144,18 @@ protected void doGet(HttpServletRequest req, HttpServletResponse res) throws Ser
                         table.addCell(idUsuarioSTR);   
                     }
 
-                document.add(table);
-                }else{
+                    document.add(table);
+                } else {
                     PdfPTable tableError = new PdfPTable(1);
                     tableError.addCell(new Phrase("No se encontraron detalles de venta"));
                     document.add(tableError);
                 }
+
                 document.close();
-            } catch (DocumentException e) {
+            } catch (DocumentException | IOException e) {
                 e.printStackTrace();
             }
+
             
         break;
 

@@ -99,15 +99,17 @@
 
         console.log(mensajeJS+"es nulo")
     }else{
-        mensajeU.textContent=mensajeJS
-        mensajeU.style.opacity = "1"
+        if(mensajeU!=null){
+            mensajeU.textContent=mensajeJS
+            mensajeU.style.opacity = "1"
         
-        setTimeout(function() {
-        mensajeU.style.opacity = "0";
-        }, 3000);
+            setTimeout(function() {
+            mensajeU.style.opacity = "0";
+            }, 3000);
+        }
     }
 </script>
-<script src="assets/js/searchUser1.js"></script>
+<script src="assets/js/JsUser/searchUser1.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>
 
 <%

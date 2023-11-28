@@ -21,8 +21,9 @@ public class UsuarioDao {
 
 
     //?validacion de login
-    public boolean validarLogin(String userName, String password) throws SQLException{
-        sql="select 1 from usuario where nombre=? and contraseña=?";
+    public boolean validarLogin(String userName, String password, int rol) throws SQLException{
+        System.out.println(rol);
+        sql="select * from usuario where nombre=? and contraseña=? and idRol=?";
         System.out.println(sql);
 
         try {
@@ -31,6 +32,7 @@ public class UsuarioDao {
 
             ps.setString(1, userName);
             ps.setString(2, password);
+            ps.setInt(3, rol);
 
             try(ResultSet rs=ps.executeQuery()){
                 System.out.println(rs);
@@ -46,14 +48,16 @@ public class UsuarioDao {
         
     }
 
-    public int obtenerIdUsuarioPorNombre(String userName) throws SQLException {
+    public int obtenerIdUsuarioPorDatos(String userName, String password, int rol) throws SQLException {
         int idUsuario = -1;  // Valor predeterminado en caso de error
     
-        sql = "SELECT idUsuario FROM usuario WHERE nombre=?";
+        sql = "SELECT idUsuario FROM usuario WHERE nombre=? and contraseña=? and idRol=?";
         try {
             con = Conexion.conectar();
             ps = con.prepareStatement(sql);
             ps.setString(1, userName);
+            ps.setString(2, password);
+            ps.setInt(3, rol);
     
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {

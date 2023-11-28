@@ -19,6 +19,8 @@
 <%@ page import="model.VentaDao" %>
 <%@ page import="model.DetalleVentVo" %>
 <%@ page import="model.DetalleVentDao" %>
+<%-- Para imprimir mensajes en el navegador --%>
+<%-- <h1> <% out.print (session1.getAttribute("idUsuario")); %></h1> --%>
 
 <main class="main">
     <div class="content1">

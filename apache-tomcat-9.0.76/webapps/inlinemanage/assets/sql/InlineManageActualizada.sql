@@ -240,3 +240,8 @@ begin
 end
 //
 
+
+delimiter //
+create view reporteVenta as
+select d.*, v.fechaVenta, v.idUsuario from detalle_venta d inner join venta v on v.idVenta=d.idVenta;
+//

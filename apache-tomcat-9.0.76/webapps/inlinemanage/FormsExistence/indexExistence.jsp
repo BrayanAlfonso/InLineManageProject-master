@@ -88,9 +88,24 @@
     
 <%@ include file="../plantillas/footer.jsp"%>
 <script>
-    let mensajeJS="<%= mensaje1 %>"
+        const mensajeJS="<%= mensaje1 %>"
+
+    let mensajeEx = document.getElementById("mensaje1");
+    if(mensajeJS==" " || mensajeJS==null){
+
+        console.log(mensajeJS+"es nulo")
+    }else{
+        if(mensajeEx!=null){
+            mensajeEx.textContent=mensajeJS
+            mensajeEx.style.opacity = "1"
+        
+            setTimeout(function() {
+            mensajeEx.style.opacity = "0";
+            }, 3000);
+        }
+    }
 </script>
-<script src="assets/js/JsExist/indexEx.js"></script>
+<script src="assets/js/JsExist/indexEx1.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>
 
 <%

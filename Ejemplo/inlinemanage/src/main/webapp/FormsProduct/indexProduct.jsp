@@ -157,9 +157,25 @@
 
 <%@ include file="../plantillas/footer.jsp"%>
 <script>
-let mensajeJS="<%= mensaje1 %>"
+    const mensajeJS="<%= mensaje1 %>"
+
+    let mensajeP = document.getElementById("mensaje1");
+    if(mensajeJS==" " || mensajeJS==null){
+
+        console.log(mensajeJS+"es nulo")
+    }else{
+        if(mensajeP!=null){
+            mensajeP.textContent=mensajeJS
+            mensajeP.style.opacity = "1"
+        
+            setTimeout(function() {
+            mensajeP.style.opacity = "0";
+            }, 3000);
+        }
+    }
+
 </script>
-<script src="assets/js/JsProd/searchProd1.js"></script>
+<script src="assets/js/JsProd/searchProd.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>
 
 

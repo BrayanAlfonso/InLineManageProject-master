@@ -37,7 +37,7 @@
                 <h1 class="nameLogin">INICIO DE SESIÓN</h1>
                 <form action="ControllerInline" method="post" id="formLogin" novalidate>
                     <div class="inputs" id="divName">
-                        <label for="inputUserName"><b>Nombre de usuario:</b></label><br><br>
+                        <label for="inputUserName"><b>Ingreso tu correo electronico:</b></label><br><br>
                         <input type="text" id="inputUserName" name="inputUserName" class="inputForm">
                         <span class="fbForm"></span> 
                     </div>
@@ -45,6 +45,15 @@
                     <div class="inputs" id="divPassword">
                         <label for="inputPassword"><b>Contraseña:</b></label><br><br>
                         <input type="password" id="inputPassword" name="inputPassword" class="inputForm">
+                        <span class="fbForm"></span> 
+                    </div>
+
+                    <div class="inputs" id="divRol">
+                        <label for="inputRol"><b>Rol:</b></label><br><br>
+                        <select id="inputRol" name="inputRol" class="inputForm">
+                            <option value="1">Administrador</option>
+                            <option value="2">Empleado</option>
+                        </select>
                         <span class="fbForm"></span> 
                     </div>
                     

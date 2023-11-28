@@ -50,16 +50,4 @@ document.getElementById("cerrarModal").addEventListener("click", ()=>{
 ProdInput.addEventListener("input", filterProd);
 
 
-let mensajeP = document.getElementById("mensaje1");
-if(mensajeJS==" " || mensajeJS==null){
-
-    console.log(mensajeJS+"es nulo")
-}else{
-    mensajeP.textContent=mensajeJS
-    mensajeP.style.opacity = "1"
-    
-    setTimeout(function() {
-      mensajeP.style.opacity = "0";
-    }, 3000);
-}
 

@@ -52,10 +52,22 @@
                 <input type="email" id="email" name="email" class="inputForm">
                 <span class="fbForm">Hola Mundo</span>
             </div>
+
+            <div class="divCEmail">
+                <label for="cEmail">Confirma tu correo electronico:</label>
+                <input type="email" id="cEmail" name="cEmail" class="inputForm">
+                <span class="fbForm">Hola Mundo</span>
+            </div>
     
             <div class="divPassword">
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="password" class="inputForm">
+                <span class="fbForm">Hola Mundo</span>
+            </div>
+
+            <div class="divCPassword">
+                <label for="cPassword">Confirma tu contraseña:</label>
+                <input type="password" id="cPassword" name="cPassword" class="inputForm">
                 <span class="fbForm">Hola Mundo</span>
             </div>
     
@@ -74,7 +86,7 @@
     </form>
 </main> 
 <%@ include file="../plantillas/footer.jsp"%>
-<script src="assets/js/registerUser.js"></script>
+<script src="assets/js/JsUser/registerUser1.js"></script>
 <%@ include file="../plantillas/footer2.jsp"%>
 
 <%

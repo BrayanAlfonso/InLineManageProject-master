@@ -35,12 +35,20 @@ public class Vent extends HttpServlet{
                 req.getRequestDispatcher("FormsVent/indexVent.jsp").forward(req, resp);
             break;
 
+            case "ventEp":
+                req.getRequestDispatcher("FormsVentEmployee/indexVentEp.jsp").forward(req, resp);
+            break;
+
             case "registerVent":
                 req.getRequestDispatcher("FormsVent/registerVent.jsp").forward(req, resp);
             break;
 
             case "consultsVent":
                 req.getRequestDispatcher("FormsVent/consultsVent.jsp").forward(req, resp);
+            break;
+
+            case "consultsVentEp":
+                req.getRequestDispatcher("FormsVentEmployee/consultsVent.jsp").forward(req, resp);
             break;
         }
     }

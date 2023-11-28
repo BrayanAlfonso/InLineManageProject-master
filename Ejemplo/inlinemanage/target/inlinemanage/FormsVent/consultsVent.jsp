@@ -44,11 +44,39 @@
                 if (dtventas != null && !dtventas.isEmpty()) {
                     for (DetalleVentVo dtventa : dtventas) {
         %>
-                        <div class="content2">
-                            <p><strong>Id de Producto: </strong><%= dtventa.getIdProducto() %> </p>
-                            <p><strong>Id de Venta: </strong><%= dtventa.getIdVenta() %> </p>
-                            <p><strong>Precio: </strong><%= dtventa.getPrecioProducto() %> </p>
-                            <p><strong>Cantidad: </strong><%= dtventa.getCantidad() %> </p>
+                        <div class="content-consult">
+                            <h2><strong>Detalles de la Venta</strong></h2>
+                            <div class="content-info">
+                                <p><strong>Id de Producto: </strong> </p>
+
+                                <p><%= dtventa.getIdProducto() %></p>
+                            </div>
+
+                                <br>
+
+                            <div class="content-info">
+                                <p><strong>Id de Venta: </strong> </p>
+
+                                <p><%= dtventa.getIdVenta() %></p>
+                            </div>
+
+                                <br>
+
+                            <div class="content-info">
+                                <p><strong>Precio: </strong> </p> 
+
+                                <p><%= dtventa.getPrecioProducto() %></p>
+                            </div>
+                            
+                                <br>
+
+                            <div class="content-info">
+                                <p><strong>Cantidad: </strong> </p> 
+
+                                <p><%= dtventa.getCantidad() %></p>
+
+                            </div>
+                                <br>
                         </div>
         <%
                     }

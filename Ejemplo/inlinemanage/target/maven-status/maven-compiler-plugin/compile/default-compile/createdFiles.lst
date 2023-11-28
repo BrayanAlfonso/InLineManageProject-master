@@ -16,6 +16,7 @@ model\ProveedorDao.class
 model\ProductoDao.class
 controller\Product.class
 ControllerInline.class
+Reports$1.class
 model\CategoriaVo.class
 model\CategoriaDao.class
 model\EntradaVo.class
